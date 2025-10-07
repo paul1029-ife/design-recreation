@@ -45,7 +45,7 @@ const InviteCard = () => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-md w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
+    <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
       <div className="flex flex-col gap-1">
         <div className="text-black font-bold text-xl">Share</div>
 
@@ -95,7 +95,7 @@ const InviteCard = () => {
             initial={{ opacity: 0, maxHeight: 0 }}
             animate={{ opacity: 1, maxHeight: 350 }}
             exit={{ opacity: 0, maxHeight: 0 }}
-            transition={{ duration: 0.22, ease: "linear" }}
+            transition={{ duration: 0.23, ease: "linear" }}
             className="flex flex-col overflow-hidden"
           >
             <div className="w-full">
@@ -174,7 +174,7 @@ const InviteCard = () => {
                     initial={{ opacity: 0, maxHeight: 0 }}
                     animate={{ opacity: 1, maxHeight: 400 }}
                     exit={{ opacity: 0, maxHeight: 0 }}
-                    transition={{ duration: 0.26, ease: "linear" }}
+                    transition={{ duration: 0.25, ease: "linear" }}
                     className="mt-3 space-y-2"
                   >
                     {invitedEmails.map((invitedEmail) => (
