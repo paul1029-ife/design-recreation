@@ -8,9 +8,9 @@ export default function Navbar() {
       logoAlt="Company Logo"
       items={[
         { label: "Home", href: "/" },
-        { label: "About", href: "/about" },
-        { label: "Services", href: "/services" },
-        { label: "Contact", href: "/contact" },
+        { label: "There's", href: "/" },
+        { label: "Nothing", href: "/" },
+        { label: "Else", href: "/" },
       ]}
       activeHref="/"
       className="custom-nav"
