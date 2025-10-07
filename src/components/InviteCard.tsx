@@ -183,7 +183,7 @@ const InviteCard = () => {
                         animate={{ opacity: 1, maxHeight: 400 }}
                         exit={{ opacity: 0, maxHeight: 0 }}
                         transition={{ duration: 0.26, ease: "linear" }}
-                        className="flex items-center justify-between bg-gray-50 rounded-lg p-2"
+                        className="flex items-end justify-between shadow-md border-[1px] border-gray-200 rounded-lg p-2"
                       >
                         <div className="flex items-center gap-2">
                           <motion.img
@@ -194,7 +194,7 @@ const InviteCard = () => {
                             className="w-8 h-8 rounded-full"
                           />
                           <div className="flex flex-col">
-                            <span className="text-sm font-medium capitalize text-gray-900">
+                            <span className="text-sm font-medium capitalize leading-[13px] text-gray-900">
                               {extractName(invitedEmail)}
                             </span>
                             <span className="text-xs text-gray-500">
@@ -204,7 +204,7 @@ const InviteCard = () => {
                         </div>
                         <motion.button
                           onClick={() => handleRemoveInvited(invitedEmail)}
-                          className="text-red-500 transition-colors"
+                          className="text-red-800/60 transition-colors"
                         >
                           <span className="text-sm">Remove</span>
                         </motion.button>
