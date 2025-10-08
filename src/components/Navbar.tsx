@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 export default function Navbar() {
   return (
     <PillNav
-      logo="vite.svg"
+      logo="paul.png"
       logoAlt="Company Logo"
       items={[
         { label: "Home", href: "/" },
