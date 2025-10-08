@@ -1,5 +1,5 @@
 import { Copy, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, cubicBezier, motion } from "motion/react";
 import { useState } from "react";
 import HeroiconsUserPlus from "./icons/IconPlus";
 import { HeroiconsPaperAirplane16Solid } from "./icons/IconSend";
@@ -53,7 +53,7 @@ const InviteCard = () => {
         <div className="text-black font-bold text-xl">Share</div>
 
         <div className="flex flex-col">
-          <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2">
+          <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2 pr-3.5">
             <div className="flex items-center gap-2 justify-between">
               <div className="bg-white p-1.5 shadow-md rounded-md">
                 <HugeiconsGlobe02 className="size-7 text-gray-500" />
@@ -92,15 +92,25 @@ const InviteCard = () => {
         </div>
       </div>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isPublic && (
           <motion.div
             initial={{ opacity: 0.2, maxHeight: 0 }}
-            animate={{ opacity: 1, maxHeight: 350 }}
-            exit={{ opacity: 1, maxHeight: 0 }}
-            transition={{
-              duration: 0.23,
-              ease: "linear",
+            animate={{
+              opacity: 1,
+              maxHeight: 350,
+              transition: {
+                duration: 0.26,
+                ease: cubicBezier(0.55, 0.085, 0.68, 0.53),
+              },
+            }}
+            exit={{
+              opacity: 0,
+              maxHeight: 0,
+              transition: {
+                duration: 0.27,
+                ease: cubicBezier(0.25, 0.46, 0.45, 0.94),
+              },
             }}
             className="flex flex-col overflow-hidden"
           >
@@ -158,7 +168,7 @@ const InviteCard = () => {
                           onChange={handleInviteInput}
                           onKeyDown={handleKeyDown}
                           placeholder="Enter email to share"
-                          className="flex-1 outline-none text-gray-600 placeholder-gray-400 focus:border-black"
+                          className="flex-1 outline-none text-gray-600 placeholder-gray-500 focus:border-black"
                         />
                       )}
                     </AnimatePresence>
@@ -166,7 +176,7 @@ const InviteCard = () => {
 
                   <motion.button
                     onClick={handleInvite}
-                    className="bg-black text-white rounded-md px-2 py-0.5 flex items-center gap-1 flex-shrink-0"
+                    className="bg-black text-white rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0"
                   >
                     <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
                     <span>Invite</span>
