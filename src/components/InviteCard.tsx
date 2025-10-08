@@ -1,6 +1,9 @@
-import { Copy, Globe, Send, UserPlus, X } from "lucide-react";
+import { Copy, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import HeroiconsUserPlus from "./icons/IconPlus";
+import { HeroiconsPaperAirplane16Solid } from "./icons/IconSend";
+import { HugeiconsGlobe02 } from "./icons/IconGlobe";
 
 const InviteCard = () => {
   const [isPublic, setIsPublic] = useState(false);
@@ -53,7 +56,7 @@ const InviteCard = () => {
           <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2">
             <div className="flex items-center gap-2 justify-between">
               <div className="bg-white p-1.5 shadow-md rounded-md">
-                <Globe className="size-7 text-gray-400" />
+                <HugeiconsGlobe02 className="size-7 text-gray-500" />
               </div>
               <div className="flex flex-col">
                 <p className="text-base font-medium leading-4">Anyone</p>
@@ -89,13 +92,16 @@ const InviteCard = () => {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {isPublic && (
           <motion.div
-            initial={{ opacity: 0, maxHeight: 0 }}
+            initial={{ opacity: 0.2, maxHeight: 0 }}
             animate={{ opacity: 1, maxHeight: 350 }}
-            exit={{ opacity: 0, maxHeight: 0 }}
-            transition={{ duration: 0.23, ease: "linear" }}
+            exit={{ opacity: 1, maxHeight: 0 }}
+            transition={{
+              duration: 0.23,
+              ease: "linear",
+            }}
             className="flex flex-col overflow-hidden"
           >
             <div className="w-full">
@@ -105,7 +111,7 @@ const InviteCard = () => {
               <div className="relative">
                 <motion.div className="flex justify-between items-center bg-white rounded-md border border-gray-300 px-2 pr-1 py-1 shadow-sm">
                   <div className="flex items-center gap-2 flex-1">
-                    <UserPlus className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <HeroiconsUserPlus className="w-5 h-5 text-gray-400 flex-shrink-0" />
 
                     <AnimatePresence mode="wait">
                       {validEmail ? (
@@ -162,7 +168,7 @@ const InviteCard = () => {
                     onClick={handleInvite}
                     className="bg-black text-white rounded-md px-2 py-0.5 flex items-center gap-1 flex-shrink-0"
                   >
-                    <Send className="w-4 h-4" />
+                    <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
                     <span>Invite</span>
                   </motion.button>
                 </motion.div>
@@ -179,6 +185,7 @@ const InviteCard = () => {
                   >
                     {invitedEmails.map((invitedEmail) => (
                       <motion.div
+                        key={invitedEmail}
                         initial={{ opacity: 0, maxHeight: 0 }}
                         animate={{ opacity: 1, maxHeight: 400 }}
                         exit={{ opacity: 0, maxHeight: 0 }}
