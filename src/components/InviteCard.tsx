@@ -67,7 +67,7 @@ const InviteCard = () => {
             </div>
 
             <button
-              className={`relative inline-flex h-5 w-8 items-center cursor-pointer rounded-full transition-colors focus:outline-none ${
+              className={`relative inline-flex h-5 w-8 items-center rounded-full transition-colors focus:outline-none ${
                 isPublic ? "bg-gray-400" : "bg-black"
               }`}
               onClick={(e) => {
@@ -115,7 +115,9 @@ const InviteCard = () => {
             className="flex flex-col overflow-hidden"
           >
             <div className="w-full">
-              <h2 className="text-lg font-medium text-gray-500 mb-1">Invite</h2>
+              <h2 className="text-base font-medium text-gray-500 mb-1">
+                Invite
+              </h2>
 
               {/* Input Area */}
               <div className="relative">
@@ -179,7 +181,7 @@ const InviteCard = () => {
                     className="bg-black text-white rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0"
                   >
                     <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
-                    <span>Invite</span>
+                    <span className="">Invite</span>
                   </motion.button>
                 </motion.div>
               </div>
