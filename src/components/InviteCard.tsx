@@ -133,7 +133,7 @@ const InviteCard = () => {
                             layoutId={`email-${validEmail}-${id}`}
                             // initial={{ opacity: 0, scale: 0.8 }}
                             // animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ duration: 0.17 }}
                             className="flex items-center gap-1 bg-white shadow-lg border-[1px] border-gray-100 shadow-gray-100 rounded-full px-2 py-0.5"
                           >
                             <motion.div layoutId={`avatar-${validEmail}-${id}`}>
@@ -211,7 +211,6 @@ const InviteCard = () => {
                           key={`invited-${invitedEmail}-${id}`}
                           layoutId={`email-${invitedEmail}-${id}`}
                           exit={{ opacity: 0, scale: 0.9 }}
-                          transition={{ duration: 0.2 }}
                           className="flex items-end justify-between shadow-md border-[1px] border-gray-200 rounded-lg p-2"
                         >
                           <div className="flex items-center gap-2">
