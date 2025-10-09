@@ -51,7 +51,7 @@ const InviteCard = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
+      <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-200 px-3 py-2.5 flex flex-col gap-2.5">
         <div className="flex flex-col gap-1">
           <div className="text-black font-bold text-xl">Share</div>
 
@@ -146,16 +146,19 @@ const InviteCard = () => {
                             <motion.span
                               layoutId={`name-${validEmail}-${id}`}
                               layout="position"
+                              transition={{ duration: 0.08 }}
                               className="text-gray-700 text-sm font-medium leading-[13px] capitalize"
                             >
                               {extractName(validEmail)}
                             </motion.span>
-                            <button
+                            <motion.button
+                              layoutId={`remove-${validEmail}-${id}`}
                               onClick={handleRemoveEmail}
                               className="text-gray-400 hover:text-gray-600"
+                              layout="position"
                             >
                               <X className="w-4 h-4" />
-                            </button>
+                            </motion.button>
                           </motion.div>
                         ) : (
                           <motion.input
@@ -181,7 +184,7 @@ const InviteCard = () => {
                   </motion.div>
                 </div>
 
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {invitedEmails.length > 0 && (
                     <motion.div
                       initial={{ opacity: 0, maxHeight: 0 }}
@@ -236,6 +239,7 @@ const InviteCard = () => {
                           </div>
                           <motion.button
                             onClick={() => handleRemoveInvited(invitedEmail)}
+                            layoutId={`remove-${invitedEmail}-${id}`}
                             className="text-red-800/60 transition-colors"
                           >
                             <span className="text-sm">Remove</span>
