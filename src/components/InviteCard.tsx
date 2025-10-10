@@ -50,11 +50,16 @@ const InviteCard = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-200 px-3 py-2.5 flex flex-col gap-2.5">
+    <div
+      className="min-h-screen flex items-center justify-center p-4"
+      style={{ fontFamily: "Some-Sans" }}
+    >
+      <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
+        {/* Header */}
         <div className="flex flex-col gap-1">
           <div className="text-black font-bold text-xl">Share</div>
 
+          {/* Access toggle */}
           <div className="flex flex-col">
             <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2 pr-3.5">
               <div className="flex items-center gap-2 justify-between">
@@ -62,7 +67,9 @@ const InviteCard = () => {
                   <HugeiconsGlobe02 className="w-7 h-7 text-gray-500" />
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-base font-medium leading-4">Anyone</p>
+                  <p className="text-base font-semibold text-gray-800 leading-4">
+                    Anyone
+                  </p>
                   <p className="text-gray-500 text-sm">
                     Everyone with link can access
                   </p>
@@ -89,12 +96,16 @@ const InviteCard = () => {
             </div>
           </div>
 
+          {/* Link display */}
           <div className="bg-gray-50/50 w-full flex items-center justify-between text-sm rounded-sm p-1">
-            <p className="text-gray-400">acme.com/enterprice/note/1234</p>
-            <Copy className="w-4 h-4 text-gray-400" />
+            <p className="text-gray-400 truncate">
+              acme.com/enterprise/note/1234
+            </p>
+            <Copy className="w-4 h-4 text-gray-400 flex-shrink-0" />
           </div>
         </div>
 
+        {/* Expandable Invite Area */}
         <AnimatePresence mode="wait">
           {isPublic && (
             <motion.div
@@ -122,8 +133,8 @@ const InviteCard = () => {
 
                 {/* Input Area */}
                 <div className="relative">
-                  <motion.div className="flex justify-between items-center bg-white rounded-md border border-gray-300 px-2 pr-1 py-1 shadow-sm">
-                    <div className="flex items-center gap-2 flex-1">
+                  <motion.div className="flex items-center bg-white rounded-md border border-gray-300 px-2 py-1 shadow-sm">
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
                       <HeroiconsUserPlus className="w-5 h-5 text-gray-400 flex-shrink-0" />
 
                       <AnimatePresence mode="wait">
@@ -131,8 +142,6 @@ const InviteCard = () => {
                           <motion.div
                             key={`pill-${validEmail}-${id}`}
                             layoutId={`email-${validEmail}-${id}`}
-                            // initial={{ opacity: 0, scale: 0.8 }}
-                            // animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.17 }}
                             className="flex items-center gap-1 bg-white shadow-lg border-[1px] border-gray-100 shadow-gray-100 rounded-full px-2 py-0.5"
                           >
@@ -147,7 +156,7 @@ const InviteCard = () => {
                               layoutId={`name-${validEmail}-${id}`}
                               layout="position"
                               transition={{ duration: 0.08 }}
-                              className="text-gray-700 text-sm font-medium leading-[13px] capitalize"
+                              className="text-gray-500 text-sm font-medium leading-[13px] capitalize"
                             >
                               {extractName(validEmail)}
                             </motion.span>
@@ -168,7 +177,7 @@ const InviteCard = () => {
                             onChange={handleInviteInput}
                             onKeyDown={handleKeyDown}
                             placeholder="Enter email to share"
-                            className="flex-1 outline-none text-gray-600 placeholder-gray-500 focus:border-black"
+                            className="outline-none text-gray-600 placeholder-gray-500 focus:border-black flex-1 min-w-0"
                           />
                         )}
                       </AnimatePresence>
@@ -176,14 +185,15 @@ const InviteCard = () => {
 
                     <motion.button
                       onClick={handleInvite}
-                      className="bg-black text-white rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0"
+                      className="bg-black text-white rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
                     >
                       <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
-                      <span className="">Invite</span>
+                      <span>Invite</span>
                     </motion.button>
                   </motion.div>
                 </div>
 
+                {/* Invited Emails List */}
                 <AnimatePresence mode="wait">
                   {invitedEmails.length > 0 && (
                     <motion.div
@@ -227,7 +237,7 @@ const InviteCard = () => {
                               <motion.span
                                 layoutId={`name-${invitedEmail}-${id}`}
                                 layout="position"
-                                className="text-gray-700 text-sm font-medium leading-[13px] capitalize"
+                                className="text-black text-sm font-medium leading-[13px] capitalize"
                               >
                                 {extractName(invitedEmail)}
                               </motion.span>
