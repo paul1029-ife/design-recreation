@@ -1,6 +1,33 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Some-Sans";
+  src: local("Some-Sans"),
+    url("./fonts/Some-Sans-Regular.woff2") format("woff2");
+  font-weight: 400; /* normal */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Some-Sans";
+  src: local("Some-Sans SemiBold"),
+    url("./fonts/Some-Sans-SemiBold.woff2") format("woff2");
+  font-weight: 600; /* semibold */
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Some-Sans", sans-serif;
+}
+
 :root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoothing: grayscale;
+
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
