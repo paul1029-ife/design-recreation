@@ -3,7 +3,7 @@
 @font-face {
   font-family: "Some-Sans";
   src: local("Some-Sans"),
-    url("./fonts/Some-Sans-Regular.woff2") format("woff2");
+    url("/assets/fonts/Some-Sans-Regular.woff2") format("woff2");
   font-weight: 400; /* normal */
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 @font-face {
   font-family: "Some-Sans";
   src: local("Some-Sans SemiBold"),
-    url("./fonts/Some-Sans-SemiBold.woff2") format("woff2");
+    url("/assets/fonts/Some-Sans-SemiBold.woff2") format("woff2");
   font-weight: 600; /* semibold */
   font-style: normal;
   font-display: swap;
