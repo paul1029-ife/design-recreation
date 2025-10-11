@@ -57,11 +57,9 @@ const InviteCard = () => {
       style={{ fontFamily: "Some-Sans" }}
     >
       <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
-        {/* Header */}
         <div className="flex flex-col gap-1">
           <div className="text-black font-semibold text-xl">Share</div>
 
-          {/* Access toggle */}
           <div className="flex flex-col">
             <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2 pr-3.5">
               <div className="flex items-center gap-2 justify-between">
@@ -98,7 +96,6 @@ const InviteCard = () => {
             </div>
           </div>
 
-          {/* Link display */}
           <div className="bg-gray-50/50 w-full flex items-center justify-between text-sm rounded-sm p-1">
             <p className="text-gray-400 truncate">
               acme.com/enterprise/note/1234
@@ -107,7 +104,6 @@ const InviteCard = () => {
           </div>
         </div>
 
-        {/* Expandable Invite Area */}
         <AnimatePresence mode="wait">
           {isPublic && (
             <motion.div
@@ -203,7 +199,6 @@ const InviteCard = () => {
                   </motion.div>
                 </div>
 
-                {/* Invited Emails List */}
                 <AnimatePresence mode="wait">
                   {invitedEmails.length > 0 && (
                     <motion.div
