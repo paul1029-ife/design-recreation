@@ -1,9 +1,9 @@
 import { Check, Copy, X } from "lucide-react";
 import { AnimatePresence, cubicBezier, motion } from "motion/react";
 import { useState, useId } from "react";
-import { HugeiconsGlobe02 } from "./icons/IconGlobe";
-import HeroiconsUserPlus from "./icons/IconPlus";
-import { HeroiconsPaperAirplane16Solid } from "./icons/IconSend";
+import { HugeiconsGlobe02 } from "../icons/IconGlobe";
+import HeroiconsUserPlus from "../icons/IconPlus";
+import { HeroiconsPaperAirplane16Solid } from "../icons/IconSend";
 
 const InviteCard = () => {
   const [isPublic, setIsPublic] = useState(false);
@@ -61,7 +61,7 @@ const InviteCard = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-4"
+      className="flex items-center justify-center p-4"
       style={{ fontFamily: "Some-Sans" }}
     >
       <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
