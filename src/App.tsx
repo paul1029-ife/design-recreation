@@ -3,7 +3,6 @@ import InviteCard from "./components/recreations/InviteCard";
 import type { PlaygroundComponent } from "./types";
 import Modal from "./components/global/Modal";
 import ComponentCard from "./components/global/ComponentCard";
-import { Analytics } from "@vercel/analytics/next";
 
 const components: PlaygroundComponent[] = [
   {
@@ -58,7 +57,6 @@ function App() {
         component={selectedComponent?.component}
         name={selectedComponent?.name}
       />
-      <Analytics />
     </div>
   );
 }
