@@ -25,7 +25,7 @@ const Modal = ({ isOpen, onClose, component: Component, name }: ModalProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative bg-white rounded-2xl h-3/4 shadow-xl max-w-4xl w-full mx-2 md:mx-4 overflow-hidden border border-gray-200"
+            className="relative bg-white rounded-2xl h-3/4 shadow-xl max-w-4xl w-full mx-2 md:mx-4 overflow-scroll scrollbar-hide border border-gray-200"
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
               <h2 className="text-xl font-semibold text-black">{name}</h2>
