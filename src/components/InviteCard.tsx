@@ -10,6 +10,7 @@ const InviteCard = () => {
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState<string | null>(null);
   const [invitedEmails, setInvitedEmails] = useState<string[]>([]);
+  const [isFocused, setIsFocused] = useState(false);
   const id = useId();
 
   const toggleStatus = () => setIsPublic(!isPublic);
@@ -38,6 +39,7 @@ const InviteCard = () => {
     if (validEmail) {
       setInvitedEmails([...invitedEmails, validEmail]);
       setValidEmail(null);
+      setIsFocused(false);
     }
   };
 
@@ -57,7 +59,7 @@ const InviteCard = () => {
       <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
         {/* Header */}
         <div className="flex flex-col gap-1">
-          <div className="text-black font-bold text-xl">Share</div>
+          <div className="text-black font-semibold text-xl">Share</div>
 
           {/* Access toggle */}
           <div className="flex flex-col">
@@ -67,10 +69,10 @@ const InviteCard = () => {
                   <HugeiconsGlobe02 className="w-7 h-7 text-gray-500" />
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-base font-semibold text-gray-800 leading-4">
+                  <p className="text-base font-medium text-black leading-4">
                     Anyone
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 text-sm truncate">
                     Everyone with link can access
                   </p>
                 </div>
@@ -133,7 +135,13 @@ const InviteCard = () => {
 
                 {/* Input Area */}
                 <div className="relative">
-                  <motion.div className="flex items-center bg-white rounded-md border border-gray-300 px-2 py-1 shadow-sm">
+                  <motion.div
+                    className={`flex items-center bg-white rounded-lg border px-2 py-1 shadow-sm transition-colors ${
+                      isFocused && !validEmail
+                        ? "border-black border-2"
+                        : "border-gray-300"
+                    }`}
+                  >
                     <div className="flex items-center gap-2 flex-1 min-w-0">
                       <HeroiconsUserPlus className="w-5 h-5 text-gray-400 flex-shrink-0" />
 
@@ -176,8 +184,10 @@ const InviteCard = () => {
                             value={email}
                             onChange={handleInviteInput}
                             onKeyDown={handleKeyDown}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
                             placeholder="Enter email to share"
-                            className="outline-none text-gray-600 placeholder-gray-500 focus:border-black flex-1 min-w-0"
+                            className="outline-none text-gray-600 placeholder-gray-500 flex-1 min-w-0"
                           />
                         )}
                       </AnimatePresence>
@@ -185,7 +195,7 @@ const InviteCard = () => {
 
                     <motion.button
                       onClick={handleInvite}
-                      className="bg-black text-white rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
+                      className="bg-black text-white font-medium rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
                     >
                       <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
                       <span>Invite</span>
@@ -210,7 +220,7 @@ const InviteCard = () => {
                         maxHeight: 0,
                         opacity: 0,
                         transition: {
-                          duration: 0.27,
+                          duration: 0.25,
                           ease: cubicBezier(0.25, 0.46, 0.45, 0.94),
                         },
                       }}
@@ -251,7 +261,7 @@ const InviteCard = () => {
                             layoutId={`remove-${invitedEmail}-${id}`}
                             className="text-red-800/60 transition-colors"
                           >
-                            <span className="text-sm">Remove</span>
+                            <span className="text-sm text-end">Remove</span>
                           </motion.button>
                         </motion.div>
                       ))}
