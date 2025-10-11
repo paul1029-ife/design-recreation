@@ -1,4 +1,4 @@
-import { Copy, X } from "lucide-react";
+import { Check, Copy, X } from "lucide-react";
 import { AnimatePresence, cubicBezier, motion } from "motion/react";
 import { useState, useId } from "react";
 import { HugeiconsGlobe02 } from "./icons/IconGlobe";
@@ -7,10 +7,12 @@ import { HeroiconsPaperAirplane16Solid } from "./icons/IconSend";
 
 const InviteCard = () => {
   const [isPublic, setIsPublic] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState<string | null>(null);
   const [invitedEmails, setInvitedEmails] = useState<string[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+  const url = "acme.com/enterprise/note/1234";
   const id = useId();
 
   const toggleStatus = () => setIsPublic(!isPublic);
@@ -27,6 +29,12 @@ const InviteCard = () => {
         setEmail("");
       }
     }
+  };
+
+  const handleCopy = (link: string) => {
+    navigator.clipboard.writeText(link);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1300);
   };
 
   const validateEmail = (value: string) => {
@@ -97,10 +105,42 @@ const InviteCard = () => {
           </div>
 
           <div className="bg-gray-50/50 w-full flex items-center justify-between text-sm rounded-sm p-1">
-            <p className="text-gray-400 truncate">
-              acme.com/enterprise/note/1234
-            </p>
-            <Copy className="w-4 h-4 text-gray-400 flex-shrink-0" />
+            <p className="text-gray-400 truncate">{url}</p>
+            <motion.button
+              onClick={() => handleCopy(url)}
+              whileTap={{ scale: 0.85 }}
+              className="relative flex items-center justify-center"
+            >
+              <AnimatePresence mode="wait">
+                {copied ? (
+                  <motion.div
+                    key="check"
+                    initial={{ opacity: 0, scale: 0.6, rotate: -45 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.6, rotate: 45 }}
+                    transition={{
+                      duration: 0.16,
+                      ease: [0.55, 0.085, 0.68, 0.53],
+                    }}
+                  >
+                    <Check className="w-4 h-4 text-gray-800" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="copy"
+                    initial={{ opacity: 0, scale: 0.6, rotate: -15 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.6, rotate: 15 }}
+                    transition={{
+                      duration: 0.17,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  >
+                    <Copy className="w-4 h-4 text-gray-400" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
 
@@ -191,7 +231,7 @@ const InviteCard = () => {
 
                     <motion.button
                       onClick={handleInvite}
-                      className="bg-black text-white font-medium rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
+                      className="bg-black text-white text-sm rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
                     >
                       <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
                       <span>Invite</span>
@@ -254,7 +294,7 @@ const InviteCard = () => {
                           <motion.button
                             onClick={() => handleRemoveInvited(invitedEmail)}
                             layoutId={`remove-${invitedEmail}-${id}`}
-                            className="text-red-800/60 transition-colors"
+                            className="text-red-800/80 transition-colors"
                           >
                             <span className="text-sm text-end">Remove</span>
                           </motion.button>
