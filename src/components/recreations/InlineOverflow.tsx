@@ -21,11 +21,10 @@ const InlineOverflow = () => {
           {isFull && (
             <motion.div
               className="flex gap-2 overflow-hidden"
-              initial={{ width: 0, gap: 2 }}
+              initial={{ width: 0 }}
               animate={{ width: "auto" }}
               exit={{
                 width: 0,
-                gap: [0, 2],
                 transition: {
                   ease: "linear",
                   duration: 0.18,
