@@ -20,7 +20,7 @@ const InlineOverflow = () => {
         <AnimatePresence mode="wait">
           {isFull && (
             <motion.div
-              className="flex overflow-hidden"
+              className="flex gap-2 overflow-hidden"
               initial={{ width: 0, gap: 2 }}
               animate={{ width: "auto" }}
               exit={{
