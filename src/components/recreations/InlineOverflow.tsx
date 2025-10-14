@@ -14,18 +14,22 @@ const InlineOverflow = () => {
       className="flex flex-col items-center justify-center p-4 gap-8"
       style={{ fontFamily: "Some-Sans" }}
     >
-      <motion.div className="rounded-full bg-gray-100 flex gap-2 px-2 py-1.5 items-center">
-        <div className="p-2 rounded-full bg-white">Save</div>
-        <div className="p-2 rounded-full bg-white">Copy</div>
+      <motion.div className="rounded-full bg-stone-100 flex gap-2 px-2 py-1.5 items-center">
+        <div className="px-3 py-2 rounded-full bg-white">Save</div>
+        <div className="px-3 py-2 rounded-full bg-white">Copy</div>
         <AnimatePresence mode="wait">
           {isFull && (
             <motion.div
-              className="flex gap-2"
-              initial={{ width: 0 }}
+              className="flex overflow-hidden"
+              initial={{ width: 0, gap: 2 }}
               animate={{ width: "auto" }}
               exit={{
                 width: 0,
-                transition: { duration: 0.25, ease: "easeInOut" },
+                gap: [0, 2],
+                transition: {
+                  ease: "linear",
+                  duration: 0.18,
+                },
               }}
               transition={{
                 type: "spring",
@@ -34,7 +38,7 @@ const InlineOverflow = () => {
               }}
             >
               <motion.div
-                className="p-2 rounded-full bg-white whitespace-nowrap"
+                className="px-3 py-2 rounded-full bg-white whitespace-nowrap"
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
@@ -48,7 +52,7 @@ const InlineOverflow = () => {
                 Share
               </motion.div>
               <motion.div
-                className="p-2 rounded-full bg-white whitespace-nowrap"
+                className="px-3 py-2 rounded-full bg-white whitespace-nowrap"
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
@@ -65,7 +69,7 @@ const InlineOverflow = () => {
           )}
         </AnimatePresence>
         <button
-          className="bg-gray-200 rounded-full size-8 flex items-center justify-center hover:bg-gray-300 transition-colors"
+          className="bg-white rounded-full size-8 flex items-center justify-center hover:text-gray-500 text-gray-900 transition-colors"
           onClick={handleClick}
         >
           {isFull ? <X size={20} /> : <MoreHorizontal size={20} />}
