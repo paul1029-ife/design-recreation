@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InviteCard from "./components/recreations/InviteCard";
+import InlineOverflow from "./components/recreations/InlineOverflow";
 import type { PlaygroundComponent } from "./types";
 import Modal from "./components/global/Modal";
 import ComponentCard from "./components/global/ComponentCard";
@@ -10,6 +11,12 @@ const components: PlaygroundComponent[] = [
     name: "Invite Card",
     source: "Nitish Khagwal",
     component: InviteCard,
+  },
+  {
+    id: 1,
+    name: "Invite Overflow Interaction",
+    source: "Nitish Khagwal",
+    component: InlineOverflow,
   },
 ];
 
