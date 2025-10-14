@@ -32,7 +32,7 @@ const InlineOverflow = () => {
               }}
               transition={{
                 type: "spring",
-                bounce: 0.5,
+                bounce: 0.35,
                 duration: 0.8,
               }}
             >
