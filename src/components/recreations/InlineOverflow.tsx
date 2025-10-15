@@ -14,23 +14,23 @@ const InlineOverflow = () => {
       className="flex flex-col items-center justify-center p-4 gap-8"
       style={{ fontFamily: "Some-Sans" }}
     >
-      <motion.div className="rounded-full bg-stone-100 flex gap-2 px-2 py-1.5 items-center">
+      <motion.div className="rounded-full bg-stone-100 flex gap-1.5 px-2 py-1.5 items-center">
         <div className="px-3 py-2 rounded-full bg-white">Save</div>
         <div className="px-3 py-2 rounded-full bg-white">Copy</div>
         <AnimatePresence mode="wait">
           {isFull && (
             <motion.div
-              className="flex gap-2 overflow-hidden"
+              className="flex gap-1.5 overflow-hidden"
               initial={{ width: 0 }}
               animate={{ width: "auto" }}
               exit={{
                 width: 0,
+                marginLeft: -12,
+                marginRight: -12,
                 transition: {
                   type: "spring",
-                  bounce: 0.35,
-                  mass: 0.38,
-                  delay: 0.1,
-                  duration: 0.8,
+                  bounce: 0.1,
+                  duration: 0.47,
                 },
               }}
               transition={{
