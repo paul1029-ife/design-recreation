@@ -29,7 +29,7 @@ const InlineOverflow = () => {
                 marginRight: -12,
                 transition: {
                   type: "spring",
-                  bounce: 0.1,
+                  bounce: 0.07,
                   duration: 0.47,
                 },
               }}
