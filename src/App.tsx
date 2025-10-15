@@ -14,7 +14,7 @@ const components: PlaygroundComponent[] = [
   },
   {
     id: 1,
-    name: "Invite Overflow Interaction",
+    name: "Inline Overflow Interaction",
     source: "Nitish Khagwal",
     component: InlineOverflow,
   },

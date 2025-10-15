@@ -26,8 +26,11 @@ const InlineOverflow = () => {
               exit={{
                 width: 0,
                 transition: {
-                  ease: "linear",
-                  duration: 0.18,
+                  type: "spring",
+                  bounce: 0.35,
+                  mass: 0.38,
+                  delay: 0.1,
+                  duration: 0.8,
                 },
               }}
               transition={{
