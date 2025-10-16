@@ -11,7 +11,7 @@ const InlineOverflow = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center p-4 gap-8"
+      className="flex flex-col items-center justify-center p-4 gap-8 "
       style={{ fontFamily: "Some-Sans" }}
     >
       <motion.div className="rounded-full bg-stone-100 flex gap-1.5 px-2 py-1.5 items-center">
@@ -29,8 +29,9 @@ const InlineOverflow = () => {
                 marginRight: -12,
                 transition: {
                   type: "spring",
-                  bounce: 0.07,
-                  duration: 0.47,
+                  mass: 1,
+                  stiffness: 958,
+                  damping: 60,
                 },
               }}
               transition={{
