@@ -4,6 +4,7 @@ import InlineOverflow from "./components/recreations/InlineOverflow";
 import type { PlaygroundComponent } from "./types";
 import Modal from "./components/global/Modal";
 import ComponentCard from "./components/global/ComponentCard";
+import CommandKbd from "./components/recreations/command-keyboard/CommandKbd";
 
 const components: PlaygroundComponent[] = [
   {
@@ -13,10 +14,16 @@ const components: PlaygroundComponent[] = [
     component: InviteCard,
   },
   {
-    id: 1,
+    id: 2,
     name: "Inline Overflow Interaction",
     source: "Nitish Khagwal",
     component: InlineOverflow,
+  },
+  {
+    id: 3,
+    name: "Command Keyboard",
+    source: "Walef",
+    component: CommandKbd,
   },
 ];
 
