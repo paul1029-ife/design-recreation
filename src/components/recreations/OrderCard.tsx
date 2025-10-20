@@ -233,7 +233,7 @@ export default function FoodOrderCard(): JSX.Element {
         {
           scale: 0,
           opacity: 0,
-          duration: 0.5,
+          duration: 0.8,
           ease: "power2.inOut",
           delay: 0.2, // small delay to let final progress finish
         },
@@ -314,10 +314,12 @@ export default function FoodOrderCard(): JSX.Element {
                 ref={iconRef}
                 data-icon={currentStageData.icon}
                 className="absolute top-1/2 -translate-y-1/2 bg-lime-400 rounded-full size-5 flex items-center justify-center z-10"
+                style={{
+                  willChange: "transform",
+                  backfaceVisibility: "hidden",
+                }}
               >
-                <div className="icon-content">
-                  {getIcon(currentStageData.icon)}
-                </div>
+                {getIcon(currentStageData.icon)}
               </div>
             )}
           </div>
