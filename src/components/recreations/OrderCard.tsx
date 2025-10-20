@@ -1,4 +1,4 @@
-import React, { useRef, useState, type JSX } from "react";
+import { useRef, useState, type JSX } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { BaggageClaim, Bike, Check, Package } from "lucide-react";
