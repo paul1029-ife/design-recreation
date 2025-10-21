@@ -19,18 +19,17 @@ export function CollapsedSearch({ onClick }: CollapsedSearchProps) {
     <AnimatePresence mode="wait">
       <motion.div
         layoutId="main-container"
-        className="bg-white rounded-lg shadow-xl overflow-hidden relative"
+        className="bg-white rounded-lg shadow-xl overflow-hidden relative w-full sm:w-[360px]"
       >
         <motion.button
           layoutId="search-container"
           onClick={onClick}
-          className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-text"
-          style={{ width: 360 }}
+          className="w-full flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-text"
         >
-          <Search className="w-4 h-4 text-gray-400" />
+          <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
           <motion.span
             layoutId="search-text"
-            className="text-sm text-gray-400"
+            className="text-sm text-gray-400 truncate"
             layout-id="search-placeholder"
           >
             Search for anything
@@ -69,8 +68,7 @@ export function ExpandedSearch({
     <AnimatePresence mode="wait">
       <motion.div
         layoutId="main-container"
-        className="bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden relative"
-        style={{ width: 640 }}
+        className="bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden relative w-full sm:w-[640px]"
       >
         <motion.div
           className="flex items-center gap-3 px-4 py-3 border-b border-gray-100"
@@ -84,11 +82,11 @@ export function ExpandedSearch({
             onChange={(e) => setSearchQuery(e.target.value)}
             layout-id="search-placeholder"
             placeholder="search commands..."
-            className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400"
+            className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
           />
           <button
             onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded transition-colors"
+            className="p-1 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
           >
             <X className="w-4 h-4 text-gray-400" />
           </button>
@@ -138,20 +136,20 @@ function CommandItem({ command }: CommandItemProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="w-full flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-colors group hover:bg-gray-100"
+      className="w-full flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-colors group hover:bg-gray-100 gap-2"
     >
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-md">
+      <div className="flex items-center gap-3 min-w-0 flex-1">
+        <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-md flex-shrink-0">
           <Icon className="w-4 h-4 text-gray-600" />
         </div>
-        <span className="text-sm text-gray-700">{command.label}</span>
+        <span className="text-sm text-gray-700 truncate">{command.label}</span>
       </div>
 
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-center gap-0.5 flex-shrink-0">
         {command.shortcut.map((key, idx) => (
           <kbd
             key={idx}
-            className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded"
+            className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded hidden sm:block"
           >
             {key}
           </kbd>
