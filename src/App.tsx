@@ -4,8 +4,8 @@ import InlineOverflow from "./components/recreations/InlineOverflow";
 import type { PlaygroundComponent } from "./types";
 import Modal from "./components/global/Modal";
 import ComponentCard from "./components/global/ComponentCard";
-import CommandKbd from "./components/recreations/command-keyboard/CommandKbd";
 import FoodOrderCard from "./components/recreations/OrderCard";
+import CommandPalette from "./components/recreations/command-keyboard/CommandPalette";
 
 const components: PlaygroundComponent[] = [
   {
@@ -23,13 +23,13 @@ const components: PlaygroundComponent[] = [
   {
     id: 3,
     name: "Command Keyboard",
-    source: "Walef",
-    component: CommandKbd,
+    source: "Tanjim",
+    component: CommandPalette,
   },
   {
     id: 4,
     name: "Food order Card",
-    source: "Walef",
+    source: "Yadwinder Singh",
     component: FoodOrderCard,
   },
 ];
