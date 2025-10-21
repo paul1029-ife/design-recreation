@@ -1,7 +1,11 @@
 import { useRef, useState, type JSX } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { BaggageClaim, Bike, Check, Package } from "lucide-react";
+import { motion } from "motion/react";
+import { HugeiconsPan03 } from "../icons/IconPan";
+import { HugeiconsPackageProcess } from "../icons/PackageProcess";
+import { HugeiconsBicycle } from "../icons/IconBicycle";
+import { HugeiconsSafeDelivery01 } from "../icons/IconSafeDelivery";
 
 gsap.registerPlugin(useGSAP);
 
@@ -61,7 +65,7 @@ export default function FoodOrderCard(): JSX.Element {
       const tl = gsap.timeline({
         onComplete: () => {
           if (currentStage < stages.length - 1) {
-            setTimeout(() => animateToNextStage(), 1200);
+            setTimeout(() => animateToNextStage(), 950);
           }
         },
       });
@@ -77,10 +81,10 @@ export default function FoodOrderCard(): JSX.Element {
           [titleRef.current, subtitleRef.current, timeRef.current],
           {
             opacity: 0,
-            y: 10,
-            duration: 0.4,
-            stagger: 0.05,
-            ease: "power2.out",
+            y: 20,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "elastic.out(1, 0.6)",
           },
           "-=0.2"
         );
@@ -147,7 +151,7 @@ export default function FoodOrderCard(): JSX.Element {
 
     tl.to(iconRef.current, {
       scale: 0,
-      duration: 0.3,
+      duration: 0.2,
       ease: "back.in(1.7)",
     });
 
@@ -155,10 +159,10 @@ export default function FoodOrderCard(): JSX.Element {
       [titleRef.current, subtitleRef.current, timeRef.current],
       {
         opacity: 0,
-        y: 4,
-        duration: 0.17,
-        stagger: 0.03,
-        ease: "power2.inOut",
+        y: 9,
+        duration: 0.3,
+        stagger: 0.02,
+        ease: "elastic.out(1, 0.6)",
       },
       "-=0.2"
     );
@@ -172,7 +176,7 @@ export default function FoodOrderCard(): JSX.Element {
         iconRef.current,
         {
           scale: 1,
-          duration: 0.4,
+          duration: 0.2,
           ease: "back.out(1.7)",
         },
         "+=0.1"
@@ -183,9 +187,9 @@ export default function FoodOrderCard(): JSX.Element {
         {
           opacity: 1,
           y: 0,
-          duration: 0.17,
-          stagger: 0.03,
-          ease: "power2.inOut",
+          duration: 0.3,
+          stagger: 0.02,
+          ease: "elastic.out(1, 0.6)",
         },
         "-=0.2"
       );
@@ -247,13 +251,13 @@ export default function FoodOrderCard(): JSX.Element {
   const getIcon = (type: Stage["icon"]): JSX.Element | null => {
     switch (type) {
       case "cart":
-        return <BaggageClaim size={15} />;
+        return <HugeiconsPan03 className="size-4" />;
       case "package":
-        return <Package size={15} />;
+        return <HugeiconsPackageProcess className="size-4" />;
       case "bike":
-        return <Bike size={15} />;
+        return <HugeiconsBicycle className="size-4" />;
       case "check":
-        return <Check size={15} />;
+        return <HugeiconsSafeDelivery01 className="size-4" />;
       default:
         return null;
     }
@@ -269,13 +273,31 @@ export default function FoodOrderCard(): JSX.Element {
             ref={pawRef}
             className="bg-zinc-900 rounded-2xl p-1.5 flex-shrink-0"
           >
-            <svg width="60" height="60" viewBox="0 0 48 48" fill="#9f9fa9">
+            <motion.svg
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{
+                opacity: 1,
+                scale: [0, 1.2, 1],
+              }}
+              transition={{
+                delay: 0.2,
+                scale: {
+                  times: [0, 0.5, 1],
+                  duration: 1.2,
+                  ease: "easeInOut",
+                },
+              }}
+              width="60"
+              height="60"
+              viewBox="0 0 48 48"
+              fill="#9f9fa9"
+            >
               <ellipse cx="24" cy="30" rx="10" ry="8" fill="" />
-              <circle cx="14" cy="16" r="5" fill="white" />
+              <circle cx="14" cy="16" r="4" fill="white" />
               <circle cx="24" cy="14" r="5" fill="white" />
-              <circle cx="34" cy="16" r="5" fill="white" />
-              <circle cx="38" cy="26" r="4" fill="white" />
-            </svg>
+              <circle cx="34" cy="16" r="4" fill="white" />
+              <circle cx="38" cy="26" r="3" fill="white" />
+            </motion.svg>
           </div>
 
           <div className="flex-1">
