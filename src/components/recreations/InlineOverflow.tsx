@@ -25,10 +25,10 @@ const InlineOverflow = () => {
               animate={{ width: "auto" }}
               exit={{
                 width: 0,
-                // marginRight: -12,
+                marginRight: -12,
                 transition: {
                   type: "spring",
-                  bounce: 0.35,
+                  bounce: 0.1,
                   duration: 0.37,
                 },
               }}

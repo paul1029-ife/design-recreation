@@ -65,7 +65,7 @@ export default function FoodOrderCard(): JSX.Element {
       const tl = gsap.timeline({
         onComplete: () => {
           if (currentStage < stages.length - 1) {
-            setTimeout(() => animateToNextStage(), 950);
+            setTimeout(() => animateToNextStage(), 1100);
           }
         },
       });
@@ -84,7 +84,7 @@ export default function FoodOrderCard(): JSX.Element {
             y: 20,
             duration: 0.8,
             stagger: 0.1,
-            ease: "elastic.out(1, 0.6)",
+            ease: "elastic.out(1, 0.4)",
           },
           "-=0.2"
         );
@@ -101,6 +101,7 @@ export default function FoodOrderCard(): JSX.Element {
 
         // Set icon at start position
         tl.set(iconRef.current, {
+          delay: 0.2,
           left: "calc(0% - 14px)",
           opacity: 1,
         });
@@ -160,9 +161,8 @@ export default function FoodOrderCard(): JSX.Element {
       {
         opacity: 0,
         y: 9,
-        duration: 0.3,
-        stagger: 0.02,
-        ease: "elastic.out(1, 0.6)",
+        duration: 0.2,
+        ease: "elastic.out(1, 0.4)",
       },
       "-=0.2"
     );
@@ -187,9 +187,9 @@ export default function FoodOrderCard(): JSX.Element {
         {
           opacity: 1,
           y: 0,
-          duration: 0.3,
-          stagger: 0.02,
-          ease: "elastic.out(1, 0.6)",
+          duration: 0.4,
+          stagger: 0.1,
+          ease: "elastic.out(1, 0.4)",
         },
         "-=0.2"
       );
@@ -230,7 +230,6 @@ export default function FoodOrderCard(): JSX.Element {
       );
     });
 
-    // 🟢 Add a final exit animation when it’s the last stage
     if (nextStage === stages.length - 1) {
       tl.to(
         iconRef.current,
@@ -239,11 +238,11 @@ export default function FoodOrderCard(): JSX.Element {
           opacity: 0,
           duration: 0.8,
           ease: "power2.inOut",
-          delay: 0.2, // small delay to let final progress finish
+          delay: 0.2,
         },
         "<"
       ).call(() => {
-        setIcon(null); // remove it from DOM after animation
+        setIcon(null);
       });
     }
   };
