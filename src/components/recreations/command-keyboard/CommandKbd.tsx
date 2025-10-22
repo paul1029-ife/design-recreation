@@ -19,18 +19,20 @@ export function CollapsedSearch({ onClick }: CollapsedSearchProps) {
     <AnimatePresence mode="wait">
       <motion.div
         layoutId="main-container"
-        className="bg-white rounded-lg shadow-xl overflow-hidden relative w-full sm:w-[360px]"
+        layout
+        style={{ borderRadius: 10, overflow: "hidden" }}
+        className="bg-white relative w-full sm:w-[360px]"
       >
         <motion.button
           layoutId="search-container"
           onClick={onClick}
-          className="w-full flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-text"
+          style={{ borderRadius: 10 }}
+          className="w-full flex items-center gap-2 px-4 py-2.5 bg-white cursor-text"
         >
           <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
           <motion.span
             layoutId="search-text"
             className="text-sm text-gray-400 truncate"
-            layout-id="search-placeholder"
           >
             Search for anything
           </motion.span>
@@ -68,10 +70,12 @@ export function ExpandedSearch({
     <AnimatePresence mode="wait">
       <motion.div
         layoutId="main-container"
-        className="bg-white border border-gray-200 rounded-lg shadow-xl overflow-hidden relative w-full sm:w-[640px]"
+        layout
+        style={{ borderRadius: 10, overflow: "hidden" }}
+        className="bg-white border border-gray-200 shadow-xl relative w-full sm:w-[640px]"
       >
         <motion.div
-          className="flex items-center gap-3 px-4 py-3 border-b border-gray-100"
+          className="flex items-center gap-3 px-4 py-3"
           layoutId="search-container"
         >
           <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
@@ -80,7 +84,7 @@ export function ExpandedSearch({
             autoFocus
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            layout-id="search-placeholder"
+            layoutId="search-placeholder"
             placeholder="search commands..."
             className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
           />
@@ -116,7 +120,12 @@ export function ExpandedSearch({
             )}
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none rounded-b-3xl z-30" />
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none z-30"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        />
       </motion.div>
     </AnimatePresence>
   );
