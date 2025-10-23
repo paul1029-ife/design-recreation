@@ -65,17 +65,15 @@ export function ExpandedSearch({
   return (
     <motion.div
       layoutId="main-container"
-      style={{ willChange: "transform" }}
       className="bg-white relative w-full sm:w-[640px] rounded-[30px] shadow-lg"
     >
-      <motion.div className="flex items-center gap-3 px-4 py-3">
+      <motion.div layout className="flex items-center gap-3 px-4 py-3">
         <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
-        <motion.input
+        <input
           type="text"
           autoFocus
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          layoutId="search-placeholder"
           placeholder="search commands..."
           className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
         />
@@ -96,21 +94,31 @@ export function ExpandedSearch({
             Suggestions
           </motion.div>
 
-          {filteredCommands.length === 0 ? (
-            <div className="px-3 py-8 text-center text-sm text-gray-400">
-              No commands found
-            </div>
-          ) : (
-            <div className="space-y-0.5">
-              <AnimatePresence initial={false}>
+          <AnimatePresence mode="popLayout">
+            {filteredCommands.length === 0 ? (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="px-3 py-8 text-center text-sm text-gray-400"
+              >
+                No commands found
+              </motion.div>
+            ) : (
+              <motion.div
+                layout="preserve-aspect"
+                className="space-y-0.5 min-h-10"
+              >
                 {filteredCommands.map((cmd) => (
                   <CommandItem key={cmd.id} command={cmd} />
                 ))}
-              </AnimatePresence>
-            </div>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
+
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none z-30 rounded-b-[30px]"
         initial={{ opacity: 0 }}
@@ -130,16 +138,15 @@ export function CommandItem({ command }: CommandItemProps) {
 
   return (
     <motion.button
-      layout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.15 }}
       className="w-full flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-colors group hover:bg-gray-100 gap-2"
     >
       <div className="flex items-center gap-3 min-w-0 flex-1">
         <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-md flex-shrink-0">
-          <Icon className="w-4 h-4 text-gray-600" />
+          <Icon className="w-4 h-4 text-gray-600 flex-shrink-0" />
         </div>
         <span className="text-sm text-gray-700 truncate">{command.label}</span>
       </div>
