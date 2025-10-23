@@ -77,12 +77,15 @@ export function ExpandedSearch({
           placeholder="search commands..."
           className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
         />
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.19 }}
           onClick={onClose}
           className="p-1 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
         >
           <X className="w-4 h-4 text-gray-400" />
-        </button>
+        </motion.button>
       </motion.div>
 
       <div className="max-h-96 overflow-y-auto relative scrollbar-hide">
