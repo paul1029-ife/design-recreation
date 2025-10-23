@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState, type JSX } from "react";
-import { AnimatePresence, LayoutGroup } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { CollapsedSearch, ExpandedSearch } from "./CommandKbd";
 
-export default function CommandPalette(): JSX.Element {
+export default function CommandPalette() {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -42,25 +42,23 @@ export default function CommandPalette(): JSX.Element {
   }, [isExpanded]);
 
   return (
-    <div className="h-screen flex items-start justify-center">
+    <div className="h-screen flex items-start justify-center w-screen bg-gray-100">
       <div ref={containerRef}>
-        <LayoutGroup>
-          <AnimatePresence mode="wait">
-            {!isExpanded ? (
-              <CollapsedSearch
-                key="collapsed"
-                onClick={() => setIsExpanded(true)}
-              />
-            ) : (
-              <ExpandedSearch
-                key="expanded"
-                onClose={handleClose}
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-              />
-            )}
-          </AnimatePresence>
-        </LayoutGroup>
+        <AnimatePresence mode="wait">
+          {!isExpanded ? (
+            <CollapsedSearch
+              key="collapsed"
+              onClick={() => setIsExpanded(true)}
+            />
+          ) : (
+            <ExpandedSearch
+              key="expanded"
+              onClose={handleClose}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

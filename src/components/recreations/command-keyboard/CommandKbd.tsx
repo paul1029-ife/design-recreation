@@ -16,29 +16,25 @@ type CollapsedSearchProps = {
 
 export function CollapsedSearch({ onClick }: CollapsedSearchProps) {
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        layoutId="main-container"
-        layout
-        style={{ borderRadius: 10, overflow: "hidden" }}
-        className="bg-white relative w-full sm:w-[360px]"
+    <motion.div
+      layoutId="main-container"
+      className="bg-white relative w-full sm:w-[360px] rounded-[30px] shadow-lg"
+    >
+      <motion.button
+        onClick={onClick}
+        className="w-full flex items-center gap-2 px-4 py-2.5 bg-white cursor-text rounded-[30px]"
       >
-        <motion.button
-          layoutId="search-container"
-          onClick={onClick}
-          style={{ borderRadius: 10 }}
-          className="w-full flex items-center gap-2 px-4 py-2.5 bg-white cursor-text"
+        <motion.div
+          layoutId="search-text"
+          className="gap-2 items-center inline-flex"
         >
           <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
-          <motion.span
-            layoutId="search-text"
-            className="text-sm text-gray-400 truncate"
-          >
+          <motion.span className="text-sm text-gray-400 truncate">
             Search for anything
           </motion.span>
-        </motion.button>
-      </motion.div>
-    </AnimatePresence>
+        </motion.div>
+      </motion.button>
+    </motion.div>
   );
 }
 
@@ -67,67 +63,61 @@ export function ExpandedSearch({
   }, [searchQuery]);
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        layoutId="main-container"
-        layout
-        style={{ borderRadius: 10, overflow: "hidden" }}
-        className="bg-white border border-gray-200 shadow-xl relative w-full sm:w-[640px]"
-      >
-        <motion.div
-          className="flex items-center gap-3 px-4 py-3"
-          layoutId="search-container"
-        >
-          <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
-          <motion.input
-            type="text"
-            autoFocus
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            layoutId="search-placeholder"
-            placeholder="search commands..."
-            className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
-          />
-          <button
-            onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
-          >
-            <X className="w-4 h-4 text-gray-400" />
-          </button>
-        </motion.div>
-
-        <div className="max-h-96 overflow-y-auto relative scrollbar-hide">
-          <div className="px-3 py-2">
-            <motion.div
-              layout="position"
-              className="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 py-1.5"
-            >
-              Suggestions
-            </motion.div>
-
-            {filteredCommands.length === 0 ? (
-              <div className="px-3 py-8 text-center text-sm text-gray-400">
-                No commands found
-              </div>
-            ) : (
-              <div className="space-y-0.5">
-                <AnimatePresence initial={false}>
-                  {filteredCommands.map((cmd) => (
-                    <CommandItem key={cmd.id} command={cmd} />
-                  ))}
-                </AnimatePresence>
-              </div>
-            )}
-          </div>
-        </div>
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none z-30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+    <motion.div
+      layoutId="main-container"
+      style={{ willChange: "transform" }}
+      className="bg-white relative w-full sm:w-[640px] rounded-[30px] shadow-lg"
+    >
+      <motion.div className="flex items-center gap-3 px-4 py-3">
+        <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
+        <motion.input
+          type="text"
+          autoFocus
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          layoutId="search-placeholder"
+          placeholder="search commands..."
+          className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
         />
+        <button
+          onClick={onClose}
+          className="p-1 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
+        >
+          <X className="w-4 h-4 text-gray-400" />
+        </button>
       </motion.div>
-    </AnimatePresence>
+
+      <div className="max-h-96 overflow-y-auto relative scrollbar-hide">
+        <div className="px-3 py-2">
+          <motion.div
+            layout="position"
+            className="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 py-1.5"
+          >
+            Suggestions
+          </motion.div>
+
+          {filteredCommands.length === 0 ? (
+            <div className="px-3 py-8 text-center text-sm text-gray-400">
+              No commands found
+            </div>
+          ) : (
+            <div className="space-y-0.5">
+              <AnimatePresence initial={false}>
+                {filteredCommands.map((cmd) => (
+                  <CommandItem key={cmd.id} command={cmd} />
+                ))}
+              </AnimatePresence>
+            </div>
+          )}
+        </div>
+      </div>
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none z-30 rounded-b-[30px]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+    </motion.div>
   );
 }
 
@@ -135,7 +125,7 @@ type CommandItemProps = {
   command: Command;
 };
 
-function CommandItem({ command }: CommandItemProps) {
+export function CommandItem({ command }: CommandItemProps) {
   const Icon = command.icon;
 
   return (
