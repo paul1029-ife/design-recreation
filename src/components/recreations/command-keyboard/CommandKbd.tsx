@@ -65,7 +65,8 @@ export function ExpandedSearch({
   return (
     <motion.div
       layoutId="main-container"
-      className="bg-white relative w-full sm:w-[640px] rounded-[30px] shadow-lg"
+      style={{ borderRadius: 30 }}
+      className="bg-white relative w-full sm:w-[640px] shadow-lg"
     >
       <motion.div layout className="flex items-center gap-3 px-4 py-3">
         <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
