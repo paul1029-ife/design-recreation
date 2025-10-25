@@ -18,7 +18,8 @@ export function CollapsedSearch({ onClick }: CollapsedSearchProps) {
   return (
     <motion.div
       layoutId="main-container"
-      className="bg-white relative w-full sm:w-[360px] rounded-[30px] shadow-lg"
+      style={{ borderRadius: 30 }}
+      className="bg-white relative w-full sm:w-[360px] shadow-lg"
     >
       <motion.button
         onClick={onClick}
@@ -66,7 +67,7 @@ export function ExpandedSearch({
     <motion.div
       layoutId="main-container"
       style={{ borderRadius: 30 }}
-      className="bg-white relative w-full sm:w-[640px] shadow-lg"
+      className="bg-white relative w-full sm:w-[640px] shadow-lg overflow-hidden"
     >
       <motion.div layout className="flex items-center gap-3 px-4 py-3">
         <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
