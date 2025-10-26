@@ -42,7 +42,7 @@ export default function CommandPalette() {
   }, [isExpanded]);
 
   return (
-    <div className="h-screen flex items-start justify-center w-screen pt-8">
+    <div className="flex items-start h-[460px]  justify-center w-screen pt-8">
       <div ref={containerRef}>
         <AnimatePresence mode="wait">
           {!isExpanded ? (

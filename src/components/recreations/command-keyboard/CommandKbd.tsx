@@ -1,6 +1,6 @@
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Search, X } from "lucide-react";
+import { Search } from "lucide-react";
 import { commands } from "../../../constants/commands";
 
 type Command = {
@@ -19,11 +19,11 @@ export function CollapsedSearch({ onClick }: CollapsedSearchProps) {
     <motion.div
       layoutId="main-container"
       style={{ borderRadius: 30 }}
-      className="bg-white relative w-full sm:w-[360px] shadow-lg"
+      className="bg-white relative w-full sm:w-[360px]"
     >
       <motion.button
         onClick={onClick}
-        className="w-full flex items-center gap-2 px-4 py-2.5 bg-white cursor-text rounded-[30px]"
+        className="w-full flex items-center gap-2 px-4 py-2.5 bg-white cursor-text rounded-[30px] shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 focus:outline-none "
       >
         <motion.div
           layoutId="search-text"
@@ -69,7 +69,10 @@ export function ExpandedSearch({
       style={{ borderRadius: 30 }}
       className="bg-white relative w-full sm:w-[640px] shadow-lg overflow-hidden"
     >
-      <motion.div layout className="flex items-center gap-3 px-4 py-3">
+      <motion.div
+        layout
+        className="flex items-center gap-3 px-4 py-3 border-b border-gray-100"
+      >
         <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
         <input
           type="text"
@@ -85,9 +88,7 @@ export function ExpandedSearch({
           transition={{ delay: 0.19 }}
           onClick={onClose}
           className="p-1 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
-        >
-          <X className="w-4 h-4 text-gray-400" />
-        </motion.button>
+        ></motion.button>
       </motion.div>
 
       <div className="max-h-96 overflow-y-auto relative scrollbar-hide">
@@ -147,25 +148,23 @@ export function CommandItem({ command }: CommandItemProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="w-full flex items-center justify-between px-3 py-2.5 rounded-md cursor-pointer transition-colors group hover:bg-gray-100 gap-2"
+      className="flex items-center w-full justify-between gap-3 px-3 py-2 rounded-md cursor-pointer hover:bg-gray-50/80 group transition-colors duration-200"
     >
-      <div className="flex items-center gap-3 min-w-0 flex-1">
-        <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-md flex-shrink-0">
-          <Icon className="w-4 h-4 text-gray-600 flex-shrink-0" />
-        </div>
-        <span className="text-sm text-gray-700 truncate">{command.label}</span>
-      </div>
+      <motion.div className="flex items-center gap-3 flex-1">
+        <Icon className="w-4 h-4 text-gray-500 flex-shrink-0" />
+        <span className="text-sm font-medium text-gray-900 leading-5">
+          {command.label}
+        </span>
+      </motion.div>
 
-      <div className="flex items-center gap-0.5 flex-shrink-0">
-        {command.shortcut.map((key, idx) => (
-          <kbd
-            key={idx}
-            className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded hidden sm:block"
-          >
-            {key}
-          </kbd>
-        ))}
-      </div>
+      {command.shortcut.map((key, idx) => (
+        <kbd
+          key={idx}
+          className="inline-flex items-center justify-center rounded border border-gray-300 bg-gray-50/60 font-medium text-gray-600 w-4 h-4 text-xs leading-5"
+        >
+          {key}
+        </kbd>
+      ))}
     </motion.button>
   );
 }
