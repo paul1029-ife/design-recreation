@@ -10,27 +10,27 @@ import CommandPalette from "./components/recreations/command-keyboard/CommandPal
 const components: PlaygroundComponent[] = [
   {
     id: 1,
-    name: "Invite Card",
-    source: "Nitish Khagwal",
-    component: InviteCard,
+    name: "Food Order Card",
+    source: "Yadwinder Singh",
+    component: FoodOrderCard,
   },
   {
     id: 2,
-    name: "Inline Overflow Interaction",
-    source: "Nitish Khagwal",
-    component: InlineOverflow,
-  },
-  {
-    id: 3,
     name: "Command Keyboard",
     source: "Tanjim",
     component: CommandPalette,
   },
   {
+    id: 3,
+    name: "Invite Card",
+    source: "Nitish Khagwal",
+    component: InviteCard,
+  },
+  {
     id: 4,
-    name: "Food order Card",
-    source: "Yadwinder Singh",
-    component: FoodOrderCard,
+    name: "Inline Overflow Interaction",
+    source: "Nitish Khagwal",
+    component: InlineOverflow,
   },
 ];
 
@@ -78,6 +78,17 @@ function App() {
         component={selectedComponent?.component}
         name={selectedComponent?.name}
       />
+      <footer className="w-full py-6 text-center text-sm text-gray-500">
+        Built by{" "}
+        <a
+          href="https://ifeoluwa.tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-black transition"
+        >
+          Ifeoluwa Agbogun
+        </a>
+      </footer>
     </div>
   );
 }
