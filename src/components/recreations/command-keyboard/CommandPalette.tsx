@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import { CollapsedSearch, ExpandedSearch } from "./CommandKbd";
 
 export default function CommandPalette() {

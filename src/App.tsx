@@ -11,25 +11,25 @@ const components: PlaygroundComponent[] = [
   {
     id: 1,
     name: "Food Order Card",
-    source: "Yadwinder Singh",
+    source: "ydwndr",
     component: FoodOrderCard,
   },
   {
     id: 2,
     name: "Command Keyboard",
-    source: "Tanjim",
+    source: "tanjim38",
     component: CommandPalette,
   },
   {
     id: 3,
     name: "Invite Card",
-    source: "Nitish Khagwal",
+    source: "nitishkmrk",
     component: InviteCard,
   },
   {
     id: 4,
     name: "Inline Overflow Interaction",
-    source: "Nitish Khagwal",
+    source: "nitishkmrk",
     component: InlineOverflow,
   },
 ];

@@ -1,5 +1,5 @@
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { Search } from "lucide-react";
 import { commands } from "../../../constants/commands";
 
