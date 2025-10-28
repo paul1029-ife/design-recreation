@@ -24,10 +24,10 @@ const Modal = ({ isOpen, onClose, component: Component }: ModalProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative border-none h-3/4 max-w-4xl  mx-2 md:mx-4 overflow-scroll scrollbar-hide border"
+            className="relative border-none max-w-4xl mx-2 md:mx-4 overflow-scroll scrollbar-hide border"
           >
             {/* Component Display */}
-            <div className="p-8 flex items-center justify-center min-h-[400px]">
+            <div className="p-3 flex items-center justify-center min-h-[150px]">
               {Component && <Component />}
             </div>
           </motion.div>
