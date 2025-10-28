@@ -41,14 +41,14 @@ const InlineOverflow = () => {
               ref={ref}
             >
               <motion.div
-                className="flex items-center justify-center gap-1.5 "
+                className="flex items-center justify-center gap-1.5"
                 layout="position"
               >
-                <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 z-10 shadow-sm">
+                <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out">
                   <Save className="size-3.5" />
                   Save
                 </div>
-                <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 z-10 shadow-sm">
+                <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out">
                   <Copy className="size-3.5" />
                   Copy
                 </div>
@@ -79,11 +79,11 @@ const InlineOverflow = () => {
                       ease: "easeOut",
                     }}
                   >
-                    <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm">
+                    <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out">
                       <Share className="size-3.5" />
                       Share
                     </div>
-                    <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm">
+                    <div className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out">
                       <Trash2 className="size-3.5" />
                       Delete
                     </div>
