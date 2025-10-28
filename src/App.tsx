@@ -11,26 +11,30 @@ const components: PlaygroundComponent[] = [
   {
     id: 1,
     name: "Food Order Card",
-    source: "ydwndr",
+    source: "tanjim38",
+    url: "https://x.com/tanjim38/status/1979876452851183892?s=46",
     component: FoodOrderCard,
   },
   {
     id: 2,
     name: "Command Keyboard",
-    source: "tanjim38",
+    source: "ydwndr",
+    url: "https://x.com/ydwndr/status/1971241276243956025?s=46",
     component: CommandPalette,
   },
   {
     id: 3,
-    name: "Invite Card",
+    name: "Inline Overflow Interaction",
     source: "nitishkmrk",
-    component: InviteCard,
+    url: "https://x.com/nitishkmrk/status/1976537178088899045?s=46",
+    component: InlineOverflow,
   },
   {
     id: 4,
-    name: "Inline Overflow Interaction",
+    name: "Invite Card",
     source: "nitishkmrk",
-    component: InlineOverflow,
+    url: "https://x.com/nitishkmrk/status/1803335945120514234",
+    component: InviteCard,
   },
 ];
 
@@ -60,6 +64,7 @@ function App() {
               key={comp.id}
               name={comp.name}
               source={comp.source}
+              url={comp.url}
               onClick={() => openModal(comp)}
             />
           ))}
