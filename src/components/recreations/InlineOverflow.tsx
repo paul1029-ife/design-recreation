@@ -20,7 +20,7 @@ const InlineOverflow = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center p-4 gap-8"
+      className="flex flex-col items-center justify-center py-2 px-4 gap-8"
       style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
     >
       <MotionConfig transition={SPRING_TRANSITION}>
