@@ -266,7 +266,7 @@ export default function FoodOrderCard(): JSX.Element {
 
   return (
     <div ref={container} className="flex items-center justify-center p-4">
-      <div className="bg-black rounded-3xl p-8 w-96 shadow-2xl">
+      <div className="bg-black rounded-3xl p-8 w-96">
         <div className="flex items-start gap-4 mb-6">
           <div
             ref={pawRef}
