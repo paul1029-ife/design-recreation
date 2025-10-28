@@ -4,6 +4,7 @@ export interface PlaygroundComponent {
   id: number;
   name: string;
   source: string;
+  url: string;
   component: ComponentType;
 }
 
