@@ -6,6 +6,7 @@ import Modal from "./components/global/Modal";
 import ComponentCard from "./components/global/ComponentCard";
 import FoodOrderCard from "./components/recreations/OrderCard";
 import CommandPalette from "./components/recreations/command-keyboard/CommandPalette";
+import SwitcherInteraction from "./components/recreations/SwitcherInteraction";
 
 const components: PlaygroundComponent[] = [
   {
@@ -35,6 +36,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1803335945120514234",
     component: InviteCard,
+  },
+  {
+    id: 5,
+    name: "Switcher Interaction",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/1980523444807635342?s=46",
+    component: SwitcherInteraction,
   },
 ];
 
