@@ -37,7 +37,7 @@ const InlineOverflow = () => {
         >
           <div className="flex items-center justify-center overflow-hidden">
             <div
-              className=" gap-1.5 flex items-center text-sm font-semibold p-1.5 "
+              className=" gap-1.5 flex items-center text-sm font-semibold p-1.5"
               ref={ref}
             >
               <motion.div
@@ -63,7 +63,7 @@ const InlineOverflow = () => {
               <AnimatePresence mode="popLayout">
                 {isOpen && (
                   <motion.div
-                    className="flex items-center gap-1.5 "
+                    className="flex items-center gap-1.5"
                     initial={{
                       opacity: 0,
                       filter: "blur(4px)",

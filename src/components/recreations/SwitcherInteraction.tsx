@@ -137,7 +137,7 @@ export default function AnimatedInput() {
             aria-label="Toggle input mode"
           >
             <div ref={iconRef} className="flex items-center justify-center">
-              <CurrentIcon className="w-6 h-6 text-gray-700" />
+              <CurrentIcon className="w-6 h-6 text-gray-700 will-change-transform" />
             </div>
             <ChevronsUpDown className="text-gray-500 size-5" />
           </motion.button>
