@@ -32,17 +32,17 @@ const components: PlaygroundComponent[] = [
   },
   {
     id: 4,
-    name: "Invite Card",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1803335945120514234",
-    component: InviteCard,
-  },
-  {
-    id: 5,
     name: "Switcher Interaction",
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1980523444807635342?s=46",
     component: SwitcherInteraction,
+  },
+  {
+    id: 5,
+    name: "Invite Card",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/1803335945120514234",
+    component: InviteCard,
   },
 ];
 
