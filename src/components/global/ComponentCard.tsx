@@ -16,7 +16,7 @@ const ComponentCard = ({ name, source, url, onClick }: ComponentCardProps) => {
   return (
     <motion.div
       onClick={onClick}
-      className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden"
+      className="group relative bg-[#F2F2F2] border border-gray-200 rounded-2xl overflow-hidden"
       whileHover="hover"
       initial="initial"
       variants={{

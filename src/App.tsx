@@ -7,6 +7,7 @@ import ComponentCard from "./components/global/ComponentCard";
 import FoodOrderCard from "./components/recreations/OrderCard";
 import CommandPalette from "./components/recreations/command-keyboard/CommandPalette";
 import SwitcherInteraction from "./components/recreations/SwitcherInteraction";
+import BlurText from "./components/global/BlurText";
 
 const components: PlaygroundComponent[] = [
   {
@@ -55,15 +56,23 @@ function App() {
   const closeModal = () => setSelectedComponent(null);
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-white text-black">
-      <main className="flex flex-col gap-16 items-center justify-center w-full max-w-6xl px-6 py-16">
+    <div
+      className="relative min-h-screen flex flex-col items-center text-black bg-[#EBF2F2]"
+      style={{
+        //backgroundBlendMode: "soft-light",
+        opacity: 1,
+        fontFamily: "Some-Sans",
+      }}
+    >
+      <main className="flex flex-col gap-16 items-center justify-center w-full max-w-6xl px-6 py-16 backdrop-blur-[0.2px]">
         <div className="text-center">
-          <h1 className="text-4xl font-semibold tracking-tight mb-3">
-            Ife's Playground
-          </h1>
-          <p className="text-gray-500 max-w-md mx-auto leading-relaxed">
-            A minimal collection of UI components
-          </p>
+          <BlurText
+            text="Ife's Playground"
+            className="text-4xl font-semibold tracking-tight mb-3"
+            animateBy="words"
+            direction="top"
+            delay={50}
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
@@ -91,7 +100,8 @@ function App() {
         component={selectedComponent?.component}
         name={selectedComponent?.name}
       />
-      <footer className="w-full py-6 text-center text-sm text-gray-500">
+
+      <footer className="w-full py-6 text-center text-md text-gray-700">
         Built by{" "}
         <a
           href="https://ifeoluwa.tech"
