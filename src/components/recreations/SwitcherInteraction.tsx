@@ -67,7 +67,7 @@ export default function AnimatedInput() {
     if (!iconEl || !textEl) return;
 
     const iconInDuration = 0.9;
-    const iconInEase = "elastic.out(1, 0.5)";
+    const iconInEase = "elastic.out(1, 0.7)";
 
     const tl = gsap.timeline({
       onComplete: () => setIsAnimating(false),
@@ -76,6 +76,7 @@ export default function AnimatedInput() {
     tl.to(iconEl, {
       opacity: 0,
       scale: 0.7,
+      filter: "blur(7px)",
       duration: 0.2,
       ease: "power2.in",
     });
@@ -92,6 +93,7 @@ export default function AnimatedInput() {
       {
         opacity: 1,
         scale: 1,
+        filter: "blur(0px)",
         duration: iconInDuration,
         ease: iconInEase,
       },
