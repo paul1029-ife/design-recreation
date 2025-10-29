@@ -41,7 +41,7 @@ const InlineOverflow = () => {
               ref={ref}
             >
               <motion.div
-                className="flex items-center justify-center gap-1.5"
+                className="flex items-center justify-center gap-1.5 will-change-transform"
                 layout="position"
               >
                 <motion.div

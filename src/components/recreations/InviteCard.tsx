@@ -123,7 +123,7 @@ const InviteCard = () => {
                       ease: [0.55, 0.085, 0.68, 0.53],
                     }}
                   >
-                    <Check className="w-4 h-4 text-gray-800" />
+                    <Check className="w-4 h-4 text-gray-400" />
                   </motion.div>
                 ) : (
                   <motion.div
