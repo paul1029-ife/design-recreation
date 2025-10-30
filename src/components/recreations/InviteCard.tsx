@@ -69,10 +69,10 @@ const InviteCard = () => {
           <div className="text-black font-semibold text-xl">Share</div>
 
           <div className="flex flex-col">
-            <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2 pr-3.5">
+            <div className="bg-[#F0F4F8] rounded-lg flex items-center justify-between p-2 pr-3.5">
               <div className="flex items-center gap-2 justify-between">
                 <div className="bg-white p-1.5 shadow-md rounded-md">
-                  <HugeiconsGlobe02 className="w-7 h-7 text-gray-500" />
+                  <HugeiconsGlobe02 className="w-7 h-7 text-[#6B9AC4]" />
                 </div>
                 <div className="flex flex-col">
                   <p className="text-base font-medium text-black leading-4">
@@ -86,7 +86,7 @@ const InviteCard = () => {
 
               <button
                 className={`relative inline-flex h-5 w-8 items-center rounded-full transition-colors focus:outline-none ${
-                  isPublic ? "bg-gray-400" : "bg-black"
+                  isPublic ? "bg-gray-400" : "bg-[#4A7BA7]"
                 }`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -105,7 +105,7 @@ const InviteCard = () => {
           </div>
 
           <div className="bg-gray-50/50 w-full flex items-center justify-between text-sm rounded-sm p-1">
-            <p className="text-gray-400 truncate">{url}</p>
+            <p className="text-[#8B9DAF] truncate">{url}</p>
             <motion.button
               onClick={() => handleCopy(url)}
               whileTap={{ scale: 0.85 }}
@@ -165,7 +165,7 @@ const InviteCard = () => {
               className="flex flex-col overflow-hidden"
             >
               <div className="w-full">
-                <h2 className="text-base font-medium text-gray-500 mb-1">
+                <h2 className="text-base font-medium text-[#5B7899] mb-1">
                   Invite
                 </h2>
 
@@ -174,12 +174,12 @@ const InviteCard = () => {
                   <motion.div
                     className={`flex items-center bg-white rounded-lg border px-2 py-1 shadow-sm transition-colors ${
                       isFocused && !validEmail
-                        ? "border-black border-2"
+                        ? "border-[#4A7BA7] border-2"
                         : "border-gray-300"
                     }`}
                   >
                     <div className="flex items-center gap-2 flex-1 min-w-0">
-                      <HeroiconsUserPlus className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                      <HeroiconsUserPlus className="w-5 h-5 text-[#8B9DAF] flex-shrink-0" />
 
                       <AnimatePresence mode="wait">
                         {validEmail ? (
@@ -207,7 +207,7 @@ const InviteCard = () => {
                             <motion.button
                               layoutId={`remove-${validEmail}-${id}`}
                               onClick={handleRemoveEmail}
-                              className="text-gray-400 hover:text-gray-600"
+                              className="text-[#C97777] hover:text-[#B85C5C]"
                               layout="position"
                             >
                               <X className="w-4 h-4" />
@@ -231,7 +231,7 @@ const InviteCard = () => {
 
                     <motion.button
                       onClick={handleInvite}
-                      className="bg-black text-white text-sm rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
+                      className="bg-[#4A7BA7] text-white text-sm rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
                     >
                       <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
                       <span>Invite</span>
@@ -294,7 +294,7 @@ const InviteCard = () => {
                           <motion.button
                             onClick={() => handleRemoveInvited(invitedEmail)}
                             layoutId={`remove-${invitedEmail}-${id}`}
-                            className="text-red-800/80 transition-colors"
+                            className="text-[#C97777] hover:text-[#B85C5C] transition-colors"
                           >
                             <span className="text-sm text-end">Remove</span>
                           </motion.button>

@@ -28,7 +28,7 @@ const InlineOverflow = () => {
           animate={{
             width: isOpen ? bounds.width : 210,
           }}
-          className="bg-stone-500 rounded-full shadow-lg"
+          className="bg-[#d8e2dc] rounded-full shadow-lg"
           transition={{
             type: "spring",
             stiffness: 200,
@@ -48,14 +48,14 @@ const InlineOverflow = () => {
                   whileTap={{ scale: 0.8 }}
                   className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out"
                 >
-                  <Save className="size-3.5" />
+                  <Save className="size-3.5 translate-z-0" />
                   Save
                 </motion.div>
                 <motion.div
                   whileTap={{ scale: 0.8 }}
                   className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out"
                 >
-                  <Copy className="size-3.5" />
+                  <Copy className="size-3.5 translate-z-0" />
                   Copy
                 </motion.div>
               </motion.div>
