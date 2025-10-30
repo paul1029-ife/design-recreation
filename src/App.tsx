@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center text-black bg-[#EBF2F2]"
+      className="relative min-h-screen flex flex-col items-center text-black"
       style={{
         //backgroundBlendMode: "soft-light",
         opacity: 1,
