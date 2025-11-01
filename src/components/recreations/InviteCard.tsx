@@ -37,9 +37,8 @@ const InviteCard = () => {
     setTimeout(() => setCopied(false), 1300);
   };
 
-  const validateEmail = (value: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  };
+  const validateEmail = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   const handleRemoveEmail = () => setValidEmail(null);
 
@@ -55,24 +54,22 @@ const InviteCard = () => {
     setInvitedEmails(invitedEmails.filter((e) => e !== emailToRemove));
   };
 
-  const extractName = (email: string) => {
-    return email.split("@")[0].split(".")[0];
-  };
+  const extractName = (email: string) => email.split("@")[0].split(".")[0];
 
   return (
     <div
       className="flex items-center justify-center p-4"
       style={{ fontFamily: "Some-Sans" }}
     >
-      <div className="bg-white shadow-md rounded-lg w-[22rem] border-[1px] border-gray-100 px-3 py-2.5 flex flex-col gap-2.5">
+      <div className="bg-white shadow-md rounded-lg w-[22rem] border border-gray-200 px-3 py-2.5 flex flex-col gap-2.5">
         <div className="flex flex-col gap-1">
           <div className="text-black font-semibold text-xl">Share</div>
 
           <div className="flex flex-col">
-            <div className="bg-[#F0F4F8] rounded-lg flex items-center justify-between p-2 pr-3.5">
+            <div className="bg-gray-100 rounded-lg flex items-center justify-between p-2 pr-3.5">
               <div className="flex items-center gap-2 justify-between">
-                <div className="bg-white p-1.5 shadow-md rounded-md">
-                  <HugeiconsGlobe02 className="w-7 h-7 text-[#6B9AC4]" />
+                <div className="bg-white p-1.5 shadow-sm rounded-md">
+                  <HugeiconsGlobe02 className="w-7 h-7 text-gray-600" />
                 </div>
                 <div className="flex flex-col">
                   <p className="text-base font-medium text-black leading-4">
@@ -86,7 +83,7 @@ const InviteCard = () => {
 
               <button
                 className={`relative inline-flex h-5 w-8 items-center rounded-full transition-colors focus:outline-none ${
-                  isPublic ? "bg-gray-400" : "bg-[#4A7BA7]"
+                  isPublic ? "bg-gray-300" : "bg-gray-700"
                 }`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -103,9 +100,8 @@ const InviteCard = () => {
               </button>
             </div>
           </div>
-
-          <div className="bg-gray-50/50 w-full flex items-center justify-between text-sm rounded-sm p-1">
-            <p className="text-[#8B9DAF] truncate">{url}</p>
+          <div className="bg-gray-50 w-full flex items-center justify-between text-sm rounded-sm p-1">
+            <p className="text-gray-500 truncate">{url}</p>
             <motion.button
               onClick={() => handleCopy(url)}
               whileTap={{ scale: 0.85 }}
@@ -118,12 +114,9 @@ const InviteCard = () => {
                     initial={{ opacity: 0, scale: 0.6, rotate: -45 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     exit={{ opacity: 0, scale: 0.6, rotate: 45 }}
-                    transition={{
-                      duration: 0.16,
-                      ease: [0.55, 0.085, 0.68, 0.53],
-                    }}
+                    transition={{ duration: 0.16 }}
                   >
-                    <Check className="w-4 h-4 text-gray-400" />
+                    <Check className="w-4 h-4 text-gray-600" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -131,12 +124,9 @@ const InviteCard = () => {
                     initial={{ opacity: 0, scale: 0.6, rotate: -15 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     exit={{ opacity: 0, scale: 0.6, rotate: 15 }}
-                    transition={{
-                      duration: 0.17,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
+                    transition={{ duration: 0.17 }}
                   >
-                    <Copy className="w-4 h-4 text-gray-400" />
+                    <Copy className="w-4 h-4 text-gray-600" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -165,21 +155,20 @@ const InviteCard = () => {
               className="flex flex-col overflow-hidden"
             >
               <div className="w-full">
-                <h2 className="text-base font-medium text-[#5B7899] mb-1">
+                <h2 className="text-base font-medium text-gray-700 mb-1">
                   Invite
                 </h2>
 
-                {/* Input Area */}
                 <div className="relative">
                   <motion.div
                     className={`flex items-center bg-white rounded-lg border px-2 py-1 shadow-sm transition-colors ${
                       isFocused && !validEmail
-                        ? "border-[#4A7BA7] border-2"
+                        ? "border-gray-500 border-2"
                         : "border-gray-300"
                     }`}
                   >
                     <div className="flex items-center gap-2 flex-1 min-w-0">
-                      <HeroiconsUserPlus className="w-5 h-5 text-[#8B9DAF] flex-shrink-0" />
+                      <HeroiconsUserPlus className="w-5 h-5 text-gray-500 flex-shrink-0" />
 
                       <AnimatePresence mode="wait">
                         {validEmail ? (
@@ -187,7 +176,7 @@ const InviteCard = () => {
                             key={`pill-${validEmail}-${id}`}
                             layoutId={`email-${validEmail}-${id}`}
                             transition={{ duration: 0.17 }}
-                            className="flex items-center gap-1 bg-white shadow-lg border-[1px] border-gray-100 shadow-gray-100 rounded-full px-2 py-0.5"
+                            className="flex items-center gap-1 bg-white shadow border border-gray-200 rounded-full px-2 py-0.5"
                           >
                             <motion.div layoutId={`avatar-${validEmail}-${id}`}>
                               <img
@@ -200,14 +189,14 @@ const InviteCard = () => {
                               layoutId={`name-${validEmail}-${id}`}
                               layout="position"
                               transition={{ duration: 0.08 }}
-                              className="text-gray-500 text-sm font-medium leading-[13px] capitalize"
+                              className="text-gray-600 text-sm font-medium leading-[13px] capitalize"
                             >
                               {extractName(validEmail)}
                             </motion.span>
                             <motion.button
                               layoutId={`remove-${validEmail}-${id}`}
                               onClick={handleRemoveEmail}
-                              className="text-[#C97777] hover:text-[#B85C5C]"
+                              className="text-gray-400 hover:text-gray-700"
                               layout="position"
                             >
                               <X className="w-4 h-4" />
@@ -223,7 +212,7 @@ const InviteCard = () => {
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
                             placeholder="Enter email to share"
-                            className="outline-none text-gray-600 placeholder-gray-500 flex-1 min-w-0"
+                            className="outline-none text-gray-700 placeholder-gray-400 flex-1 min-w-0"
                           />
                         )}
                       </AnimatePresence>
@@ -231,14 +220,13 @@ const InviteCard = () => {
 
                     <motion.button
                       onClick={handleInvite}
-                      className="bg-[#4A7BA7] text-white text-sm rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
+                      className="bg-gray-800 text-white text-sm rounded-md px-2 py-[3px] flex items-center gap-0.5 flex-shrink-0 relative left-1"
                     >
                       <HeroiconsPaperAirplane16Solid className="w-4 h-4" />
                       <span>Invite</span>
                     </motion.button>
                   </motion.div>
                 </div>
-
                 <AnimatePresence mode="wait">
                   {invitedEmails.length > 0 && (
                     <motion.div
@@ -246,18 +234,12 @@ const InviteCard = () => {
                       animate={{
                         maxHeight: 400,
                         opacity: 1,
-                        transition: {
-                          duration: 0.26,
-                          ease: cubicBezier(0.55, 0.085, 0.68, 0.53),
-                        },
+                        transition: { duration: 0.26 },
                       }}
                       exit={{
                         maxHeight: 0,
                         opacity: 0,
-                        transition: {
-                          duration: 0.25,
-                          ease: cubicBezier(0.25, 0.46, 0.45, 0.94),
-                        },
+                        transition: { duration: 0.25 },
                       }}
                       className="mt-3 space-y-2"
                     >
@@ -266,7 +248,7 @@ const InviteCard = () => {
                           key={`invited-${invitedEmail}-${id}`}
                           layoutId={`email-${invitedEmail}-${id}`}
                           exit={{ opacity: 0, scale: 0.9 }}
-                          className="flex items-end justify-between shadow-md border-[1px] border-gray-200 rounded-lg p-2"
+                          className="flex items-end justify-between shadow-sm border border-gray-200 rounded-lg p-2"
                         >
                           <div className="flex items-center gap-2">
                             <motion.div
@@ -294,7 +276,7 @@ const InviteCard = () => {
                           <motion.button
                             onClick={() => handleRemoveInvited(invitedEmail)}
                             layoutId={`remove-${invitedEmail}-${id}`}
-                            className="text-[#C97777] hover:text-[#B85C5C] transition-colors"
+                            className=" text-red-500/70 hover:text-red-500 cursor-pointer"
                           >
                             <span className="text-sm text-end">Remove</span>
                           </motion.button>

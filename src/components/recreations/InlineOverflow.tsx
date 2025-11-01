@@ -28,7 +28,7 @@ const InlineOverflow = () => {
           animate={{
             width: isOpen ? bounds.width : 210,
           }}
-          className="bg-[#d8e2dc] rounded-full shadow-lg"
+          className="bg-[#219ebc] rounded-full shadow-lg"
           transition={{
             type: "spring",
             stiffness: 200,
