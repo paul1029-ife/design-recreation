@@ -182,7 +182,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen py-10">
+    <div className="h-[65vh] py-10 flex items-start">
       <div className="max-w-7xl mx-auto px-6">
         <nav ref={navRef} className="relative" onMouseLeave={handleMouseLeave}>
           <LayoutGroup>
