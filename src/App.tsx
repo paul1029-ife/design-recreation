@@ -8,6 +8,7 @@ import FoodOrderCard from "./components/recreations/OrderCard";
 import CommandPalette from "./components/recreations/command-keyboard/CommandPalette";
 import SwitcherInteraction from "./components/recreations/SwitcherInteraction";
 import BlurText from "./components/global/BlurText";
+import StripeNav from "./components/recreations/StripeNav";
 
 const components: PlaygroundComponent[] = [
   {
@@ -44,6 +45,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1803335945120514234",
     component: InviteCard,
+  },
+  {
+    id: 6,
+    name: "Stripe Navigation",
+    source: "stripe",
+    url: "https://stripe.com",
+    component: StripeNav,
   },
 ];
 
