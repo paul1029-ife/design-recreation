@@ -46,14 +46,24 @@ const InlineOverflow = () => {
               >
                 <motion.div
                   whileTap={{ scale: 0.8 }}
-                  className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out"
+                  whileHover={{
+                    y: -2,
+                    boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
+                    rotateZ: -3,
+                  }}
+                  className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                 >
                   <Save className="size-3.5 translate-z-0" />
                   Save
                 </motion.div>
                 <motion.div
                   whileTap={{ scale: 0.8 }}
-                  className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out"
+                  whileHover={{
+                    y: -2,
+                    boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
+                    rotateZ: -3,
+                  }}
+                  className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                 >
                   <Copy className="size-3.5 translate-z-0" />
                   Copy
@@ -87,14 +97,24 @@ const InlineOverflow = () => {
                   >
                     <motion.div
                       whileTap={{ scale: 0.8 }}
-                      className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out"
+                      whileHover={{
+                        y: -2,
+                        boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
+                        rotateZ: -3,
+                      }}
+                      className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                     >
                       <Share className="size-3.5" />
                       Share
                     </motion.div>
                     <motion.div
                       whileTap={{ scale: 0.8 }}
-                      className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm hover:shadow-stone-300 hover:-translate-y-0.5 cursor-pointer transition-all ease-out"
+                      whileHover={{
+                        y: -2,
+                        boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
+                        rotateZ: -3,
+                      }}
+                      className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                     >
                       <Trash2 className="size-3.5" />
                       Delete
