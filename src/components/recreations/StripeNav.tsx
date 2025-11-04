@@ -235,7 +235,10 @@ export default function App() {
               >
                 <div
                   className="relative rounded-xl border border-gray-200 bg-white shadow-xl"
-                  onMouseLeave={(e) => e.stopPropagation()}
+                  onMouseLeave={(e) => {
+                    e.stopPropagation();
+                    handleMouseLeave();
+                  }}
                 >
                   <motion.div
                     className="absolute -top-2"
