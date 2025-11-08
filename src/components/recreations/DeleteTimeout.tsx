@@ -104,7 +104,7 @@ const DeleteTimeout = () => {
             key="cancel-div"
             onClick={handleCancel}
             style={{ borderRadius: "9999px" }}
-            className="flex items-center gap-3 bg-red-50/70 text-red-600 px-3 h-[50px] cursor-pointer overflow-hidden"
+            className="flex items-center gap-3 bg-red-50/90 text-red-600 px-3 h-[50px] cursor-pointer overflow-hidden"
             layout
             layoutId="delete-button"
             initial={{ opacity: 0, scale: 0.7 }}
