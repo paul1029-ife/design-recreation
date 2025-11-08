@@ -9,6 +9,7 @@ import CommandPalette from "./components/recreations/command-keyboard/CommandPal
 import SwitcherInteraction from "./components/recreations/SwitcherInteraction";
 import BlurText from "./components/global/BlurText";
 import StripeNav from "./components/recreations/StripeNav";
+import DeleteTimeout from "./components/recreations/DeleteTimeout";
 
 const components: PlaygroundComponent[] = [
   {
@@ -52,6 +53,13 @@ const components: PlaygroundComponent[] = [
     source: "stripe",
     url: "https://stripe.com",
     component: StripeNav,
+  },
+  {
+    id: 7,
+    name: "Delete with Timeout",
+    source: "nitishkmrk",
+    url: "https://stripe.com",
+    component: DeleteTimeout,
   },
 ];
 
