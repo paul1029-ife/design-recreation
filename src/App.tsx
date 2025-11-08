@@ -58,7 +58,7 @@ const components: PlaygroundComponent[] = [
     id: 7,
     name: "Delete with Timeout",
     source: "nitishkmrk",
-    url: "https://stripe.com",
+    url: "https://x.com/nitishkmrk/status/1986684038409589227",
     component: DeleteTimeout,
   },
 ];
