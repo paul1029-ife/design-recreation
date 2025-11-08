@@ -122,7 +122,7 @@ const DeleteTimeout = () => {
               animate="visible"
               exit="exit"
             >
-              {renderStaggeredText("Cancel Delete")}
+              {renderStaggeredText("Cancel Deletion")}
             </motion.span>
 
             <motion.span
