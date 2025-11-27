@@ -10,6 +10,7 @@ import SwitcherInteraction from "./components/recreations/SwitcherInteraction";
 import BlurText from "./components/global/BlurText";
 import StripeNav from "./components/recreations/StripeNav";
 import DeleteTimeout from "./components/recreations/DeleteTimeout";
+import DiscoveryBar from "./components/recreations/DiscoveryBar";
 
 const components: PlaygroundComponent[] = [
   {
@@ -60,6 +61,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1986684038409589227",
     component: DeleteTimeout,
+  },
+  {
+    id: 8,
+    name: "Discover Bar",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/1991956289731239936",
+    component: DiscoveryBar,
   },
 ];
 
