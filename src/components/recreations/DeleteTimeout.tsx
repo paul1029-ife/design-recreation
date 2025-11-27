@@ -80,7 +80,7 @@ const DeleteTimeout = () => {
             key="delete-button"
             onClick={handleDelete}
             style={{ borderRadius: "9999px" }}
-            className="bg-red-500 text-white px-4 h-[50px] cursor-pointer font-semibold overflow-hidden"
+            className="text-white px-4 h-[50px] cursor-pointer font-semibold overflow-hidden"
             layout
             layoutId="delete-button"
             initial={{ opacity: 0, scale: 0.7 }}
@@ -104,11 +104,15 @@ const DeleteTimeout = () => {
             key="cancel-div"
             onClick={handleCancel}
             style={{ borderRadius: "9999px" }}
-            className="flex items-center gap-3 bg-red-50/90 text-red-600 px-3 h-[50px] cursor-pointer overflow-hidden"
+            className="flex items-center gap-3 text-red-600 px-3 h-[50px] cursor-pointer overflow-hidden"
             layout
             layoutId="delete-button"
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.7, backgroundColor: "#fb2c36" }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              backgroundColor: "rgb(254 242 242 / 0.9)",
+            }}
             exit={{ opacity: 0, scale: 0.7 }}
             transition={elasticTransition}
           >
