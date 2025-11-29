@@ -13,7 +13,7 @@ const InlineToast = () => {
   }, [copied]);
 
   return (
-    <div className="flex w-full items-center justify-center p-20">
+    <div className="flex w-full items-center justify-center p-5">
       <div className="relative flex h-11 w-[196px] items-center justify-center overflow-hidden rounded-full bg-gray-100 shadow-sm">
         <AnimatePresence>
           {copied && (
