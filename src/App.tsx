@@ -11,6 +11,7 @@ import BlurText from "./components/global/BlurText";
 import StripeNav from "./components/recreations/StripeNav";
 import DeleteTimeout from "./components/recreations/DeleteTimeout";
 import DiscoveryBar from "./components/recreations/DiscoveryBar";
+import InilineToast from "./components/recreations/InilineToast";
 
 const components: PlaygroundComponent[] = [
   {
@@ -68,6 +69,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1991956289731239936",
     component: DiscoveryBar,
+  },
+  {
+    id: 9,
+    name: "Inline Toast",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/1997641234567890123",
+    component: InilineToast,
   },
 ];
 
