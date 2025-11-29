@@ -81,7 +81,7 @@ const InlineToast = () => {
                 className="flex w-full items-center justify-center gap-1.5"
               >
                 <Check
-                  className="h-4 w-4 text-white bg-black rounded-full p-0.5"
+                  className="h-4 w-4 text-white bg-black rounded-full p-0.5 will-change-transform"
                   strokeWidth={2}
                 />
                 <span className="text-sm font-semibold text-gray-900">
