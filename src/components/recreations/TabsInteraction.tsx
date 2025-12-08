@@ -72,7 +72,7 @@ const TabsInteraction = () => {
               <FluentCalendar16Filled
                 className={`
                   ${
-                    activeTab === "planner" ? "text-[#ff6b6b]" : "text-black"
+                    activeTab === "planner" ? "text-red-400" : "text-black"
                   } size-8
                   `}
               />
@@ -88,7 +88,7 @@ const TabsInteraction = () => {
             >
               <span
                 className={
-                  activeTab === "planner" ? "text-[#ff6b6b]" : "text-black"
+                  activeTab === "planner" ? "text-red-400" : "text-black"
                 }
               >
                 Planner
