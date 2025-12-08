@@ -1,0 +1,19 @@
+import type { SVGProps } from "react";
+
+export function FluentCalendar16Filled(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      {...props}
+    >
+      {/* Icon from Fluent UI System Icons by Microsoft Corporation - https://github.com/microsoft/fluentui-system-icons/blob/main/LICENSE */}
+      <path
+        fill="currentColor"
+        d="M14 11.5V6H2v5.5A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5M5.997 8.248a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m0 2.5a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m2.752-2.5a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m0 2.5a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0m2.748-2.5a.748.748 0 1 1-1.497 0a.748.748 0 0 1 1.497 0M14 4.5A2.5 2.5 0 0 0 11.5 2h-7A2.5 2.5 0 0 0 2 4.5V5h12z"
+      />
+    </svg>
+  );
+}
