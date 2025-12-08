@@ -12,6 +12,7 @@ import StripeNav from "./components/recreations/StripeNav";
 import DeleteTimeout from "./components/recreations/DeleteTimeout";
 import DiscoveryBar from "./components/recreations/DiscoveryBar";
 import InilineToast from "./components/recreations/InilineToast";
+import TabsInteraction from "./components/recreations/TabsInteraction";
 
 const components: PlaygroundComponent[] = [
   {
@@ -76,6 +77,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1997641234567890123",
     component: InilineToast,
+  },
+  {
+    id: 10,
+    name: "Discrete Tabs Interaction",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/1997555674411348433",
+    component: TabsInteraction,
   },
 ];
 
