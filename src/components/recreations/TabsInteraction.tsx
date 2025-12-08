@@ -15,7 +15,7 @@ const TabsInteraction = () => {
         <div className="flex items-center justify-center gap-2.5">
           <motion.div
             initial={false}
-            animate={{ width: activeTab === "inbox" ? 110 : 50 }}
+            animate={{ width: activeTab === "inbox" ? 110 : 48 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="h-12 bg-white rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
             whileHover={{ scale: 1.05 }}
@@ -62,7 +62,7 @@ const TabsInteraction = () => {
 
           <motion.div
             initial={false}
-            animate={{ width: activeTab === "planner" ? 110 : 50 }}
+            animate={{ width: activeTab === "planner" ? 110 : 48 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="h-12 bg-white rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
             whileHover={{ scale: 1.05 }}
@@ -110,7 +110,7 @@ const TabsInteraction = () => {
 
           <motion.div
             initial={false}
-            animate={{ width: activeTab === "alerts" ? 110 : 50 }}
+            animate={{ width: activeTab === "alerts" ? 110 : 48 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="h-12 bg-white rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
             whileHover={{ scale: 1.05 }}
