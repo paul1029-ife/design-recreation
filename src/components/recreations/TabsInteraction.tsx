@@ -143,7 +143,7 @@ const TabsInteraction = () => {
               </span>
               {activeTab === "alerts" && (
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-60"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent "
                   initial={{ x: "-100%" }}
                   animate={{ x: "200%" }}
                   transition={{
