@@ -7,12 +7,14 @@ import ComponentCard from "./components/global/ComponentCard";
 import FoodOrderCard from "./components/recreations/OrderCard";
 import CommandPalette from "./components/recreations/command-keyboard/CommandPalette";
 import SwitcherInteraction from "./components/recreations/SwitcherInteraction";
-import BlurText from "./components/global/BlurText";
 import StripeNav from "./components/recreations/StripeNav";
 import DeleteTimeout from "./components/recreations/DeleteTimeout";
 import DiscoveryBar from "./components/recreations/DiscoveryBar";
 import InilineToast from "./components/recreations/InilineToast";
 import TabsInteraction from "./components/recreations/TabsInteraction";
+import { PhMailbox } from "./components/icons/IconMailBox";
+import { motion } from "motion/react";
+import { MoveUpRight } from "lucide-react";
 
 const components: PlaygroundComponent[] = [
   {
@@ -95,27 +97,43 @@ function App() {
     setSelectedComponent(component);
   const closeModal = () => setSelectedComponent(null);
 
+  const formatTime = () => {
+    return new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+  };
+
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center text-black"
+      className="relative min-h-screen flex flex-col items-center bg-[#f8f9fa] text-[#212529]"
       style={{
-        //backgroundBlendMode: "soft-light",
         opacity: 1,
         fontFamily: "Some-Sans",
       }}
     >
-      <main className="flex flex-col gap-16 items-center justify-center w-full max-w-6xl px-6 py-16 backdrop-blur-[0.2px]">
-        <div className="text-center">
-          <BlurText
-            text="Ife's Playground"
-            className="text-4xl font-semibold tracking-tight mb-3"
-            animateBy="words"
-            direction="top"
-            delay={50}
-          />
+      <main className="flex flex-col items-start gap-16 justify-center w-full max-w-2xl px-3 py-16 backdrop-blur-[0.2px]">
+        <div className="flex flex-col gap-0.5">
+          <p className="font-semibold">Ifeoluwa.</p>
+          <p className="text-[#343a40]">Design Engineer</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div className="">
+          In my 4+ years writing code, I've grown to have a deeper appreciation
+          for the thought put behind crafting user interactions. This is my
+          playground, where I'll try to not only recreate things I appreciate,
+          but also build interactions that others will appreciate. Hope you
+          enjoy using them as much as I enjoyed building them. <br />
+          For my comprehensive work{" "}
+          <a
+            href="https://ifeoluwa.tech"
+            className="font-semibold underline"
+            target="_blank"
+          >
+            ifeoluwa.tech
+          </a>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           {components.map((comp) => (
             <ComponentCard
               key={comp.id}
@@ -132,6 +150,20 @@ function App() {
             No components yet. Start adding some.
           </div>
         )}
+
+        <section id="contact">
+          <div className="flex gap-2 items-center text-md font-semibold">
+            {" "}
+            <PhMailbox />
+            <p className="">Reach out.</p>
+          </div>
+          <div className="mt-2">
+            Are you a founder, or fellow designer/engineer looking to create
+            something that your users won't forget? Or maybe you're just looking
+            for a design engineer to add to your tem? Please feel free to reach
+            out.
+          </div>
+        </section>
       </main>
 
       <Modal
@@ -141,16 +173,41 @@ function App() {
         name={selectedComponent?.name}
       />
 
-      <footer className="w-full py-6 text-center text-md text-gray-700">
-        Built by{" "}
-        <a
-          href="https://ifeoluwa.tech"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-black transition"
-        >
-          Ifeoluwa Agbogun
-        </a>
+      <footer className="w-full py-6 border-t-[1px] text-sm text-gray-700 max-w-2xl px-3 flex justify-between items-center">
+        <div className="flex gap-2 items-center">
+          @2025{" "}
+          <motion.span
+            initial={{ backgroundColor: "rgba(33, 37, 41, 0.6)" }}
+            animate={{ backgroundColor: "rgba(33, 37, 41, 1)" }}
+            transition={{
+              duration: 2.2,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            className="size-2"
+          ></motion.span>{" "}
+          <span className="">{formatTime()}</span>
+        </div>
+        <div className="flex gap-2 items-center text-sm">
+          <a
+            className="flex items-center gap-0.5 cursor-pointer"
+            href="https://x.com/theactual001"
+          >
+            Twitter <MoveUpRight className="size-3" />{" "}
+          </a>
+          <a
+            className="flex items-center gap-0.5 cursor-pointer"
+            href="https://github.com/paul1029-ife"
+          >
+            GitHub <MoveUpRight className="size-3" />{" "}
+          </a>
+          <a
+            className="flex items-center gap-0.5 cursor-pointer"
+            href="https://www.linkedin.com/in/paul-agbogun01/"
+          >
+            LinkedIn <MoveUpRight className="size-3" />{" "}
+          </a>
+        </div>
       </footer>
     </div>
   );
