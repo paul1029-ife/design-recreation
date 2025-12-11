@@ -79,7 +79,7 @@ export function ExpandedSearch({
           autoFocus
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="search commands..."
+          placeholder="Search commands..."
           className="flex-1 outline-none text-sm text-gray-700 placeholder-gray-400 min-w-0"
         />
         <motion.button
