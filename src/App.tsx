@@ -15,6 +15,7 @@ import TabsInteraction from "./components/recreations/TabsInteraction";
 import { PhMailbox } from "./components/icons/IconMailBox";
 import { motion } from "motion/react";
 import { MoveUpRight } from "lucide-react";
+import ContextualBar from "./components/recreations/ContextualBar";
 
 const components: PlaygroundComponent[] = [
   {
@@ -86,6 +87,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1997555674411348433",
     component: TabsInteraction,
+  },
+  {
+    id: 11,
+    name: "Contextual AI Bar",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/1997641234567890123",
+    component: ContextualBar,
   },
 ];
 
