@@ -92,7 +92,7 @@ const components: PlaygroundComponent[] = [
     id: 11,
     name: "Contextual AI Bar",
     source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1997641234567890123",
+    url: "https://x.com/nitishkmrk/status/2002747455155405041?s=20",
     component: ContextualBar,
   },
 ];
