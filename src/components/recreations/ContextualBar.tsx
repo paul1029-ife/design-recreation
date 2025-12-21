@@ -60,7 +60,7 @@ const ContextualBar = () => {
             >
               <input
                 type="text"
-                className="text-gray-800 w-48 text-lg bg-transparent outline-none placeholder:text-gray-400"
+                className="text-gray-800 w-40 text-lg bg-transparent outline-none placeholder:text-gray-400"
                 placeholder="Refine with AI"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
