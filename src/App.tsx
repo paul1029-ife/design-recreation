@@ -16,6 +16,7 @@ import { PhMailbox } from "./components/icons/IconMailBox";
 import { motion } from "motion/react";
 import { MoveUpRight } from "lucide-react";
 import ContextualBar from "./components/recreations/ContextualBar";
+import PickerInteraction from "./components/recreations/PickerInteraction";
 
 const components: PlaygroundComponent[] = [
   {
@@ -94,6 +95,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2002747455155405041?s=20",
     component: ContextualBar,
+  },
+  {
+    id: 12,
+    name: "Picker Interaction",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/2008234567890123456?s=20",
+    component: PickerInteraction,
   },
 ];
 
