@@ -31,11 +31,15 @@ export default function OptionsMenu() {
             key="button"
             layoutId="container"
             onClick={() => setMenuOpened(true)}
-            className="flex items-center gap-1 rounded-full bg-stone-100 px-3 py-2 shadow-sm border-[3px] border-gray-200"
+            className="flex items-center gap-1 bg-stone-100 px-3 py-2 shadow-sm border-[3px] border-gray-200"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            style={{ willChange: "transform", transform: "translateZ(0)" }}
+            style={{
+              willChange: "transform",
+              transform: "translateZ(0)",
+              borderRadius: 20,
+            }}
           >
             <Plus size={18} />
 
@@ -51,11 +55,15 @@ export default function OptionsMenu() {
           <motion.div
             key="menu"
             layoutId="container"
-            className="w-[260px] rounded-2xl bg-stone-100 pt-2 shadow-md border-[3px] border-gray-200"
+            className="w-[260px] bg-stone-100 pt-2 shadow-md border-[3px] border-gray-200"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{ willChange: "transform", transform: "translateZ(0)" }}
+            style={{
+              willChange: "transform",
+              transform: "translateZ(0)",
+              borderRadius: 20,
+            }}
           >
             <div className="flex items-center justify-between px-3">
               <motion.span
