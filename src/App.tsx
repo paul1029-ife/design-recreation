@@ -184,7 +184,7 @@ function App() {
           <div className="mt-2">
             Are you a founder, or fellow designer/engineer looking to create
             something that your users won't forget? Or maybe you're just looking
-            for a design engineer to add to your tem? Please feel free to reach
+            for a design engineer to add to your team? Please feel free to reach
             out.
           </div>
         </section>
