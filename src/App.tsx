@@ -17,6 +17,7 @@ import { motion } from "motion/react";
 import { MoveUpRight } from "lucide-react";
 import ContextualBar from "./components/recreations/ContextualBar";
 import PickerInteraction from "./components/recreations/PickerInteraction";
+import OptionsMenu from "./components/recreations/OptionsMenu";
 
 const components: PlaygroundComponent[] = [
   {
@@ -102,6 +103,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2008234567890123456?s=20",
     component: PickerInteraction,
+  },
+  {
+    id: 13,
+    name: "Options Menu",
+    source: "Dmitry Elisov",
+    url: "https://www.pinterest.com/pin/107523509848495963/feedback/?invite_code=030b4f1cb942429d857064cbff5adb32&sender_id=986147787064454915",
+    component: OptionsMenu,
   },
 ];
 
