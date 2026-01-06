@@ -96,7 +96,7 @@ export default function OptionsMenu() {
               {options.map(({ label, icon: Icon }) => (
                 <motion.div
                   key={label}
-                  className="flex cursor-pointer flex-col items-center gap-2 rounded-lg p-2 hover:bg-gray-100 text-stone-800"
+                  className="flex cursor-pointer flex-col items-center gap-2 rounded-lg p-2 hover:bg-gray-100 text-stone-800 will-change-transform"
                   variants={{
                     hidden: { opacity: 0, scale: 0.8 },
                     show: { opacity: 1, scale: 1 },
