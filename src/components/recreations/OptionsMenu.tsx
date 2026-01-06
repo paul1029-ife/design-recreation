@@ -32,9 +32,9 @@ export default function OptionsMenu() {
             layoutId="container"
             onClick={() => setMenuOpened(true)}
             className="flex items-center gap-1 bg-stone-100 px-3 py-2 shadow-sm border-[3px] border-gray-200"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             style={{
               willChange: "transform",
               transform: "translateZ(0)",
