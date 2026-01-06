@@ -43,7 +43,7 @@ export default function OptionsMenu() {
           >
             <motion.span
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { delay: 0.25 } }}
+              animate={{ opacity: 1, transition: { delay: 0.21 } }}
             >
               <Plus size={18} />
             </motion.span>
