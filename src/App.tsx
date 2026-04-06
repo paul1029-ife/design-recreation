@@ -18,6 +18,7 @@ import { MoveUpRight } from "lucide-react";
 import ContextualBar from "./components/recreations/ContextualBar";
 import PickerInteraction from "./components/recreations/PickerInteraction";
 import OptionsMenu from "./components/recreations/OptionsMenu";
+import FanMenu from "./components/recreations/FanMenu";
 
 const components: PlaygroundComponent[] = [
   {
@@ -110,6 +111,13 @@ const components: PlaygroundComponent[] = [
     source: "Dmitry Elisov",
     url: "https://www.pinterest.com/pin/107523509848495963/feedback/?invite_code=030b4f1cb942429d857064cbff5adb32&sender_id=986147787064454915",
     component: OptionsMenu,
+  },
+  {
+    id: 14,
+    name: "Fan Menu",
+    source: "Dmitry Elisov",
+    url: "https://www.pinterest.com/pin/107523509848495963/feedback/?invite_code=030b4f1cb942429d857064cbff5adb32&sender_id=986147787064454915",
+    component: FanMenu,
   },
 ];
 
