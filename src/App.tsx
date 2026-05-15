@@ -19,7 +19,6 @@ import ContextualBar from "./components/recreations/ContextualBar";
 import PickerInteraction from "./components/recreations/PickerInteraction";
 import OptionsMenu from "./components/recreations/OptionsMenu";
 import FanMenu from "./components/recreations/FanMenu";
-import WatchlistTag from "./components/recreations/EditableChip";
 import EditableChip from "./components/recreations/EditableChip";
 
 const components: PlaygroundComponent[] = [
