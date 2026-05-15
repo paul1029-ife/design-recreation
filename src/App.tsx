@@ -19,6 +19,8 @@ import ContextualBar from "./components/recreations/ContextualBar";
 import PickerInteraction from "./components/recreations/PickerInteraction";
 import OptionsMenu from "./components/recreations/OptionsMenu";
 import FanMenu from "./components/recreations/FanMenu";
+import WatchlistTag from "./components/recreations/EditableChip";
+import EditableChip from "./components/recreations/EditableChip";
 
 const components: PlaygroundComponent[] = [
   {
@@ -118,6 +120,13 @@ const components: PlaygroundComponent[] = [
     source: "Dmitry Elisov",
     url: "https://www.pinterest.com/pin/107523509848495963/feedback/?invite_code=030b4f1cb942429d857064cbff5adb32&sender_id=986147787064454915",
     component: FanMenu,
+  },
+  {
+    id: 15,
+    name: "Editable Chip",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/2049797627580207241",
+    component: EditableChip,
   },
 ];
 
