@@ -31,7 +31,7 @@ export default function InlineConfirm() {
 
   useEffect(() => {
     if (stage !== "pending") return;
-    const id = setTimeout(() => setStage("confirmed"), 3000);
+    const id = setTimeout(() => setStage("confirmed"), 3300);
     return () => clearTimeout(id);
   }, [stage]);
 
@@ -91,7 +91,7 @@ export default function InlineConfirm() {
                 <motion.span
                   className="absolute top-1/2 -translate-y-1/2 w-8 h-[7px] bg-white rounded-full"
                   style={{ left: 0 }}
-                  animate={{ x: [-3, 63] }}
+                  animate={{ x: [-3, 62] }}
                   transition={{
                     duration: 0.6,
                     repeat: Infinity,
@@ -126,7 +126,7 @@ export default function InlineConfirm() {
                 initial={{ x: "-130%" }}
                 animate={{ x: "230%" }}
                 transition={{ delay: 0.55, duration: 0.55, ease: "easeInOut" }}
-                className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+                className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/70 to-transparent pointer-events-none"
               />
             </motion.div>
           )}
