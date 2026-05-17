@@ -20,6 +20,7 @@ import PickerInteraction from "./components/recreations/PickerInteraction";
 import OptionsMenu from "./components/recreations/OptionsMenu";
 import FanMenu from "./components/recreations/FanMenu";
 import EditableChip from "./components/recreations/EditableChip";
+import InlineConfirm from "./components/recreations/InlineConfirm";
 
 const components: PlaygroundComponent[] = [
   {
@@ -126,6 +127,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2049797627580207241",
     component: EditableChip,
+  },
+  {
+    id: 16,
+    name: "Inline Confirm",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/2054518189019783553",
+    component: InlineConfirm,
   },
 ];
 

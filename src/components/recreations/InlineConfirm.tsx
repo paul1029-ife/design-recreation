@@ -1,0 +1,136 @@
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { CalendarCheck, Check } from "lucide-react";
+
+type Stage = "idle" | "pending" | "confirmed";
+
+const layoutSpring = {
+  type: "spring" as const,
+  stiffness: 280,
+  damping: 30,
+  mass: 1,
+};
+
+// No scale — scale fights layoutId's transform and causes jitter.
+// Blur + opacity only; layoutId handles the shape morph.
+const stageVariants = {
+  initial: { opacity: 0, filter: "blur(5px)" },
+  animate: { opacity: 1, filter: "blur(0px)" },
+  exit: { opacity: 0, filter: "blur(5px)" },
+};
+
+const stageTransition = {
+  layout: layoutSpring,
+  opacity: { duration: 0.2, ease: "easeOut" as const },
+  filter: { duration: 0.25, ease: "easeOut" as const },
+};
+
+
+
+export default function InlineConfirm() {
+  const [stage, setStage] = useState<Stage>("idle");
+
+  useEffect(() => {
+    if (stage !== "pending") return;
+    const id = setTimeout(() => setStage("confirmed"), 3000);
+    return () => clearTimeout(id);
+  }, [stage]);
+
+  useEffect(() => {
+    if (stage !== "confirmed") return;
+    const id = setTimeout(() => setStage("idle"), 3000);
+    return () => clearTimeout(id);
+  }, [stage]);
+
+  return (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <motion.div
+        layout
+        transition={layoutSpring}
+        className="flex items-center gap-1.5 bg-white rounded-full h-13 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
+        style={{ willChange: "transform", minWidth: 300 }}
+      >
+        <CalendarCheck className="w-6 h-6 text-[#111] " />
+
+        <span className="text-[#111] font-semibold text-base flex-1 select-none">
+          Calendar
+        </span>
+
+        <AnimatePresence mode="wait" initial={false}>
+          {stage === "idle" && (
+            <motion.button
+              key="idle"
+              layoutId="action"
+              variants={stageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={stageTransition}
+              onClick={() => setStage("pending")}
+              className="bg-[#efefef] rounded-full px-4 h-9 text-[#111] font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer"
+            >
+              Sync Events
+            </motion.button>
+          )}
+
+          {stage === "pending" && (
+            <motion.div
+              key="pending"
+              layoutId="action"
+              variants={stageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={stageTransition} className="flex items-center justify-center bg-[#efefef] rounded-full px-2 h-9 text-[#111] font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer"
+            >
+              <motion.div
+                className="rounded-full bg-[#111] overflow-hidden relative flex-shrink-0"
+                style={{ width: 100, height: 9 }}
+              >
+                <motion.span
+                  className="absolute top-1/2 -translate-y-1/2 w-8 h-[8px] bg-white rounded-full"
+                  style={{ left: 0 }}
+                  animate={{ x: [-1, 69] }}
+                  transition={{
+                    duration: 0.9,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          )}
+
+          {stage === "confirmed" && (
+            <motion.div
+              key="confirmed"
+              layoutId="action"
+              layout="preserve-aspect"
+              variants={stageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={stageTransition}
+              className="w-8 h-8 rounded-full bg-[#111] flex items-center justify-center flex-shrink-0 overflow-hidden relative"
+            >
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.18, type: "spring", stiffness: 340, damping: 26 }}
+              >
+                <Check className="w-4 h-4 text-white" strokeWidth={2.5} />
+              </motion.div>
+              <motion.div
+                initial={{ x: "-130%" }}
+                animate={{ x: "230%" }}
+                transition={{ delay: 0.55, duration: 0.55, ease: "easeInOut" }}
+                className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
+  );
+}
