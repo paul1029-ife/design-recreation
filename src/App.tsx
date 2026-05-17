@@ -21,6 +21,7 @@ import OptionsMenu from "./components/recreations/OptionsMenu";
 import FanMenu from "./components/recreations/FanMenu";
 import EditableChip from "./components/recreations/EditableChip";
 import InlineConfirm from "./components/recreations/InlineConfirm";
+import SplitActions from "./components/recreations/SplitActions";
 
 const components: PlaygroundComponent[] = [
   {
@@ -134,6 +135,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2054518189019783553",
     component: InlineConfirm,
+  },
+  {
+    id: 17,
+    name: "Split Actions",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/2054152857591419327",
+    component: SplitActions,
   },
 ];
 
