@@ -12,8 +12,8 @@ const layoutSpring = {
 
 const softSpring = {
   type: "spring" as const,
-  stiffness: 220,
-  damping: 24,
+  stiffness: 290,
+  damping: 30,
   mass: 1,
 };
 
