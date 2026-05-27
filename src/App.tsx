@@ -22,6 +22,7 @@ import FanMenu from "./components/recreations/FanMenu";
 import EditableChip from "./components/recreations/EditableChip";
 import InlineConfirm from "./components/recreations/InlineConfirm";
 import SplitActions from "./components/recreations/SplitActions";
+import VoiceNoteTranscription from "./components/recreations/VoiceNoteTranscription";
 
 const components: PlaygroundComponent[] = [
   {
@@ -142,6 +143,13 @@ const components: PlaygroundComponent[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2054152857591419327",
     component: SplitActions,
+  },
+  {
+    id: 18,
+    name: "Voice Note Transcription",
+    source: "nitishkmrk",
+    url: "https://x.com/nitishkmrk/status/2057363853986701646",
+    component: VoiceNoteTranscription,
   },
 ];
 
