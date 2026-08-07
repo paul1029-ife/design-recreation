@@ -21,7 +21,7 @@ export function PreviewSurface({ children, className }: PreviewSurfaceProps) {
   return (
     <div
       className={cn(
-        "preview-canvas flex min-h-[260px] items-center justify-center",
+        "preview-canvas flex h-[420px] items-center justify-center",
         "overflow-hidden rounded-xl border border-border bg-surface-base p-6",
         className,
       )}
