@@ -1,3 +1,5 @@
+"use client";
+
 import { Ellipsis, X, Save, Copy, Share, Trash2 } from "lucide-react";
 import {
   AnimatePresence,
@@ -21,7 +23,6 @@ const InlineOverflow = () => {
   return (
     <div
       className="flex flex-col items-center justify-center py-2 px-4 gap-8"
-      style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
     >
       <MotionConfig transition={SPRING_TRANSITION}>
         <motion.div
@@ -51,7 +52,7 @@ const InlineOverflow = () => {
                     boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
                     rotateZ: -3,
                   }}
-                  className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
+                  className="bg-surface rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                 >
                   <Save className="size-3.5 translate-z-0" />
                   Save
@@ -63,7 +64,7 @@ const InlineOverflow = () => {
                     boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
                     rotateZ: -3,
                   }}
-                  className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
+                  className="bg-surface rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                 >
                   <Copy className="size-3.5 translate-z-0" />
                   Copy
@@ -102,7 +103,7 @@ const InlineOverflow = () => {
                         boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
                         rotateZ: -3,
                       }}
-                      className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
+                      className="bg-surface rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                     >
                       <Share className="size-3.5" />
                       Share
@@ -114,7 +115,7 @@ const InlineOverflow = () => {
                         boxShadow: "0 8px 15px rgba(0, 0, 0, 0.1)",
                         rotateZ: -3,
                       }}
-                      className="bg-white rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
+                      className="bg-surface rounded-4xl px-3 py-2 flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all ease-out"
                     >
                       <Trash2 className="size-3.5" />
                       Delete
@@ -124,7 +125,7 @@ const InlineOverflow = () => {
               </AnimatePresence>
 
               <motion.div
-                className="bg-white rounded-4xl size-7 flex items-center justify-center cursor-pointer z-10 shadow-sm"
+                className="bg-surface rounded-4xl size-7 flex items-center justify-center cursor-pointer z-10 shadow-sm"
                 onClick={() => setIsOpen(!isOpen)}
                 layout="position"
               >
@@ -145,9 +146,9 @@ const InlineOverflow = () => {
                     }}
                   >
                     {!isOpen ? (
-                      <Ellipsis className="text-neutral-900 size-4" />
+                      <Ellipsis className="text-content size-4" />
                     ) : (
-                      <X className="text-neutral-500 size-4" />
+                      <X className="text-content-subtle size-4" />
                     )}
                   </motion.div>
                 </AnimatePresence>

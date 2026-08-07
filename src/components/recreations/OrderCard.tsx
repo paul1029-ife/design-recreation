@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState, type JSX } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -48,7 +50,7 @@ const stages: Stage[] = [
   },
 ];
 
-export default function FoodOrderCard(): JSX.Element {
+export default function OrderCard(): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
   const [currentStage, setCurrentStage] = useState<number>(0);
   const [icon, setIcon] = useState<number | null>(1);
@@ -60,90 +62,9 @@ export default function FoodOrderCard(): JSX.Element {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          if (currentStage < stages.length - 1) {
-            setTimeout(() => animateToNextStage(), 1100);
-          }
-        },
-      });
-
-      if (currentStage === 0) {
-        tl.from(pawRef.current, {
-          scale: 0,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-        });
-
-        tl.from(
-          [titleRef.current, subtitleRef.current, timeRef.current],
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "elastic.out(1, 0.4)",
-          },
-          "-=0.2"
-        );
-
-        tl.from(
-          progressBarRef.current,
-          {
-            opacity: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          "-=0.1"
-        );
-
-        // Set icon at start position
-        tl.set(iconRef.current, {
-          delay: 0.2,
-          left: "calc(0% - 14px)",
-          opacity: 1,
-        });
-
-        const progressSegments =
-          progressBarRef.current?.querySelectorAll(".progress-segment");
-
-        const segments = [
-          Math.min(stages[0].progress * 4, 1),
-          Math.max(0, Math.min((stages[0].progress - 0.25) * 4, 1)),
-          Math.max(0, Math.min((stages[0].progress - 0.5) * 4, 1)),
-          Math.max(0, Math.min((stages[0].progress - 0.75) * 4, 1)),
-        ];
-
-        progressSegments?.forEach((segment, i) => {
-          tl.fromTo(
-            segment,
-            { scaleX: 0 },
-            {
-              scaleX: segments[i],
-              duration: 0.6,
-              ease: "power2.out",
-            },
-            "<"
-          );
-        });
-
-        tl.to(
-          iconRef.current,
-          {
-            left: `calc(${stages[0].progress * 100}% - 14px)`,
-            duration: 0.6,
-            ease: "power2.out",
-          },
-          "<"
-        );
-      }
-    },
-    { scope: container, dependencies: [currentStage] }
-  );
-
-  const animateToNextStage = (): void => {
+  // Declared above the useGSAP call that closes over it, so the reference is
+  // never made against a binding that has not been initialised yet.
+  function animateToNextStage(): void {
     const nextStage = currentStage + 1;
     const nextStageData = stages[nextStage];
     const currentProgress = stages[currentStage].progress;
@@ -245,7 +166,90 @@ export default function FoodOrderCard(): JSX.Element {
         setIcon(null);
       });
     }
-  };
+  }
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          if (currentStage < stages.length - 1) {
+            setTimeout(() => animateToNextStage(), 1100);
+          }
+        },
+      });
+
+      if (currentStage === 0) {
+        tl.from(pawRef.current, {
+          scale: 0,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+        });
+
+        tl.from(
+          [titleRef.current, subtitleRef.current, timeRef.current],
+          {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "elastic.out(1, 0.4)",
+          },
+          "-=0.2"
+        );
+
+        tl.from(
+          progressBarRef.current,
+          {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          },
+          "-=0.1"
+        );
+
+        // Set icon at start position
+        tl.set(iconRef.current, {
+          delay: 0.2,
+          left: "calc(0% - 14px)",
+          opacity: 1,
+        });
+
+        const progressSegments =
+          progressBarRef.current?.querySelectorAll(".progress-segment");
+
+        const segments = [
+          Math.min(stages[0].progress * 4, 1),
+          Math.max(0, Math.min((stages[0].progress - 0.25) * 4, 1)),
+          Math.max(0, Math.min((stages[0].progress - 0.5) * 4, 1)),
+          Math.max(0, Math.min((stages[0].progress - 0.75) * 4, 1)),
+        ];
+
+        progressSegments?.forEach((segment, i) => {
+          tl.fromTo(
+            segment,
+            { scaleX: 0 },
+            {
+              scaleX: segments[i],
+              duration: 0.6,
+              ease: "power2.out",
+            },
+            "<"
+          );
+        });
+
+        tl.to(
+          iconRef.current,
+          {
+            left: `calc(${stages[0].progress * 100}% - 14px)`,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "<"
+        );
+      }
+    },
+    { scope: container, dependencies: [currentStage] }
+  );
 
   const getIcon = (type: Stage["icon"]): JSX.Element | null => {
     switch (type) {
@@ -266,7 +270,13 @@ export default function FoodOrderCard(): JSX.Element {
 
   return (
     <div ref={container} className="flex items-center justify-center p-4">
-      <div className="bg-black rounded-3xl p-8 w-96">
+      {/*
+        Deliberately dark in BOTH themes — the dark card is the design, not a
+        light-mode default. So its interior uses fixed light values rather than
+        the inverting content tokens, which would drop to #6c757d on black in
+        light mode. The hairline ring keeps it separated from the dark canvas.
+      */}
+      <div className="bg-black ring-1 ring-white/10 rounded-3xl p-8 w-96">
         <div className="flex items-start gap-4 mb-6">
           <div
             ref={pawRef}
@@ -303,7 +313,7 @@ export default function FoodOrderCard(): JSX.Element {
             <h2 ref={titleRef} className="text-white text-base mb-0.5">
               {currentStageData.title}
             </h2>
-            <p ref={subtitleRef} className="text-gray-400 text-xs mb-1">
+            <p ref={subtitleRef} className="text-white/60 text-xs mb-1">
               {currentStageData.subtitle}
             </p>
             <p ref={timeRef} className="text-white text-sm">

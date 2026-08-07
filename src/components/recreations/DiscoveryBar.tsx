@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   motion,
@@ -5,7 +7,7 @@ import {
   LayoutGroup,
   type Transition,
   type MotionStyle,
-} from "framer-motion";
+} from "motion/react";
 import { HugeiconsFire02 } from "../icons/IconFire";
 import { HugeiconsFavourite } from "../icons/IconHeart";
 
@@ -46,7 +48,7 @@ const DiscoveryBar: React.FC = () => {
             initial={false}
             animate={{ width: isSearching ? 250 : 48 }}
             transition={elasticTransition}
-            className={`relative flex items-center bg-white overflow-hidden h-12`}
+            className={`relative flex items-center bg-surface overflow-hidden h-12`}
             style={{
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
               borderRadius: pillRadius,
@@ -73,7 +75,7 @@ const DiscoveryBar: React.FC = () => {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-gray-700 will-change-transform"
+                className="text-content-muted will-change-transform"
               >
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
@@ -93,7 +95,7 @@ const DiscoveryBar: React.FC = () => {
                   placeholder="Search..."
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
-                  className="w-full h-full text-base text-gray-700 placeholder-gray-400 bg-transparent border-none outline-none whitespace-nowrap"
+                  className="w-full h-full text-base text-content-muted placeholder-content-subtle bg-transparent border-none outline-none whitespace-nowrap"
                   autoFocus
                   style={gpuEase}
                 />
@@ -104,7 +106,7 @@ const DiscoveryBar: React.FC = () => {
           <motion.div
             layout
             transition={elasticTransition}
-            className="relative flex items-center bg-white h-12 overflow-hidden"
+            className="relative flex items-center bg-surface h-12 overflow-hidden"
             style={{
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
               borderRadius: pillRadius,
@@ -142,7 +144,7 @@ const DiscoveryBar: React.FC = () => {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-gray-700"
+                    className="text-content-muted"
                   >
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
@@ -212,7 +214,7 @@ const TabButton = ({
   <button
     onClick={onClick}
     className={`relative px-5 py-2.5 text-sm font-medium transition-colors whitespace-nowrap outline-none ${
-      isActive ? "text-gray-900" : "text-gray-500 hover:text-gray-700"
+      isActive ? "text-content" : "text-content-subtle hover:text-content-muted"
     }`}
     style={{ borderRadius: radius }}
   >

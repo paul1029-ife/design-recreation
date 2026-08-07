@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check } from "lucide-react";
@@ -46,14 +48,14 @@ export default function InlineConfirm() {
       <motion.div
         layout
         transition={layoutSpring}
-        className="flex items-center gap-1.5 bg-white rounded-full h-13 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
+        className="flex items-center gap-1.5 bg-surface rounded-full h-13 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
         style={{ willChange: "transform", minWidth: 280 }}
       >
-        <div className="bg-[#efefef] rounded-full p-1">
+        <div className="bg-surface-subtle rounded-full p-1">
           <IconCalendar01 width={29} height={29} color="#111" />
         </div>
 
-        <span className="text-black font-regular text-base flex-1 select-none">
+        <span className="text-content font-regular text-base flex-1 select-none">
           Calendar
         </span>
 
@@ -68,7 +70,7 @@ export default function InlineConfirm() {
               exit="exit"
               transition={stageTransition}
               onClick={() => setStage("pending")}
-              className="bg-[#efefef] rounded-full px-4 h-7.5 text-[#111] font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer"
+              className="bg-surface-subtle rounded-full px-4 h-7.5 text-content font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer"
             >
               Sync Events
             </motion.button>
@@ -82,14 +84,14 @@ export default function InlineConfirm() {
               initial="initial"
               animate="animate"
               exit="exit"
-              transition={stageTransition} className="flex items-center justify-center bg-[#efefef] rounded-full px-2 h-7.5 text-[#111] font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer"
+              transition={stageTransition} className="flex items-center justify-center bg-surface-subtle rounded-full px-2 h-7.5 text-content font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer"
             >
               <motion.div
-                className="rounded-full bg-[#111] overflow-hidden relative flex-shrink-0"
+                className="rounded-full bg-accent overflow-hidden relative flex-shrink-0"
                 style={{ width: 90, height: 7 }}
               >
                 <motion.span
-                  className="absolute top-1/2 -translate-y-1/2 w-8 h-[7px] bg-white rounded-full"
+                  className="absolute top-1/2 -translate-y-1/2 w-8 h-[7px] bg-surface rounded-full"
                   style={{ left: 0 }}
                   animate={{ x: [-3, 62] }}
                   transition={{
@@ -113,20 +115,20 @@ export default function InlineConfirm() {
               animate="animate"
               exit="exit"
               transition={stageTransition}
-              className="w-8.5 h-8.5 rounded-full bg-[#efefef] flex items-center justify-center flex-shrink-0 overflow-hidden relative"
+              className="w-8.5 h-8.5 rounded-full bg-surface-subtle flex items-center justify-center flex-shrink-0 overflow-hidden relative"
             >
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.18, type: "spring", stiffness: 340, damping: 26 }}
               >
-                <Check className="w-6 h-6 p-1 text-white bg-black rounded-full" strokeWidth={2.2} />
+                <Check className="w-6 h-6 p-1 text-accent-content bg-accent rounded-full" strokeWidth={2.2} />
               </motion.div>
               <motion.div
                 initial={{ x: "-130%" }}
                 animate={{ x: "230%" }}
                 transition={{ delay: 0.55, duration: 0.55, ease: "easeInOut" }}
-                className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/70 to-transparent pointer-events-none"
+                className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-accent-content/70 to-transparent pointer-events-none"
               />
             </motion.div>
           )}

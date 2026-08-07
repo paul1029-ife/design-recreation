@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Globe, ChevronDown, Lock } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -36,7 +38,7 @@ const PickerInteraction = () => {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="absolute bottom-full left-1/2 mb-3 -translate-x-1/2 z-10"
             >
-              <div className="relative flex items-center gap-1  rounded-full border border-gray-100 bg-gray-50 p-1.5">
+              <div className="relative flex items-center gap-1  rounded-full border border-border bg-surface-subtle p-1.5">
                 <MenuOption
                   label={config.private.label}
                   Icon={config.private.icon}
@@ -53,7 +55,7 @@ const PickerInteraction = () => {
                   onClick={() => handleSelect(true)}
                 />
 
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-50 rotate-45 " />
+                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-surface-subtle rotate-45 " />
               </div>
             </motion.div>
           )}
@@ -63,7 +65,7 @@ const PickerInteraction = () => {
           layout
           onClick={() => setOpen(!open)}
           whileTap={{ scale: 0.87 }}
-          className="group relative flex items-center gap-2 rounded-full bg-gray-100 px-4 py-3 text-gray-700 outline-none"
+          className="group relative flex items-center gap-2 rounded-full bg-surface-subtle px-4 py-3 text-content-muted outline-none"
         >
           <div className="flex items-center gap-2 min-w-[80px] justify-center">
             <AnimatePresence mode="popLayout" initial={false}>
@@ -77,10 +79,10 @@ const PickerInteraction = () => {
               >
                 <currentConfig.icon
                   size={18}
-                  className="text-gray-500 mb-0.5"
+                  className="text-content-subtle mb-0.5"
                   strokeWidth={2.5}
                 />
-                <span className="font-semibold text-gray-900">
+                <span className="font-semibold text-content">
                   {currentConfig.label}
                 </span>
               </motion.div>
@@ -91,7 +93,7 @@ const PickerInteraction = () => {
             animate={{ rotate: open ? 180 : 0 }}
             transition={{ duration: 0.3, ease: "circOut" }}
           >
-            <ChevronDown size={16} className="text-gray-500" />
+            <ChevronDown size={16} className="text-content-subtle" />
           </motion.div>
         </motion.button>
       </div>
@@ -116,14 +118,14 @@ const MenuOption = ({
   <button
     onClick={onClick}
     className={`
-      flex items-center gap-2 px-3 py-2 transition-all duration-200 bg-white
-      ${isActive ? "text-black" : "text-gray-400 hover:text-gray-600"}
+      flex items-center gap-2 px-3 py-2 transition-all duration-200 bg-surface
+      ${isActive ? "text-content" : "text-content-subtle hover:text-content-muted"}
       ${position === "left" ? "rounded-l-full" : "rounded-r-full"}
     `}
   >
     <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
     <span
-      className={`font-semibold ${isActive ? "text-black" : "text-gray-600"}`}
+      className={`font-semibold ${isActive ? "text-content" : "text-content-muted"}`}
     >
       {label}
     </span>

@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Dark mode
+   next-themes sets class="dark" on <html>. This variant makes `dark:` work
+   against that class rather than the OS media query, so the in-app toggle
+   wins over the system preference.
+   ========================================================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   Tokens
+   Raw values live on :root / .dark. `@theme inline` below maps them onto
+   Tailwind utilities WITHOUT copying the value, so `bg-surface` compiles to
+   `background-color: var(--surface)` and resolves per-scope. That indirection
+   is what lets a pattern pasted into a consumer's themed app adapt to their
+   theme instead of carrying ours.
+   ========================================================================== */
+
+:root {
+  /* Surface — ascending from the page backwards to controls on top of cards */
+  --surface-base: #f8f9fa; /* page background */
+  --surface: #ffffff; /* card, panel, pattern background */
+  --surface-subtle: #efefef; /* control nested inside a card */
+  --surface-hover: #e9ecef;
+  --surface-active: #dee2e6;
+
+  /* Content */
+  --content: #111111;
+  --content-muted: #343a40;
+  --content-subtle: #6c757d; /* 4.69:1 on --surface — AA floor, do not use below 14px */
+  --content-inverse: #ffffff;
+
+  /* Line */
+  --border: #dee2e6;
+  --border-strong: #adb5bd;
+
+  /* Intent — the library is monochrome; colour is reserved for danger/success */
+  --accent: #111111;
+  --accent-content: #ffffff;
+  --danger: #e03131;
+  --danger-content: #ffffff;
+  --success: #2f9e44;
+  --success-content: #ffffff;
+
+  /* Focus */
+  --ring: #111111;
+
+  /* Preview canvas dot grid */
+  --dot: #d8dbdf;
+
+  /* Elevation */
+  --shadow-resting: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-floating: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-overlay: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --surface-base: #08090a;
+  --surface: #101113;
+  --surface-subtle: #1c1e21;
+  --surface-hover: #26292d;
+  --surface-active: #303439;
+
+  --content: #f4f5f6;
+  --content-muted: #b6bbc0;
+  --content-subtle: #878d94; /* 5.68:1 on --surface */
+  --content-inverse: #101113;
+
+  --border: #26292d;
+  --border-strong: #3a3f45;
+
+  --accent: #f4f5f6;
+  --accent-content: #101113;
+  --danger: #ff6b6b;
+  --danger-content: #101113;
+  --success: #51cf66;
+  --success-content: #101113;
+
+  --ring: #f4f5f6;
+
+  --dot: #24272b;
+
+  /* Shadow alone reads as mud on dark surfaces; these lean on opacity depth. */
+  --shadow-resting: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-floating: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-overlay: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+@theme inline {
+  /* Colour */
+  --color-surface-base: var(--surface-base);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  --color-content: var(--content);
+  --color-content-muted: var(--content-muted);
+  --color-content-subtle: var(--content-subtle);
+  --color-content-inverse: var(--content-inverse);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-content: var(--accent-content);
+  --color-danger: var(--danger);
+  --color-danger-content: var(--danger-content);
+  --color-success: var(--success);
+  --color-success-content: var(--success-content);
+
+  --color-ring: var(--ring);
+
+  /* Typography — supplied by next/font/local in layout.tsx */
+  --font-sans: var(--font-some-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius — nested radius = outer − padding */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+
+  /* Elevation */
+  --shadow-resting: var(--shadow-resting);
+  --shadow-floating: var(--shadow-floating);
+  --shadow-overlay: var(--shadow-overlay);
+  --shadow-modal: var(--shadow-modal);
+
+  /* Easing — the canonical four. Everything else was deleted. */
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+:root {
+  font-synthesis: none; /* Some-Sans ships 400 and 600 only — never fake a weight */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--surface-base);
+  color: var(--content);
+}
+
+/* Numbers that mutate in place must not reflow their container. */
+@layer base {
+  [data-tabular] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* The one focus treatment. Every interactive element uses it — Tailwind v4
+   ships no default ring, and an invisible focus state is a blocking defect. */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Dot grid for preview canvases. Reads as "specimen on a stage" and gives the
+   eye a scale reference, so a pattern's real size is legible. */
+@utility preview-canvas {
+  background-image: radial-gradient(
+    circle at center,
+    var(--dot) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+
+/* ==========================================================================
+   Theme transition
+   The theme swap is a full-document View Transition: the incoming state is
+   snapshotted above the outgoing one and unmasked by a growing circle driven
+   from src/lib/view-transition.ts.
+
+   Both default crossfade animations are disabled — the clip-path IS the
+   transition, and leaving the crossfade on muddies it into a dissolve.
+   ========================================================================== */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Reduced motion
+   A global backstop. Patterns still handle this themselves via
+   useReducedMotion so they can preserve the state change while dropping the
+   travel — this only catches anything that slips through.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

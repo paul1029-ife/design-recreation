@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Play, Pause } from "lucide-react";
@@ -116,7 +118,7 @@ function TranscriptionBubble({ visibleCount }: { visibleCount: number }) {
       className="absolute bottom-full left-0 mb-4 w-[300px]"
       style={{ transformOrigin: "bottom left" }}
     >
-      <div className="relative bg-[#ececf0] rounded-[28px] rounded-bl-[8px] px-5 py-4 shadow-[0_6px_32px_rgba(0,0,0,0.10)]">
+      <div className="relative bg-surface-subtle rounded-[28px] rounded-bl-[8px] px-5 py-4 shadow-[0_6px_32px_rgba(0,0,0,0.10)]">
         {/*
           Organic curved tail — a smooth bezier teardrop replacing the
           hard CSS-border triangle, so the bubble feels genuinely bubbly.
@@ -141,8 +143,7 @@ function TranscriptionBubble({ visibleCount }: { visibleCount: number }) {
         </svg>
 
         <p
-          className="text-[15px] leading-[1.6] text-[#1a1a1a] select-none"
-          style={{ fontFamily: "Inter, Some-Sans, sans-serif" }}
+          className="text-[15px] leading-[1.6] text-content select-none"
         >
           {WORDS.map((word, i) => (
             <motion.span
@@ -254,7 +255,6 @@ export default function VoiceNoteTranscription() {
   return (
     <div
       className="flex items-center justify-center min-h-[260px] w-full px-4 pt-8"
-      style={{ fontFamily: "Inter, Some-Sans, sans-serif" }}
     >
       {/* 
         The relative wrapper is the anchor for the absolute bubble.
@@ -273,7 +273,7 @@ export default function VoiceNoteTranscription() {
           onClick={handleTranscribe}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.93 }}
-          className="w-[52px] h-[52px] rounded-full bg-[#ececf0] shadow-[0_2px_10px_rgba(0,0,0,0.08)] flex items-center justify-center flex-shrink-0 cursor-pointer"
+          className="w-[52px] h-[52px] rounded-full bg-surface-subtle shadow-[0_2px_10px_rgba(0,0,0,0.08)] flex items-center justify-center flex-shrink-0 cursor-pointer"
           style={{ willChange: "transform" }}
           aria-label={
             isTranscribing ? "Close transcription" : "Transcribe voice note"
@@ -286,7 +286,7 @@ export default function VoiceNoteTranscription() {
         <motion.div
           layout
           transition={layoutSpring}
-          className="flex items-center gap-2.5 bg-[#ececf0] rounded-full px-3.5 py-3 shadow-[0_2px_14px_rgba(0,0,0,0.07)]"
+          className="flex items-center gap-2.5 bg-surface-subtle rounded-full px-3.5 py-3 shadow-[0_2px_14px_rgba(0,0,0,0.07)]"
           style={{ willChange: "transform" }}
         >
           {/* Play / Pause toggle */}
@@ -312,7 +312,7 @@ export default function VoiceNoteTranscription() {
                   }}
                 >
                   <Pause
-                    className="w-5 h-5 text-[#1a1a1a]"
+                    className="w-5 h-5 text-content"
                     strokeWidth={2.5}
                     fill="#1a1a1a"
                   />
@@ -330,7 +330,7 @@ export default function VoiceNoteTranscription() {
                   }}
                 >
                   <Play
-                    className="w-5 h-5 text-[#1a1a1a]"
+                    className="w-5 h-5 text-content"
                     strokeWidth={2.5}
                     fill="#1a1a1a"
                   />
@@ -360,7 +360,7 @@ export default function VoiceNoteTranscription() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className="text-[13.5px] font-semibold text-[#6b6b7a] select-none flex-shrink-0 w-6 text-center"
+              className="text-[13.5px] font-semibold text-content-subtle select-none flex-shrink-0 w-6 text-center"
             >
               {timeLeft}s
             </motion.span>

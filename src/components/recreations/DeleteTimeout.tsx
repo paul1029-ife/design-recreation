@@ -1,4 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion";
+"use client";
+
+import { AnimatePresence, motion } from "motion/react";
 import { useState, useEffect } from "react";
 import { HugeiconsArrowTurnBackward } from "../icons/TurnBackwards";
 
@@ -33,7 +35,6 @@ const DeleteTimeout = () => {
         setIsDeleting(false);
       }, 10000);
 
-      setCountdown(10);
       const countdownIntervalId = setInterval(() => {
         setCountdown((prevCount) => {
           if (prevCount > 0) {
@@ -51,6 +52,10 @@ const DeleteTimeout = () => {
   }, [isDeleting]);
 
   const handleDelete = () => {
+    // Reset here rather than in the effect. Calling setState synchronously in
+    // an effect body triggers a cascading render, and the reset is an
+    // event-driven concern, not a synchronisation one.
+    setCountdown(10);
     setIsDeleting(true);
   };
 
@@ -72,7 +77,6 @@ const DeleteTimeout = () => {
   return (
     <div
       className="flex items-center justify-center p-16 min-h-[150px]"
-      style={{ fontFamily: "Some-Sans" }}
     >
       <AnimatePresence mode="popLayout" initial={false}>
         {!isDeleted && !isDeleting && (
@@ -80,7 +84,7 @@ const DeleteTimeout = () => {
             key="delete-button"
             onClick={handleDelete}
             style={{ borderRadius: "9999px" }}
-            className="text-white px-4 h-[50px] cursor-pointer font-semibold overflow-hidden"
+            className="text-danger-content px-4 h-[50px] cursor-pointer font-semibold overflow-hidden"
             layout
             layoutId="delete-button"
             initial={{ opacity: 0, scale: 0.7 }}
@@ -104,7 +108,7 @@ const DeleteTimeout = () => {
             key="cancel-div"
             onClick={handleCancel}
             style={{ borderRadius: "9999px" }}
-            className="flex items-center gap-3 text-red-600 px-3 h-[50px] cursor-pointer overflow-hidden"
+            className="flex items-center gap-3 text-danger px-3 h-[50px] cursor-pointer overflow-hidden"
             layout
             layoutId="delete-button"
             initial={{ opacity: 0, scale: 0.7, backgroundColor: "#fb2c36" }}
@@ -116,7 +120,7 @@ const DeleteTimeout = () => {
             exit={{ opacity: 0, scale: 0.7 }}
             transition={elasticTransition}
           >
-            <span className="bg-red-500 rounded-full text-white p-1.5 flex-shrink-0">
+            <span className="bg-danger rounded-full text-danger-content p-1.5 flex-shrink-0">
               {" "}
               <HugeiconsArrowTurnBackward className="size-5 font-medium rotate-x-180" />
             </span>
@@ -130,7 +134,7 @@ const DeleteTimeout = () => {
             </motion.span>
 
             <motion.span
-              className="relative rounded-full bg-red-500 text-white w-9 h-7 flex items-center justify-center text-sm font-semibold flex-shrink-0 will-change-transform"
+              className="relative rounded-full bg-danger text-danger-content w-9 h-7 flex items-center justify-center text-sm font-semibold flex-shrink-0 will-change-transform"
               style={{ transform: "translateZ(0)" }}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -152,7 +156,7 @@ const DeleteTimeout = () => {
         {isDeleted && (
           <motion.div
             key="deleted-message"
-            className="text-gray-800 font-semibold"
+            className="text-content-muted font-semibold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
