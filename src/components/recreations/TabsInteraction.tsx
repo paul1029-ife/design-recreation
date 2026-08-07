@@ -1,3 +1,5 @@
+"use client";
+
 import { LayoutGroup, motion } from "motion/react";
 import { useState } from "react";
 import { MaterialSymbolsNotificationsRounded } from "../icons/IconNotifications";
@@ -17,14 +19,14 @@ const TabsInteraction = () => {
             initial={false}
             animate={{ width: activeTab === "inbox" ? 110 : 48 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="h-12 bg-white rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
+            className="h-12 bg-surface rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
             whileHover={{ scale: 1.05 }}
             onClick={() => setActiveTab("inbox")}
           >
             <div className="absolute left-3 flex items-center justify-center w-6 h-6">
               <MaterialSymbolsMailRounded
                 className={`
-                  ${activeTab === "inbox" ? "text-blue-600" : "text-black"}
+                  ${activeTab === "inbox" ? "text-blue-600" : "text-content"}
                   size-8
                 `}
               />
@@ -40,14 +42,14 @@ const TabsInteraction = () => {
             >
               <span
                 className={
-                  activeTab === "inbox" ? "text-blue-600" : "text-black"
+                  activeTab === "inbox" ? "text-blue-600" : "text-content"
                 }
               >
                 Inbox
               </span>
               {activeTab === "inbox" && (
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-60"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-surface to-transparent opacity-60"
                   initial={{ x: "-100%" }}
                   animate={{ x: "200%" }}
                   transition={{
@@ -64,7 +66,7 @@ const TabsInteraction = () => {
             initial={false}
             animate={{ width: activeTab === "planner" ? 110 : 48 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="h-12 bg-white rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
+            className="h-12 bg-surface rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
             whileHover={{ scale: 1.05 }}
             onClick={() => setActiveTab("planner")}
           >
@@ -72,7 +74,7 @@ const TabsInteraction = () => {
               <FluentCalendar16Filled
                 className={`
                   ${
-                    activeTab === "planner" ? "text-red-400" : "text-black"
+                    activeTab === "planner" ? "text-danger" : "text-content"
                   } size-8
                   `}
               />
@@ -88,14 +90,14 @@ const TabsInteraction = () => {
             >
               <span
                 className={
-                  activeTab === "planner" ? "text-red-400" : "text-black"
+                  activeTab === "planner" ? "text-danger" : "text-content"
                 }
               >
                 Planner
               </span>
               {activeTab === "planner" && (
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-60"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-surface to-transparent opacity-60"
                   initial={{ x: "-100%" }}
                   animate={{ x: "200%" }}
                   transition={{
@@ -112,7 +114,7 @@ const TabsInteraction = () => {
             initial={false}
             animate={{ width: activeTab === "alerts" ? 110 : 48 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="h-12 bg-white rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
+            className="h-12 bg-surface rounded-full flex items-center cursor-pointer overflow-hidden relative will-change-transform"
             whileHover={{ scale: 1.05 }}
             onClick={() => setActiveTab("alerts")}
           >
@@ -120,7 +122,7 @@ const TabsInteraction = () => {
               <MaterialSymbolsNotificationsRounded
                 className={`
                   ${
-                    activeTab === "alerts" ? "text-red-600" : "text-black"
+                    activeTab === "alerts" ? "text-danger" : "text-content"
                   } size-8
                   `}
               />
@@ -136,14 +138,14 @@ const TabsInteraction = () => {
             >
               <span
                 className={
-                  activeTab === "alerts" ? "text-red-600" : "text-black"
+                  activeTab === "alerts" ? "text-danger" : "text-content"
                 }
               >
                 Alerts
               </span>
               {activeTab === "alerts" && (
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent "
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-surface to-transparent "
                   initial={{ x: "-100%" }}
                   animate={{ x: "200%" }}
                   transition={{

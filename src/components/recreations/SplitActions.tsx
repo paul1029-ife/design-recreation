@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Bell, Plus } from "lucide-react";
@@ -36,10 +38,10 @@ export default function SplitActions() {
               opacity: blurTransition,
             }}
             onClick={() => setExpanded(true)}
-            className="w-[45px] h-[45px] rounded-full bg-[#111] flex items-center justify-center cursor-pointer"
+            className="w-[45px] h-[45px] rounded-full bg-accent flex items-center justify-center cursor-pointer"
             style={{ willChange: "transform" }}
           >
-            <Plus className="w-[23px] h-[23px] text-white" strokeWidth={2.5} />
+            <Plus className="w-[23px] h-[23px] text-accent-content" strokeWidth={2.5} />
           </motion.button>
         ) : (
           <motion.div
@@ -54,12 +56,12 @@ export default function SplitActions() {
               transition={{ ...spring, filter: blurTransition, opacity: blurTransition }}
               style={{ willChange: "transform" }}
               onClick={() => setExpanded(false)}
-              className="flex items-center gap-2 bg-[#eeeef2] rounded-full px-4 py-2.5 cursor-pointer"
+              className="flex items-center gap-2 bg-surface-subtle rounded-full px-4 py-2.5 cursor-pointer"
             >
-              <div className="w-[23px] h-[23px] rounded-[8px] bg-[#111] flex items-center justify-center flex-shrink-0">
+              <div className="w-[23px] h-[23px] rounded-[8px] bg-accent flex items-center justify-center flex-shrink-0">
                 <IconCalendar01 />
               </div>
-              <span className="text-[#111] font-semibold text-[15px] pr-0.5 select-none">
+              <span className="text-content font-semibold text-[15px] pr-0.5 select-none">
                 Schedule
               </span>
             </motion.button>
@@ -69,14 +71,14 @@ export default function SplitActions() {
               transition={{ ...spring, filter: blurTransition, opacity: blurTransition }}
               style={{ willChange: "transform" }}
               onClick={() => setExpanded(false)}
-              className="flex items-center gap-2 bg-[#eeeef2] rounded-full px-4 py-2.5 cursor-pointer"
+              className="flex items-center gap-2 bg-surface-subtle rounded-full px-4 py-2.5 cursor-pointer"
             >
               <Bell
-                className="w-[18px] h-[18px] text-[#111] flex-shrink-0"
+                className="w-[18px] h-[18px] text-content flex-shrink-0"
                 strokeWidth={2}
                 fill="#111"
               />
-              <span className="text-[#111] font-semibold text-[15px] pr-0.5 select-none">
+              <span className="text-content font-semibold text-[15px] pr-0.5 select-none">
                 Remind
               </span>
             </motion.button>

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import {
   ArrowRight,
@@ -23,22 +25,22 @@ const ContextualBar = () => {
           stiffness: 110,
           damping: 10,
         }}
-        className="bg-gray-100 w-fit px-2 py-1.5 flex items-center gap-1 shadow-md overflow-hidden"
+        className="bg-surface-subtle w-fit px-2 py-1.5 flex items-center gap-1 shadow-md overflow-hidden"
         style={{ borderRadius: 24, willChange: "transform" }}
       >
         <motion.div
           layout="position"
-          className="bg-white rounded-full px-2 py-1 flex items-center gap-2 shadow-sm relative z-10"
+          className="bg-surface rounded-full px-2 py-1 flex items-center gap-2 shadow-sm relative z-10"
         >
           <Music2
             className={`p-1.5 rounded-full size-7 cursor-pointer transition-colors duration-300 ${
-              musicOn ? "text-black bg-gray-200" : "text-gray-600"
+              musicOn ? "text-content bg-surface-hover" : "text-content-muted"
             }`}
             onClick={() => setMusicOn(true)}
           />
           <Sparkle
             className={`p-1.5 rounded-full size-7 cursor-pointer transition-colors duration-300 ${
-              musicOn ? "text-gray-600" : "text-black bg-gray-200"
+              musicOn ? "text-content-muted" : "text-content bg-surface-hover"
             }`}
             onClick={() => setMusicOn(false)}
           />
@@ -60,7 +62,7 @@ const ContextualBar = () => {
             >
               <input
                 type="text"
-                className="text-gray-800 w-40 text-lg bg-transparent outline-none placeholder:text-gray-400"
+                className="text-content-muted w-40 text-lg bg-transparent outline-none placeholder:text-content-subtle"
                 placeholder="Refine with AI"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
@@ -68,7 +70,7 @@ const ContextualBar = () => {
               />
               <motion.button
                 layout
-                className="bg-white hover:bg-gray-50 transition-colors rounded-full p-2 ml-2 shadow-sm"
+                className="bg-surface hover:bg-surface-subtle transition-colors rounded-full p-2 ml-2 shadow-sm"
               >
                 <ArrowRight size={20} />
               </motion.button>
@@ -87,10 +89,10 @@ const ContextualBar = () => {
               className="flex gap-4 px-2"
               style={{ willChange: "transform" }}
             >
-              <Scissors className="w-4 h-4 text-gray-900" />
-              <Timer className="w-4 h-4 text-gray-900" />
-              <Mic2 className="w-4 h-4 text-gray-900" />
-              <AudioWaveform className="w-4 h-4 text-gray-900" />
+              <Scissors className="w-4 h-4 text-content" />
+              <Timer className="w-4 h-4 text-content" />
+              <Mic2 className="w-4 h-4 text-content" />
+              <AudioWaveform className="w-4 h-4 text-content" />
             </motion.div>
           )}
         </AnimatePresence>

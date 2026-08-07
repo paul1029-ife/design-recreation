@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef } from "react";
 import {
   Sparkles,
@@ -9,7 +11,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { motion } from "motion/react";
 
-export default function AnimatedInput() {
+export default function SwitcherInteraction() {
   const [isImageMode, setIsImageMode] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -128,23 +130,23 @@ export default function AnimatedInput() {
   return (
     <div className="flex items-center justify-center">
       <div className="relative w-full max-w-2xl px-6">
-        <div className="relative flex items-center bg-stone-200 rounded-full shadow-lg overflow-hidden h-14">
+        <div className="relative flex items-center bg-surface-hover rounded-full shadow-lg overflow-hidden h-14">
           <motion.button
             onClick={handleIconClick}
             whileTap={{ scale: 0.8 }}
             disabled={isAnimating}
-            className="flex items-center justify-center w-18 h-12 ml-1 bg-white rounded-4xl transition-colors duration-200 flex-shrink-0"
+            className="flex items-center justify-center w-18 h-12 ml-1 bg-surface rounded-4xl transition-colors duration-200 flex-shrink-0"
             aria-label="Toggle input mode"
           >
             <div ref={iconRef} className="flex items-center justify-center">
-              <CurrentIcon className="w-6 h-6 text-gray-700 will-change-transform" />
+              <CurrentIcon className="w-6 h-6 text-content-muted will-change-transform" />
             </div>
-            <ChevronsUpDown className="text-gray-500 size-5" />
+            <ChevronsUpDown className="text-content-subtle size-5" />
           </motion.button>
 
           <input
             type="text"
-            className="flex-1 px-1 py-5 text-gray-800 text-lg bg-transparent outline-none"
+            className="flex-1 px-1 py-5 text-content-muted text-lg bg-transparent outline-none"
             placeholder=""
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -152,14 +154,14 @@ export default function AnimatedInput() {
           />
 
           <div className="absolute left-20 pointer-events-none">
-            <div ref={textContainerRef} className="text-gray-400 text-lg" />
+            <div ref={textContainerRef} className="text-content-subtle text-lg" />
           </div>
 
           <button
-            className="flex items-center justify-center w-12 h-12 mr-1 bg-white rounded-full transition-colors duration-200 flex-shrink-0"
+            className="flex items-center justify-center w-12 h-12 mr-1 bg-surface rounded-full transition-colors duration-200 flex-shrink-0"
             aria-label="Submit"
           >
-            <ArrowRight className="w-6 h-6 text-black" />
+            <ArrowRight className="w-6 h-6 text-content" />
           </button>
         </div>
       </div>

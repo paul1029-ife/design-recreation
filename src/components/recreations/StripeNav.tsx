@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 interface MenuLinkItem {
@@ -139,10 +141,10 @@ const MenuDropdown = ({ content }: MenuDropdownProps) => {
           <a
             key={item.label}
             href={item.href}
-            className="group rounded-lg border border-gray-100 p-4 hover:bg-gray-50 transition-colors"
+            className="group rounded-lg border border-border p-4 hover:bg-surface-subtle transition-colors"
           >
-            <p className="font-semibold text-gray-900">{item.label}</p>
-            <p className="text-sm text-gray-600">{item.description}</p>
+            <p className="font-semibold text-content">{item.label}</p>
+            <p className="text-sm text-content-muted">{item.description}</p>
           </a>
         )
       )}
@@ -150,7 +152,7 @@ const MenuDropdown = ({ content }: MenuDropdownProps) => {
   );
 };
 
-export default function App() {
+export default function StripeNav() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [arrowOffset, setArrowOffset] = useState<number>(0);
 
@@ -186,7 +188,7 @@ export default function App() {
       <div className="max-w-7xl mx-auto px-6">
         <nav ref={navRef} className="relative" onMouseLeave={handleMouseLeave}>
           <LayoutGroup>
-            <ul className="flex items-center gap-2 rounded-full bg-white p-1.5 shadow-sm">
+            <ul className="flex items-center gap-2 rounded-full bg-surface p-1.5 shadow-sm">
               {menuItems.map((item, index) => (
                 <li
                   key={item.label}
@@ -196,14 +198,14 @@ export default function App() {
                   onMouseEnter={() => handleItemMouseEnter(index)}
                   className="relative cursor-pointer px-4 py-2"
                 >
-                  <span className="relative z-10 font-medium text-gray-700 transition-colors group-hover:text-gray-900">
+                  <span className="relative z-10 font-medium text-content-muted transition-colors group-hover:text-content">
                     {item.label}
                   </span>
 
                   {activeIndex === index && (
                     <motion.div
                       layoutId="active-pill"
-                      className="absolute inset-0 z-0 rounded-full bg-gray-100"
+                      className="absolute inset-0 z-0 rounded-full bg-surface-subtle"
                       transition={{
                         type: "spring",
                         stiffness: 300,
@@ -234,7 +236,7 @@ export default function App() {
                 }}
               >
                 <div
-                  className="relative rounded-xl border border-gray-200 bg-white shadow-xl"
+                  className="relative rounded-xl border border-border bg-surface shadow-xl"
                   onMouseLeave={(e) => {
                     e.stopPropagation();
                     handleMouseLeave();
@@ -250,14 +252,14 @@ export default function App() {
                       damping: 40,
                     }}
                   >
-                    <div className="h-4 w-4 -translate-x-1/2 transform rotate-45 border-l border-t border-gray-200 bg-white" />
+                    <div className="h-4 w-4 -translate-x-1/2 transform rotate-45 border-l border-t border-border bg-surface" />
                   </motion.div>
 
                   <div className="relative p-8">
                     <LayoutGroup>
                       <motion.div
                         layoutId="dropdown-background"
-                        className="absolute inset-4 rounded-lg bg-white"
+                        className="absolute inset-4 rounded-lg bg-surface"
                         transition={{
                           type: "spring",
                           stiffness: 400,

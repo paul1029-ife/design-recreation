@@ -1,3 +1,5 @@
+"use client";
+
 import { Check } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState, useEffect } from "react";
@@ -14,7 +16,7 @@ const InlineToast = () => {
 
   return (
     <div className="flex w-full items-center justify-center p-5">
-      <div className="relative flex h-11 w-[196px] items-center justify-center overflow-hidden rounded-full bg-gray-100 shadow-sm">
+      <div className="relative flex h-11 w-[196px] items-center justify-center overflow-hidden rounded-full bg-surface-subtle shadow-sm">
         <AnimatePresence>
           {copied && (
             <motion.div
@@ -25,7 +27,7 @@ const InlineToast = () => {
                 transition: { duration: 0.2, ease: "easeOut" },
               }}
               transition={{ duration: 2, ease: "linear" }}
-              className="absolute left-0 top-0 h-full bg-gray-300"
+              className="absolute left-0 top-0 h-full bg-surface-active"
             />
           )}
         </AnimatePresence>
@@ -50,14 +52,14 @@ const InlineToast = () => {
                 }}
                 className="flex w-full items-center justify-between"
               >
-                <span className="pl-2 text-md text-gray-500 font-semibold">
+                <span className="pl-2 text-md text-content-subtle font-semibold">
                   7B38BD2
                 </span>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setCopied(true)}
-                  className="rounded-full bg-white px-3.5 py-1.5 text-sm font-semibold tex-black shadow-sm"
+                  className="rounded-full bg-surface px-3.5 py-1.5 text-sm font-semibold tex-black shadow-sm"
                 >
                   Copy
                 </motion.button>
@@ -81,10 +83,10 @@ const InlineToast = () => {
                 className="flex w-full items-center justify-center gap-1.5"
               >
                 <Check
-                  className="h-4 w-4 text-white bg-black rounded-full p-0.5 will-change-transform"
+                  className="h-4 w-4 text-accent-content bg-accent rounded-full p-0.5 will-change-transform"
                   strokeWidth={2}
                 />
-                <span className="text-sm font-semibold text-gray-900">
+                <span className="text-sm font-semibold text-content">
                   Code Copied!
                 </span>
               </motion.div>

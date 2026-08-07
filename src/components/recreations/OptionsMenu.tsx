@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Plus,
   Folder,
@@ -31,7 +33,7 @@ export default function OptionsMenu() {
             key="button"
             layoutId="container"
             onClick={() => setMenuOpened(true)}
-            className="flex items-center gap-1 bg-stone-100 px-3 py-2 shadow-sm border-[3px] border-gray-200"
+            className="flex items-center gap-1 bg-surface-subtle px-3 py-2 shadow-sm border-[3px] border-border"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -60,7 +62,7 @@ export default function OptionsMenu() {
           <motion.div
             key="menu"
             layoutId="container"
-            className="w-[260px] bg-stone-100 pt-2 shadow-md border-[3px] border-gray-200"
+            className="w-[260px] bg-surface-subtle pt-2 shadow-md border-[3px] border-border"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -81,12 +83,12 @@ export default function OptionsMenu() {
 
               <X
                 onClick={() => setMenuOpened(false)}
-                className="text-xs bg-stone-400 rounded-full p-0.5 size-5 text-white cursor-pointer"
+                className="text-xs bg-border-strong rounded-full p-0.5 size-5 text-accent-content cursor-pointer"
               />
             </div>
 
             <motion.div
-              className="mt-2 grid grid-cols-3 gap-4 rounded-xl p-2 bg-white"
+              className="mt-2 grid grid-cols-3 gap-4 rounded-xl p-2 bg-surface"
               initial="hidden"
               animate="show"
               variants={{
@@ -101,7 +103,7 @@ export default function OptionsMenu() {
               {options.map(({ label, icon: Icon }) => (
                 <motion.div
                   key={label}
-                  className="flex cursor-pointer flex-col items-center gap-2 rounded-lg p-2 hover:bg-gray-100 text-stone-800 will-change-transform"
+                  className="flex cursor-pointer flex-col items-center gap-2 rounded-lg p-2 hover:bg-surface-subtle text-content-muted will-change-transform"
                   variants={{
                     hidden: { opacity: 0, scale: 0.8 },
                     show: { opacity: 1, scale: 1 },

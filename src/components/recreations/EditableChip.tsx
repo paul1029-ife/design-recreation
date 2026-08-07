@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Pencil } from "lucide-react";
@@ -69,7 +71,7 @@ export default function EditableChip() {
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent outline-none text-[#1a1a1a] text-lg font-medium ml-3 min-w-0"
+              className="flex-1 bg-transparent outline-none text-content text-lg font-medium ml-3 min-w-0"
             />
           ) : (
             <motion.span
@@ -78,7 +80,7 @@ export default function EditableChip() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="flex-1 text-[#888] text-lg font-medium ml-3 select-none whitespace-nowrap"
+              className="flex-1 text-content-subtle text-lg font-medium ml-3 select-none whitespace-nowrap"
             >
               {label}
             </motion.span>
@@ -95,10 +97,10 @@ export default function EditableChip() {
               exit="exit"
               transition={spring}
               onClick={handleConfirm}
-              className="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center flex-shrink-0 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0 cursor-pointer"
               aria-label="Confirm"
             >
-              <Check className="w-4 h-4 text-white" strokeWidth={2.5} />
+              <Check className="w-4 h-4 text-accent-content" strokeWidth={2.5} />
             </motion.button>
           ) : (
             <motion.button
@@ -109,10 +111,10 @@ export default function EditableChip() {
               exit="exit"
               transition={spring}
               onClick={handleEdit}
-              className="w-10 h-10 rounded-full bg-[#e2e2e2] flex items-center justify-center flex-shrink-0 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-surface-subtle flex items-center justify-center flex-shrink-0 cursor-pointer"
               aria-label="Edit"
             >
-              <Pencil className="w-4 h-4 text-[#888]" />
+              <Pencil className="w-4 h-4 text-content-subtle" />
             </motion.button>
           )}
         </AnimatePresence>

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { CollapsedSearch, ExpandedSearch } from "./CommandKbd";
