@@ -114,6 +114,12 @@ A disclosure has to reveal content of unknown size and no transform can do that
 without clipping or distorting it. The cost is bounded: one element, one axis,
 ≤350ms.
 
+## Source
+
+The full component is [`SplittingAccordion.tsx`](./SplittingAccordion.tsx). The docs site renders it
+inline here with a copy button — this is a copy-paste library, so the source is
+the delivery mechanism, not an appendix.
+
 ## Technologies
 
 | | |

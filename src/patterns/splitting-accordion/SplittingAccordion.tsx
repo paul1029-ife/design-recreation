@@ -11,7 +11,7 @@ import { duration, ease, spring } from "@/lib/motion";
 /* Types                                                                       */
 /* -------------------------------------------------------------------------- */
 
-export interface AccordionItem {
+export interface SplittingAccordionItem {
   /** Stable, unique. Used as the open value and for ARIA wiring. */
   id: string;
   title: string;
@@ -21,9 +21,9 @@ export interface AccordionItem {
   disabled?: boolean;
 }
 
-export interface AccordionProps
+export interface SplittingAccordionProps
   extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
-  items: readonly AccordionItem[];
+  items: readonly SplittingAccordionItem[];
   /** Uncontrolled initial open item. `null` starts fully collapsed. */
   defaultOpenId?: string | null;
   /** Controlled open item. Pass with `onOpenChange`. */
@@ -68,7 +68,7 @@ function endsGroup(index: number, active: number, count: number): boolean {
 /* Component                                                                   */
 /* -------------------------------------------------------------------------- */
 
-export function Accordion({
+export function SplittingAccordion({
   items,
   defaultOpenId = null,
   openId: controlledOpenId,
@@ -76,7 +76,7 @@ export function Accordion({
   collapsible = true,
   className,
   ...rest
-}: AccordionProps) {
+}: SplittingAccordionProps) {
   const baseId = useId();
   const reduce = useReducedMotion();
   const triggerRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -323,4 +323,4 @@ export function Accordion({
   );
 }
 
-export default Accordion;
+export default SplittingAccordion;

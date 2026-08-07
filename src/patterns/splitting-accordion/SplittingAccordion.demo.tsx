@@ -2,7 +2,7 @@
 
 import { Gauge, Layers, MousePointerClick, Pointer, Send } from "lucide-react";
 
-import Accordion, { type AccordionItem } from "./Accordion";
+import SplittingAccordion, { type SplittingAccordionItem } from "./SplittingAccordion";
 
 /**
  * Gallery entry. Owns the sample content and the sizing frame; the pattern
@@ -11,7 +11,7 @@ import Accordion, { type AccordionItem } from "./Accordion";
  * Starts fully collapsed — that is the resting state, and it is the one that
  * shows the unified container the interaction departs from.
  */
-const ITEMS: readonly AccordionItem[] = [
+const ITEMS: readonly SplittingAccordionItem[] = [
   {
     id: "what-is",
     title: "What is Interaction Design?",
@@ -49,10 +49,10 @@ const ITEMS: readonly AccordionItem[] = [
   },
 ];
 
-export default function AccordionDemo() {
+export default function SplittingAccordionDemo() {
   return (
     <div className="flex w-full max-w-md items-center justify-center px-2 py-4">
-      <Accordion items={ITEMS} />
+      <SplittingAccordion items={ITEMS} />
     </div>
   );
 }
