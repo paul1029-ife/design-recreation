@@ -124,7 +124,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
             transition={reduce ? { duration: 0.01 } : spring.smooth}
             className={cn(
-              "relative flex max-h-[85dvh] w-full max-w-2xl flex-col",
+              "relative flex h-[85dvh] w-full max-w-2xl flex-col",
               "rounded-2xl border border-border bg-surface p-2 shadow-modal",
               "focus:outline-none",
               className,
@@ -147,7 +147,7 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
               </button>
             </header>
 
-            <PreviewSurface className="scrollbar-hide flex-1 overflow-y-auto">
+            <PreviewSurface className="scrollbar-hide flex-1 !h-auto min-h-0 overflow-y-auto">
               {children}
             </PreviewSurface>
           </motion.div>
