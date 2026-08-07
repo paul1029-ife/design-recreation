@@ -1,13 +1,10 @@
 import type { ComponentType } from "react";
 
-import AccordionDemo from "@/components/recreations/accordion/AccordionDemo";
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import ContextualBar from "@/components/recreations/ContextualBar";
-import DeleteTimeout from "@/components/recreations/DeleteTimeout";
 import DiscoveryBar from "@/components/recreations/DiscoveryBar";
 import EditableChip from "@/components/recreations/EditableChip";
 import FanMenu from "@/components/recreations/FanMenu";
-import InlineConfirm from "@/components/recreations/InlineConfirm";
 import InlineOverflow from "@/components/recreations/InlineOverflow";
 import InlineToast from "@/components/recreations/InlineToast";
 import InviteCard from "@/components/recreations/InviteCard";
@@ -20,26 +17,41 @@ import SwitcherInteraction from "@/components/recreations/SwitcherInteraction";
 import TabsInteraction from "@/components/recreations/TabsInteraction";
 import VoiceNoteTranscription from "@/components/recreations/VoiceNoteTranscription";
 
+import { demos } from "@/patterns/demos";
+import { registry } from "@/patterns/registry";
+
 export interface GalleryEntry {
   id: number;
   name: string;
   source: string;
   url: string;
   component: ComponentType;
+  /** Present once a pattern has been migrated to src/patterns/<slug>/. */
+  slug?: string;
 }
 
 /**
- * Interim registry.
- *
- * Phase 2 replaces this with `src/patterns/registry.ts` built from per-pattern
- * `meta.ts` files carrying category, tags, and support flags. This list exists
- * so nothing is lost during the framework migration.
- *
- * The `name` values are still the old mechanism-first ones. Phase 5 renames
- * them to the problem-first names — Live Order Progress, Delete with Undo,
- * Contextual AI Toolbar — alongside slug redirects.
+ * Patterns that have moved to `src/patterns/<slug>/`, derived from the
+ * registry rather than hand-listed — one source of truth, so a migrated
+ * pattern cannot be missing here or described differently.
  */
-export const galleryEntries: readonly GalleryEntry[] = [
+const migratedEntries: readonly GalleryEntry[] = registry.map((meta, index) => ({
+  id: 1_000 + index,
+  name: meta.name,
+  source: meta.credit?.author ?? "Ifeoluwa",
+  url: meta.credit?.url ?? "https://ifeoluwa.tech",
+  component: demos[meta.slug],
+  slug: meta.slug,
+}));
+
+/**
+ * Patterns still in the flat pre-migration layout.
+ *
+ * Shrinks to nothing as Phase 5 moves each one into `src/patterns/`. The names
+ * here are still the old mechanism-first ones; they become problem-first on
+ * migration, alongside slug redirects.
+ */
+const legacyEntries: readonly GalleryEntry[] = [
   {
     id: 1,
     name: "Food Order Card",
@@ -81,13 +93,6 @@ export const galleryEntries: readonly GalleryEntry[] = [
     source: "stripe",
     url: "https://stripe.com",
     component: StripeNav,
-  },
-  {
-    id: 7,
-    name: "Delete with Timeout",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1986684038409589227",
-    component: DeleteTimeout,
   },
   {
     id: 8,
@@ -146,13 +151,6 @@ export const galleryEntries: readonly GalleryEntry[] = [
     component: EditableChip,
   },
   {
-    id: 16,
-    name: "Inline Confirm",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/2054518189019783553",
-    component: InlineConfirm,
-  },
-  {
     id: 17,
     name: "Split Actions",
     source: "nitishkmrk",
@@ -166,11 +164,10 @@ export const galleryEntries: readonly GalleryEntry[] = [
     url: "https://x.com/nitishkmrk/status/2057363853986701646",
     component: VoiceNoteTranscription,
   },
-  {
-    id: 19,
-    name: "Splitting Accordion",
-    source: "Ifeoluwa",
-    url: "https://ifeoluwa.tech",
-    component: AccordionDemo,
-  },
+];
+
+/** Migrated first: they carry real metadata and a props API. */
+export const galleryEntries: readonly GalleryEntry[] = [
+  ...migratedEntries,
+  ...legacyEntries,
 ];
