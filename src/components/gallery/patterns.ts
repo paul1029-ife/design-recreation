@@ -17,32 +17,13 @@ import SwitcherInteraction from "@/components/recreations/SwitcherInteraction";
 import TabsInteraction from "@/components/recreations/TabsInteraction";
 import VoiceNoteTranscription from "@/components/recreations/VoiceNoteTranscription";
 
-import { demos } from "@/patterns/demos";
-import { registry } from "@/patterns/registry";
-
 export interface GalleryEntry {
   id: number;
   name: string;
   source: string;
   url: string;
   component: ComponentType;
-  /** Present once a pattern has been migrated to src/patterns/<slug>/. */
-  slug?: string;
 }
-
-/**
- * Patterns that have moved to `src/patterns/<slug>/`, derived from the
- * registry rather than hand-listed — one source of truth, so a migrated
- * pattern cannot be missing here or described differently.
- */
-const migratedEntries: readonly GalleryEntry[] = registry.map((meta, index) => ({
-  id: 1_000 + index,
-  name: meta.name,
-  source: meta.credit?.author ?? "Ifeoluwa",
-  url: meta.credit?.url ?? "https://ifeoluwa.tech",
-  component: demos[meta.slug],
-  slug: meta.slug,
-}));
 
 /**
  * Patterns still in the flat pre-migration layout.
@@ -51,7 +32,7 @@ const migratedEntries: readonly GalleryEntry[] = registry.map((meta, index) => (
  * here are still the old mechanism-first ones; they become problem-first on
  * migration, alongside slug redirects.
  */
-const legacyEntries: readonly GalleryEntry[] = [
+export const legacyEntries: readonly GalleryEntry[] = [
   {
     id: 1,
     name: "Food Order Card",
@@ -166,8 +147,3 @@ const legacyEntries: readonly GalleryEntry[] = [
   },
 ];
 
-/** Migrated first: they carry real metadata and a props API. */
-export const galleryEntries: readonly GalleryEntry[] = [
-  ...migratedEntries,
-  ...legacyEntries,
-];
