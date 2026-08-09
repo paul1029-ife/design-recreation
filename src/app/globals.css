@@ -199,6 +199,41 @@ body {
 }
 
 /* ==========================================================================
+   Syntax highlighting
+   Shiki runs at build time with `defaultColor: false`, so every token carries
+   both themes as CSS variables. Switching theme is then a pure CSS change —
+   no re-highlight, no re-render, no second payload.
+   ========================================================================== */
+
+.shiki-scroll .shiki {
+  padding: 1rem;
+  background-color: var(--shiki-light-bg);
+}
+
+.shiki-scroll .shiki,
+.shiki-scroll .shiki span {
+  color: var(--shiki-light);
+  font-variant-ligatures: none;
+}
+
+.dark .shiki-scroll .shiki {
+  background-color: var(--shiki-dark-bg);
+}
+
+.dark .shiki-scroll .shiki,
+.dark .shiki-scroll .shiki span {
+  color: var(--shiki-dark);
+}
+
+.shiki-scroll .shiki code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
    Theme transition
    The theme swap is a full-document View Transition: the incoming state is
    snapshotted above the outgoing one and unmasked by a growing circle driven
