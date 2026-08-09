@@ -11,7 +11,6 @@ import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
 import SwitcherInteraction from "@/components/recreations/SwitcherInteraction";
-import TabsInteraction from "@/components/recreations/TabsInteraction";
 import VoiceNoteTranscription from "@/components/recreations/VoiceNoteTranscription";
 
 export interface GalleryEntry {
@@ -78,13 +77,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/1991956289731239936",
     component: DiscoveryBar,
-  },
-  {
-    id: 10,
-    name: "Discrete Tabs Interaction",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1997555674411348433",
-    component: TabsInteraction,
   },
   {
     id: 11,

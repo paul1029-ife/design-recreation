@@ -22,6 +22,9 @@ export const demos: Record<string, ComponentType> = {
     () => import("./editable-label/EditableLabel.demo"),
   ),
   "copy-feedback": dynamic(() => import("./copy-feedback/CopyFeedback.demo")),
+  "expanding-segments": dynamic(
+    () => import("./expanding-segments/ExpandingSegments.demo"),
+  ),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

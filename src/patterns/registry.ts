@@ -3,6 +3,7 @@ import type { PatternCategory, PatternDomain, PatternMeta } from "./types";
 import { meta as copyFeedback } from "./copy-feedback/meta";
 import { meta as deleteWithUndo } from "./delete-with-undo/meta";
 import { meta as editableLabel } from "./editable-label/meta";
+import { meta as expandingSegments } from "./expanding-segments/meta";
 import { meta as inlineConfirm } from "./inline-confirm/meta";
 import { meta as splitActions } from "./split-actions/meta";
 import { meta as splittingAccordion } from "./splitting-accordion/meta";
@@ -26,6 +27,7 @@ const ALL: readonly PatternMeta[] = [
   splitActions,
   editableLabel,
   copyFeedback,
+  expandingSegments,
 ];
 
 /** Public patterns, newest first. Drafts are excluded. */
