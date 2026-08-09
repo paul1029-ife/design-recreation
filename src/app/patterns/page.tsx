@@ -1,27 +1,18 @@
 import type { Metadata } from "next";
-import type { Route } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-import Badge from "@/components/docs/Badge";
-import SupportBadges from "@/components/docs/SupportBadges";
+import PatternBrowser from "@/components/patterns/PatternBrowser";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { registry } from "@/patterns/registry";
-import { CATEGORY_LABELS, DOMAIN_LABELS } from "@/patterns/types";
 
 export const metadata: Metadata = {
   title: "All patterns",
   description:
-    "Every documented interaction pattern in the library, with its category, domains and support guarantees.",
+    "Search every documented interaction pattern by the problem it solves, its category, or its tags.",
 };
 
-/**
- * Index of documented patterns.
- *
- * Deliberately plain: search, filtering and category browse are Phase 4. This
- * exists so /patterns is a real page rather than a 404 sitting one path
- * segment above every pattern URL.
- */
+/** The exhaustive, searchable index. Home shows curated slices of this. */
 export default function PatternsIndexPage() {
   return (
     <div className="flex min-h-dvh flex-col items-center">
@@ -40,42 +31,16 @@ export default function PatternsIndexPage() {
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold text-content">All patterns</h1>
           <p className="text-content-muted">
-            {registry.length} documented{" "}
-            {registry.length === 1 ? "pattern" : "patterns"}. Each one ships with
-            a props API, a keyboard model and an accessibility contract.
+            Search by the problem you have, not the name of the interaction
+            that fixes it. Press{" "}
+            <kbd className="rounded border border-border bg-surface-subtle px-1.5 py-0.5 font-mono text-xs">
+              /
+            </kbd>{" "}
+            to jump to search.
           </p>
         </header>
 
-        <ul className="flex flex-col gap-3">
-          {registry.map((meta) => (
-            <li key={meta.slug}>
-              <Link
-                href={`/patterns/${meta.slug}` as Route}
-                className="focus-ring group flex flex-col gap-3 rounded-xl border border-border bg-surface p-4 transition-colors hover:bg-surface-hover"
-              >
-                <div className="flex flex-col gap-1">
-                  <h2 className="text-lg font-semibold text-content">
-                    {meta.name}
-                  </h2>
-                  <p className="text-sm leading-relaxed text-content-muted">
-                    {meta.problem}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <Badge variant="solid">
-                    {CATEGORY_LABELS[meta.category]}
-                  </Badge>
-                  {meta.domains.map((domain) => (
-                    <Badge key={domain}>{DOMAIN_LABELS[domain]}</Badge>
-                  ))}
-                </div>
-
-                <SupportBadges meta={meta} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <PatternBrowser patterns={registry} />
       </main>
     </div>
   );
