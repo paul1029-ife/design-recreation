@@ -60,6 +60,13 @@ export interface PatternDoc {
 
 const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---\r?\n/;
 const SOURCE_HEADING = /^## Source[^\n]*\n/m;
+/**
+ * HTML comments are authoring notes aimed at whoever reads the README on
+ * GitHub ("the demo is injected here"). react-markdown emits them as visible
+ * text rather than dropping them, so they have to be stripped before render —
+ * otherwise the page opens with a stray `<!-- ... -->` above the first heading.
+ */
+const HTML_COMMENT = /<!--[\s\S]*?-->/g;
 
 /**
  * Splits the README around its `## Source` heading so the page can inject the
@@ -70,7 +77,10 @@ export function getPatternDoc(slug: string): PatternDoc | null {
   const raw = read(slug, "README.md");
   if (raw === null) return null;
 
-  const body = raw.replace(FRONTMATTER, "").trim();
+  const body = raw
+    .replace(FRONTMATTER, "")
+    .replace(HTML_COMMENT, "")
+    .trim();
   const match = SOURCE_HEADING.exec(body);
 
   if (!match) return { body, beforeSource: body, afterSource: "" };
