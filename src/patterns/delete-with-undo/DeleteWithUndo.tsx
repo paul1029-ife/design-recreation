@@ -41,7 +41,25 @@ export interface DeleteWithUndoProps
 const characterVariants = {
   hidden: { opacity: 0, y: 5 },
   visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 5 },
+} as const;
+
+/**
+ * Variants for the control itself.
+ *
+ * These have to exist as named variants, not inline objects: the parent's
+ * `animate="visible"` is what propagates down to the per-character spans and
+ * drives the stagger. Without a matching `variants` prop here the name
+ * resolved to nothing, so the control mounted at `hidden` and stayed there —
+ * invisible after any transition.
+ */
+const controlVariants = {
+  hidden: { opacity: 0, scale: 0.7 },
+  visible: { opacity: 1, scale: 1 },
+} as const;
+
+const reducedControlVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
 } as const;
 
 /**
@@ -161,9 +179,10 @@ export function DeleteWithUndo({
             onClick={start}
             disabled={disabled}
             aria-label={label}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.7 }}
+            variants={reduce ? reducedControlVariants : controlVariants}
+            initial="hidden"
             animate="visible"
-            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.7 }}
+            exit="hidden"
             transition={transition}
             style={{ borderRadius: 9999 }}
             className={cn(
@@ -181,9 +200,10 @@ export function DeleteWithUndo({
             key="undo"
             layout
             layoutId={sharedLayoutId}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.7 }}
+            variants={reduce ? reducedControlVariants : controlVariants}
+            initial="hidden"
             animate="visible"
-            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.7 }}
+            exit="hidden"
             transition={transition}
             style={{ borderRadius: 9999 }}
             className="flex h-[50px] items-center gap-3 overflow-hidden bg-danger/10 px-2.5"
@@ -196,7 +216,7 @@ export function DeleteWithUndo({
             <button
               type="button"
               onClick={undo}
-              aria-label={`${undoLabel}. ${remaining} seconds remaining.`}
+              aria-label={`${undoLabel}. ${remaining} ${remaining === 1 ? "second" : "seconds"} remaining.`}
               className={cn(
                 "focus-ring flex cursor-pointer items-center gap-3 rounded-full",
                 "text-danger",
