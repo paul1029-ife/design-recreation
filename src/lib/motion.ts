@@ -17,16 +17,30 @@ import type { Transition } from "motion/react";
  */
 
 export const spring = {
-  /** ratio 0.75 — toggles, taps, icon swaps. Fast, one imperceptible settle. */
-  snappy: { type: "spring", stiffness: 400, damping: 30, mass: 1 },
+  /**
+   * ratio 0.55 — the house default. Toggles, taps, icon swaps, pill swaps.
+   *
+   * Overshoots visibly and settles in one pass. This is deliberately springy:
+   * the median damping ratio across the patterns this library grew from is
+   * 0.564, and that bounce is the thing people recognise. An earlier version
+   * of this token sat at 0.75, which is the value a generic design system
+   * would pick — and it quietly flattened every migrated pattern.
+   */
+  snappy: { type: "spring", stiffness: 400, damping: 22, mass: 1 },
 
-  /** ratio 0.90 — layout and size changes. Effectively critical; no overshoot. */
+  /**
+   * ratio 0.90 — layout and size changes only.
+   *
+   * The one place overshoot is wrong: a container that springs past its
+   * target distorts the geometry of whatever is inside it, and text visibly
+   * stretches. Damped on purpose, not by neglect.
+   */
   smooth: { type: "spring", stiffness: 280, damping: 30, mass: 1 },
 
-  /** ratio 0.92 — panels, sheets, popovers. More travel wants more time. */
-  gentle: { type: "spring", stiffness: 200, damping: 26, mass: 1 },
+  /** ratio 0.67 — larger surfaces. Slower, still has life in the tail. */
+  gentle: { type: "spring", stiffness: 200, damping: 19, mass: 1 },
 
-  /** ratio 0.45 — deliberate overshoot. Arrival moments only, never exits. */
+  /** ratio 0.45 — pronounced overshoot. Arrival moments only, never exits. */
   bouncy: { type: "spring", stiffness: 400, damping: 18, mass: 1 },
 } as const satisfies Record<string, Transition>;
 
