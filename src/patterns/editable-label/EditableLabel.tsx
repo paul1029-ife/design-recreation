@@ -1,0 +1,238 @@
+"use client";
+
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Check, Pencil } from "lucide-react";
+
+import { cn } from "@/lib/cn";
+import { blurTransition, duration, ease, spring } from "@/lib/motion";
+
+/* -------------------------------------------------------------------------- */
+/* Types                                                                       */
+/* -------------------------------------------------------------------------- */
+
+export interface EditableLabelProps
+  extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+  /** Uncontrolled initial text. */
+  defaultValue?: string;
+  /** Controlled text. Pass with `onValueChange`. */
+  value?: string;
+  /** Fires on commit, never on keystroke — this is a rename, not a field. */
+  onValueChange?: (value: string) => void;
+  /** Shown when the value is empty. @default "Untitled" */
+  placeholder?: string;
+  /** Names what is being renamed, for assistive technology. @default "Name" */
+  fieldLabel?: string;
+  /** Rejects a draft before it commits. Return false to keep editing. */
+  validate?: (draft: string) => boolean;
+  disabled?: boolean;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Motion                                                                      */
+/* -------------------------------------------------------------------------- */
+
+const iconVariants = {
+  initial: { scale: 0, opacity: 0, filter: "blur(6px)" },
+  animate: { scale: 1, opacity: 1, filter: "blur(0px)" },
+  exit: { scale: 0, opacity: 0, filter: "blur(6px)" },
+} as const;
+
+const reducedIconVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+} as const;
+
+/* -------------------------------------------------------------------------- */
+/* Component                                                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Rename in place.
+ *
+ * Renaming usually means leaving for a settings screen or a dialog, which puts
+ * the thing being renamed out of sight at exactly the moment you are deciding
+ * what to call it. Editing where the name already sits keeps the context — and
+ * the surrounding layout — visible throughout.
+ */
+export function EditableLabel({
+  defaultValue = "",
+  value: controlledValue,
+  onValueChange,
+  placeholder = "Untitled",
+  fieldLabel = "Name",
+  validate,
+  disabled = false,
+  className,
+  ...rest
+}: EditableLabelProps) {
+  const reduce = useReducedMotion();
+  const uid = useId();
+  const inputId = `${uid}-input`;
+
+  const [uncontrolled, setUncontrolled] = useState(defaultValue);
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : uncontrolled;
+
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(value);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const editButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Select-all on entry: renaming usually replaces the name rather than
+  // appending to it, so the common case should take one keystroke.
+  useEffect(() => {
+    if (!editing) return;
+    inputRef.current?.focus();
+    inputRef.current?.select();
+  }, [editing]);
+
+  const startEditing = useCallback(() => {
+    if (disabled) return;
+    setDraft(value);
+    setEditing(true);
+  }, [disabled, value]);
+
+  const commit = useCallback(() => {
+    const next = draft.trim();
+    // An empty rename is a mistake, not an instruction. Keep the old value.
+    if (next === "" || validate?.(next) === false) {
+      setEditing(false);
+      editButtonRef.current?.focus();
+      return;
+    }
+    if (!isControlled) setUncontrolled(next);
+    onValueChange?.(next);
+    setEditing(false);
+    editButtonRef.current?.focus();
+  }, [draft, validate, isControlled, onValueChange]);
+
+  const cancel = useCallback(() => {
+    setDraft(value);
+    setEditing(false);
+    editButtonRef.current?.focus();
+  }, [value]);
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        commit();
+      }
+      if (event.key === "Escape") {
+        event.preventDefault();
+        cancel();
+      }
+    },
+    [commit, cancel],
+  );
+
+  const transition = reduce ? { duration: 0.01 } : spring.snappy;
+  const swap = reduce
+    ? { duration: 0.01 }
+    : { duration: duration.micro, ease: ease.out };
+
+  return (
+    <div className={cn("flex items-center justify-center", className)} {...rest}>
+      {/*
+        `layout` rather than an animated width: the pill sizes itself to its
+        content, so there is no pair of magic numbers to keep in sync with the
+        text, and the resize compiles to a transform instead of reflowing on
+        every frame.
+      */}
+      <motion.div
+        layout
+        transition={transition}
+        className={cn(
+          "flex items-center gap-2 overflow-hidden rounded-full p-2",
+          "transition-shadow duration-200",
+          editing
+            ? "bg-surface shadow-[0_0_0_2.5px_var(--ring)]"
+            : "bg-surface-subtle shadow-resting",
+        )}
+        style={{ willChange: "transform" }}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {editing ? (
+            <motion.input
+              key="input"
+              ref={inputRef}
+              id={inputId}
+              aria-label={fieldLabel}
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              onKeyDown={handleKeyDown}
+              onBlur={commit}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={swap}
+              className="ml-3 min-w-0 flex-1 bg-transparent text-lg font-semibold text-content outline-none"
+            />
+          ) : (
+            <motion.span
+              key="label"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={swap}
+              className={cn(
+                "ml-3 flex-1 text-lg font-semibold whitespace-nowrap select-none",
+                value ? "text-content" : "text-content-subtle",
+              )}
+            >
+              {value || placeholder}
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence mode="popLayout" initial={false}>
+          {editing ? (
+            <motion.button
+              key="confirm"
+              type="button"
+              // onMouseDown rather than onClick: the input's onBlur fires
+              // first and would commit and unmount this button before the
+              // click completed, so the press would land on nothing.
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={commit}
+              aria-label={`Save ${fieldLabel.toLowerCase()}`}
+              variants={reduce ? reducedIconVariants : iconVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ ...transition, filter: blurTransition }}
+              className="focus-ring grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-accent text-accent-content"
+            >
+              <Check className="size-4" strokeWidth={2.5} aria-hidden="true" />
+            </motion.button>
+          ) : (
+            <motion.button
+              key="edit"
+              ref={editButtonRef}
+              type="button"
+              onClick={startEditing}
+              disabled={disabled}
+              aria-label={`Edit ${fieldLabel.toLowerCase()}`}
+              variants={reduce ? reducedIconVariants : iconVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ ...transition, filter: blurTransition }}
+              className="focus-ring grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-surface text-content-subtle hover:text-content disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Pencil className="size-4" strokeWidth={2} aria-hidden="true" />
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      <span role="status" aria-live="polite" className="sr-only">
+        {editing ? `Editing ${fieldLabel.toLowerCase()}` : ""}
+      </span>
+    </div>
+  );
+}
+
+export default EditableLabel;
