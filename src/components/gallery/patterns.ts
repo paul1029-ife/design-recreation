@@ -3,15 +3,12 @@ import type { ComponentType } from "react";
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import ContextualBar from "@/components/recreations/ContextualBar";
 import DiscoveryBar from "@/components/recreations/DiscoveryBar";
-import EditableChip from "@/components/recreations/EditableChip";
 import FanMenu from "@/components/recreations/FanMenu";
 import InlineOverflow from "@/components/recreations/InlineOverflow";
-import InlineToast from "@/components/recreations/InlineToast";
 import InviteCard from "@/components/recreations/InviteCard";
 import OptionsMenu from "@/components/recreations/OptionsMenu";
 import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
-import SplitActions from "@/components/recreations/SplitActions";
 import StripeNav from "@/components/recreations/StripeNav";
 import SwitcherInteraction from "@/components/recreations/SwitcherInteraction";
 import TabsInteraction from "@/components/recreations/TabsInteraction";
@@ -83,13 +80,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     component: DiscoveryBar,
   },
   {
-    id: 9,
-    name: "Inline Toast",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1997641234567890123",
-    component: InlineToast,
-  },
-  {
     id: 10,
     name: "Discrete Tabs Interaction",
     source: "nitishkmrk",
@@ -123,20 +113,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "Dmitry Elisov",
     url: "https://www.pinterest.com/pin/107523509848495963/",
     component: FanMenu,
-  },
-  {
-    id: 15,
-    name: "Editable Chip",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/2049797627580207241",
-    component: EditableChip,
-  },
-  {
-    id: 17,
-    name: "Split Actions",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/2054152857591419327",
-    component: SplitActions,
   },
   {
     id: 18,

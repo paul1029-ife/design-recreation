@@ -17,6 +17,11 @@ export const demos: Record<string, ComponentType> = {
   "delete-with-undo": dynamic(
     () => import("./delete-with-undo/DeleteWithUndo.demo"),
   ),
+  "split-actions": dynamic(() => import("./split-actions/SplitActions.demo")),
+  "editable-label": dynamic(
+    () => import("./editable-label/EditableLabel.demo"),
+  ),
+  "copy-feedback": dynamic(() => import("./copy-feedback/CopyFeedback.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {
