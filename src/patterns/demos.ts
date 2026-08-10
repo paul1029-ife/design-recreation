@@ -25,6 +25,7 @@ export const demos: Record<string, ComponentType> = {
   "expanding-segments": dynamic(
     () => import("./expanding-segments/ExpandingSegments.demo"),
   ),
+  "create-menu": dynamic(() => import("./create-menu/CreateMenu.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

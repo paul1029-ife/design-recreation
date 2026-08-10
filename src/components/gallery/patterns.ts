@@ -6,7 +6,6 @@ import DiscoveryBar from "@/components/recreations/DiscoveryBar";
 import FanMenu from "@/components/recreations/FanMenu";
 import InlineOverflow from "@/components/recreations/InlineOverflow";
 import InviteCard from "@/components/recreations/InviteCard";
-import OptionsMenu from "@/components/recreations/OptionsMenu";
 import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
@@ -91,13 +90,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2008234567890123456?s=20",
     component: PickerInteraction,
-  },
-  {
-    id: 13,
-    name: "Options Menu",
-    source: "Dmitry Elisov",
-    url: "https://www.pinterest.com/pin/107523509848495963/",
-    component: OptionsMenu,
   },
   {
     id: 14,
