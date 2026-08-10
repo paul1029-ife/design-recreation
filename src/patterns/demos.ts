@@ -26,6 +26,7 @@ export const demos: Record<string, ComponentType> = {
     () => import("./expanding-segments/ExpandingSegments.demo"),
   ),
   "create-menu": dynamic(() => import("./create-menu/CreateMenu.demo")),
+  "speed-dial": dynamic(() => import("./speed-dial/SpeedDial.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

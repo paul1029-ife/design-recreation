@@ -3,7 +3,6 @@ import type { ComponentType } from "react";
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import ContextualBar from "@/components/recreations/ContextualBar";
 import DiscoveryBar from "@/components/recreations/DiscoveryBar";
-import FanMenu from "@/components/recreations/FanMenu";
 import InlineOverflow from "@/components/recreations/InlineOverflow";
 import InviteCard from "@/components/recreations/InviteCard";
 import OrderCard from "@/components/recreations/OrderCard";
@@ -90,13 +89,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "nitishkmrk",
     url: "https://x.com/nitishkmrk/status/2008234567890123456?s=20",
     component: PickerInteraction,
-  },
-  {
-    id: 14,
-    name: "Fan Menu",
-    source: "Dmitry Elisov",
-    url: "https://www.pinterest.com/pin/107523509848495963/",
-    component: FanMenu,
   },
   {
     id: 18,
