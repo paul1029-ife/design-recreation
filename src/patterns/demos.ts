@@ -27,6 +27,9 @@ export const demos: Record<string, ComponentType> = {
   ),
   "create-menu": dynamic(() => import("./create-menu/CreateMenu.demo")),
   "speed-dial": dynamic(() => import("./speed-dial/SpeedDial.demo")),
+  "inline-overflow": dynamic(
+    () => import("./inline-overflow/InlineOverflow.demo"),
+  ),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

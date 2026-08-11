@@ -3,7 +3,6 @@ import type { ComponentType } from "react";
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import ContextualBar from "@/components/recreations/ContextualBar";
 import DiscoveryBar from "@/components/recreations/DiscoveryBar";
-import InlineOverflow from "@/components/recreations/InlineOverflow";
 import InviteCard from "@/components/recreations/InviteCard";
 import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
@@ -40,13 +39,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "ydwndr",
     url: "https://x.com/ydwndr/status/1971241276243956025?s=46",
     component: CommandPalette,
-  },
-  {
-    id: 3,
-    name: "Inline Overflow Interaction",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1976537178088899045?s=46",
-    component: InlineOverflow,
   },
   {
     id: 4,
