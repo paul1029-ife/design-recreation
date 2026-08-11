@@ -30,6 +30,7 @@ export const demos: Record<string, ComponentType> = {
   "inline-overflow": dynamic(
     () => import("./inline-overflow/InlineOverflow.demo"),
   ),
+  "inline-search": dynamic(() => import("./inline-search/InlineSearch.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

@@ -2,7 +2,6 @@ import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import ContextualBar from "@/components/recreations/ContextualBar";
-import DiscoveryBar from "@/components/recreations/DiscoveryBar";
 import InviteCard from "@/components/recreations/InviteCard";
 import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
@@ -60,13 +59,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "stripe",
     url: "https://stripe.com",
     component: StripeNav,
-  },
-  {
-    id: 8,
-    name: "Discover Bar",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1991956289731239936",
-    component: DiscoveryBar,
   },
   {
     id: 11,
