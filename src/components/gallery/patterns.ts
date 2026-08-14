@@ -2,7 +2,6 @@ import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import ContextualBar from "@/components/recreations/ContextualBar";
-import InviteCard from "@/components/recreations/InviteCard";
 import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
@@ -47,13 +46,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     component: SwitcherInteraction,
   },
   {
-    id: 5,
-    name: "Invite Card",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1803335945120514234",
-    component: InviteCard,
-  },
-  {
     id: 6,
     name: "Stripe Navigation",
     source: "stripe",
@@ -82,4 +74,3 @@ export const legacyEntries: readonly GalleryEntry[] = [
     component: VoiceNoteTranscription,
   },
 ];
-

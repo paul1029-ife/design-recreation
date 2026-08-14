@@ -13,7 +13,9 @@ export const demos: Record<string, ComponentType> = {
   "splitting-accordion": dynamic(
     () => import("./splitting-accordion/SplittingAccordion.demo"),
   ),
-  "inline-confirm": dynamic(() => import("./inline-confirm/InlineConfirm.demo")),
+  "inline-confirm": dynamic(
+    () => import("./inline-confirm/InlineConfirm.demo"),
+  ),
   "delete-with-undo": dynamic(
     () => import("./delete-with-undo/DeleteWithUndo.demo"),
   ),
@@ -31,6 +33,7 @@ export const demos: Record<string, ComponentType> = {
     () => import("./inline-overflow/InlineOverflow.demo"),
   ),
   "inline-search": dynamic(() => import("./inline-search/InlineSearch.demo")),
+  "invite-card": dynamic(() => import("./invite-card/InviteCard.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {
