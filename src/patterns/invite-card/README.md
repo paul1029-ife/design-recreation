@@ -141,6 +141,23 @@ The section animates `height` to `auto` rather than the original's
 `maxHeight: 350`. That number silently clipped the card once five people were
 invited, and it had to be re-guessed for any change to the contents.
 
+Removing the cap meant retuning the easing, and the reason is worth writing
+down because the cap had been hiding it. The section is ~126px tall, so
+`overflow: hidden` ran out of content to reveal about 60% of the way through
+the original's 260ms: the visible reveal was only ~153ms and it ended while
+still travelling at ~1600px/s. That is an abrupt stop, but at 153ms there is
+no time to track the box, so it reads as a flick.
+
+Animating the real height made the whole 260ms visible. A 70% longer reveal on
+a curve that is _still accelerating_ at the end gives the eye time to follow
+that acceleration and expect it to continue — and the stop becomes legible as
+a snap. The curve was never good; the magic number was concealing it.
+
+Opening now uses the original's tempo with a decelerating curve: ~167ms of
+visible reveal ending at ~36px/s instead of ~750. Closing keeps the original's
+curve at 150ms — behind the cap its visible portion had been about 52ms, close
+enough to instant that there was nothing there to smooth.
+
 The card's width is a property of the space it sits in, never of what is
 currently inside it. Its wrapper is `w-full min-w-0`; without that the wrapper
 is sized by its own content, the card's `w-full` resolves against a box that
@@ -182,5 +199,8 @@ the source is the delivery mechanism, not an appendix.
 Original design by
 [nitishkmrk](https://x.com/nitishkmrk/status/1803335945120514234). Rebuilt with
 a props API, a correct identity model, a working Invite button, validation
-feedback and generated avatars. The asymmetric expand and collapse curves, the
-170ms chip morph and the 80ms name hand-off are unchanged.
+feedback and generated avatars. The 170ms chip morph and the 80ms name hand-off
+are unchanged. The section's expand curve is not: removing the `maxHeight` cap
+exposed an accelerating curve that had only ever been played two-thirds of the
+way through, so opening now decelerates into place at the same tempo the capped
+version actually ran at.

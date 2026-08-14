@@ -54,19 +54,36 @@ export interface InviteCardProps extends Omit<
 }
 
 /* -------------------------------------------------------------------------- */
-/* Motion — kept verbatim from the original                                    */
+/* Motion                                                                      */
 /* -------------------------------------------------------------------------- */
 
 /*
- * Asymmetric on purpose: the section eases *in* on a curve that starts slow
- * and the collapse uses a gentler one, so opening feels like it unfolds and
- * closing feels like it gets out of the way.
+ * The section is ~126px tall. The original animated `maxHeight` 0→350 over
+ * 260ms on an accelerating curve, so `overflow: hidden` ran out of content to
+ * reveal about 60% of the way through: the *visible* reveal was only ~153ms,
+ * and it ended while still moving at ~1600px/s. That is an abrupt stop, but at
+ * 153ms there is no time to track the box, so it reads as a flick rather than
+ * a snap.
+ *
+ * Animating the real height — which is what stops the card clipping itself
+ * once five people are invited — removed the cap, so the same 260ms became
+ * fully visible. A 70% longer reveal on a curve that is still speeding up at
+ * the end gives the eye enough time to follow the acceleration and expect it
+ * to continue, and the stop becomes legible. That is the snap.
+ *
+ * So: keep the original's tempo, and arrive at rest instead of at speed.
+ * ~167ms of visible reveal, ending at ~36px/s rather than ~750.
+ *
+ * The collapse keeps the original's decelerating curve. Its visible portion
+ * was only ~52ms behind the cap, which is close enough to instant that there
+ * was nothing to smooth; at 150ms it reads as closing rather than cutting,
+ * and it still settles rather than stopping.
  */
-const expandEase = cubicBezier(0.55, 0.085, 0.68, 0.53);
+const expandEase = cubicBezier(0.16, 0.84, 0.44, 1);
 const collapseEase = cubicBezier(0.25, 0.46, 0.45, 0.94);
 
-const EXPAND = { duration: 0.26, ease: expandEase };
-const COLLAPSE = { duration: 0.27, ease: collapseEase };
+const EXPAND = { duration: 0.18, ease: expandEase };
+const COLLAPSE = { duration: 0.15, ease: collapseEase };
 /** The chip→row morph. Short: it is a hand-off, not a journey. */
 const MORPH = { duration: 0.17 };
 
