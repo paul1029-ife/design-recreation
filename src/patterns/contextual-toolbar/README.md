@@ -123,6 +123,19 @@ The bar's resize is a `layout` animation, and the border radius is set inline
 rather than by a class so Motion can correct it during the projection —
 without that, the corners visibly distort as the width changes.
 
+**The spring's amplitude is a property of your content, not of the spring.**
+At `stiffness: 110, damping: 10` the damping ratio is 0.477, so the first peak
+overshoots by 18.2% — of whatever distance the bar actually travels. Give the
+two modes similar widths and there is nothing left to bounce: an early version
+of this demo padded the tool buttons out to 32px, which brought the tools row
+to within 12px of the prompt row and reduced the visible overshoot to 2.2px.
+Restoring the original's 16px icons puts the travel back at 76px and the
+overshoot at 13.8px.
+
+So if this reads as flat, check the width delta before touching the spring.
+The tool buttons keep a 32×40 hit area through a pseudo-element, which buys
+the touch target back without spending the width.
+
 `will-change: transform` was set permanently on two elements. That holds a
 compositor layer for the life of the page to buy a few frames of a 200ms
 animation, and it is exactly what the property is documented not to be for.

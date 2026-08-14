@@ -46,9 +46,13 @@ export default function ContextualToolbarDemo() {
                   type="button"
                   aria-label={tool.label}
                   className={cn(
-                    "focus-ring grid size-8 shrink-0 place-items-center rounded-full",
-                    "text-content transition-colors hover:bg-surface-hover",
-                    "[&>svg]:size-4",
+                    "focus-ring relative grid size-4 shrink-0 place-items-center",
+                    "rounded-full text-content [&>svg]:size-4",
+                    // 16px visually, like the original. Padding the button out
+                    // instead would widen this row to nearly the width of the
+                    // AI row, and the bar's resize spring would have almost
+                    // nothing left to travel — which is the whole effect.
+                    "before:absolute before:-inset-x-2 before:-inset-y-3 before:content-['']",
                   )}
                 >
                   <span aria-hidden="true">{tool.icon}</span>
