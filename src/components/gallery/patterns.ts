@@ -1,7 +1,6 @@
 import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
-import ContextualBar from "@/components/recreations/ContextualBar";
 import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
@@ -51,13 +50,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "stripe",
     url: "https://stripe.com",
     component: StripeNav,
-  },
-  {
-    id: 11,
-    name: "Contextual AI Bar",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/2002747455155405041?s=20",
-    component: ContextualBar,
   },
   {
     id: 12,

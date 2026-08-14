@@ -34,6 +34,9 @@ export const demos: Record<string, ComponentType> = {
   ),
   "inline-search": dynamic(() => import("./inline-search/InlineSearch.demo")),
   "invite-card": dynamic(() => import("./invite-card/InviteCard.demo")),
+  "contextual-toolbar": dynamic(
+    () => import("./contextual-toolbar/ContextualToolbar.demo"),
+  ),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

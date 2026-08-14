@@ -1,5 +1,6 @@
 import type { PatternCategory, PatternDomain, PatternMeta } from "./types";
 
+import { meta as contextualToolbar } from "./contextual-toolbar/meta";
 import { meta as copyFeedback } from "./copy-feedback/meta";
 import { meta as createMenu } from "./create-menu/meta";
 import { meta as deleteWithUndo } from "./delete-with-undo/meta";
@@ -38,6 +39,7 @@ const ALL: readonly PatternMeta[] = [
   inlineOverflow,
   inlineSearch,
   inviteCard,
+  contextualToolbar,
 ];
 
 /** Public patterns, newest first. Drafts are excluded. */
