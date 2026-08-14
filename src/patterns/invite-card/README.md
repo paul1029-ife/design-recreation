@@ -141,6 +141,13 @@ The section animates `height` to `auto` rather than the original's
 `maxHeight: 350`. That number silently clipped the card once five people were
 invited, and it had to be re-guessed for any change to the contents.
 
+The card's width is a property of the space it sits in, never of what is
+currently inside it. Its wrapper is `w-full min-w-0`; without that the wrapper
+is sized by its own content, the card's `w-full` resolves against a box that
+shrinks the moment the invite section unmounts, and the whole card visibly
+narrows on every toggle — a horizontal motion nobody asked for, on an axis
+where nothing is supposed to be happening.
+
 The chip→row transition is a shared-layout morph, so it moves one element
 rather than cross-fading two. It runs on `transform`, and at 170ms it reads as
 a hand-off rather than a journey.

@@ -299,7 +299,15 @@ export function InviteCard({
   );
 
   return (
-    <div className={cn("flex justify-center p-4", className)} {...rest}>
+    <div
+      // `w-full min-w-0` is load-bearing. Without it this wrapper is sized by
+      // its own content, so the card's `w-full` resolves against a box that
+      // shrinks the moment the invite section unmounts — and the whole card
+      // visibly narrows on toggle. The card's width should be a property of
+      // the space it is in, never of what is currently inside it.
+      className={cn("flex w-full min-w-0 justify-center p-4", className)}
+      {...rest}
+    >
       <div
         className={cn(
           "flex w-full max-w-sm flex-col gap-2.5 rounded-lg border border-border",
@@ -321,7 +329,13 @@ export function InviteCard({
                 <span className="text-base leading-4 font-medium text-content">
                   {linkLabel}
                 </span>
-                <span className="truncate text-sm text-content-subtle">
+                {/*
+                  Wraps rather than truncating. The card is now sized by the
+                  space it is in rather than by its own contents, so in a narrow
+                  column this line no longer fits on one row — and half a
+                  sentence is worse than two lines of a short one.
+                */}
+                <span className="text-sm text-balance text-content-subtle">
                   {linkDescription}
                 </span>
               </span>
