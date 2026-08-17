@@ -41,7 +41,12 @@ import { Mail, Calendar, Bell } from "lucide-react";
 <ExpandingSegments
   label="Mailbox view"
   segments={[
-    { id: "inbox", label: "Inbox", icon: <Mail />, accentClassName: "text-blue-600" },
+    {
+      id: "inbox",
+      label: "Inbox",
+      icon: <Mail />,
+      accentClassName: "text-blue-600",
+    },
     { id: "planner", label: "Planner", icon: <Calendar /> },
     { id: "alerts", label: "Alerts", icon: <Bell /> },
   ]}
@@ -51,25 +56,25 @@ import { Mail, Calendar, Bell } from "lucide-react";
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `segments` | `readonly Segment[]` | — | The options. Empty renders nothing. |
-| `label` | `string` | — | Names the group for assistive technology. |
-| `defaultValue` | `string` | first segment | Uncontrolled initial selection. |
-| `value` | `string` | uncontrolled | Controlled selection. Pass with `onValueChange`. |
-| `onValueChange` | `(id: string) => void` | — | Fires on every selection change. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop            | Type                   | Default       | Description                                      |
+| --------------- | ---------------------- | ------------- | ------------------------------------------------ |
+| `segments`      | `readonly Segment[]`   | —             | The options. Empty renders nothing.              |
+| `label`         | `string`               | —             | Names the group for assistive technology.        |
+| `defaultValue`  | `string`               | first segment | Uncontrolled initial selection.                  |
+| `value`         | `string`               | uncontrolled  | Controlled selection. Pass with `onValueChange`. |
+| `onValueChange` | `(id: string) => void` | —             | Fires on every selection change.                 |
+| `className`     | `string`               | —             | Merged onto the root.                            |
 
 `Segment`: `{ id: string; label: string; icon: ReactNode; accentClassName?: string }`.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Enter and leave the group — it is a single tab stop |
-| `←` `→` | Move the selection, wrapping at both ends |
-| `↑` `↓` | Same as left and right |
-| `Home` / `End` | First or last segment |
+| Key            | Action                                              |
+| -------------- | --------------------------------------------------- |
+| `Tab`          | Enter and leave the group — it is a single tab stop |
+| `←` `→`        | Move the selection, wrapping at both ends           |
+| `↑` `↓`        | Same as left and right                              |
+| `Home` / `End` | First or last segment                               |
 
 ## Accessibility
 
@@ -99,7 +104,7 @@ options and would need revisiting at ten.
 ## Performance
 
 Animates `width`, which is a layout property and normally avoided. It is kept
-here deliberately: the pill's expansion *is* the interaction, and Motion's
+here deliberately: the pill's expansion _is_ the interaction, and Motion's
 `layout` prop produces a visibly different feel — it interpolates a transform
 between measured boxes, which distorts the icon and label mid-flight. One
 element, one axis, bounded by a spring that settles in about 400ms.
@@ -121,12 +126,12 @@ library, so the source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

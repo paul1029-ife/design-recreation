@@ -48,26 +48,28 @@ text field.
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `defaultValue` | `string` | `""` | Uncontrolled initial text. |
-| `value` | `string` | uncontrolled | Controlled text. Pass with `onValueChange`. |
-| `onValueChange` | `(value: string) => void` | — | Fires on commit only. |
-| `placeholder` | `string` | `"Untitled"` | Shown when the value is empty. |
-| `fieldLabel` | `string` | `"Name"` | Names what is being renamed, for assistive tech. |
-| `validate` | `(draft: string) => boolean` | — | Return false to reject and keep editing. |
-| `disabled` | `boolean` | `false` | Disables the edit trigger. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop            | Type                         | Default      | Description                                      |
+| --------------- | ---------------------------- | ------------ | ------------------------------------------------ |
+| `defaultValue`  | `string`                     | `""`         | Uncontrolled initial text.                       |
+| `value`         | `string`                     | uncontrolled | Controlled text. Pass with `onValueChange`.      |
+| `onValueChange` | `(value: string) => void`    | —            | Fires on commit only.                            |
+| `placeholder`   | `string`                     | `"Untitled"` | Shown when the value is empty.                   |
+| `fieldLabel`    | `string`                     | `"Name"`     | Names what is being renamed, for assistive tech. |
+| `validate`      | `(draft: string) => boolean` | —            | Return false to reject and keep editing.         |
+| `disabled`      | `boolean`                    | `false`      | Disables the edit trigger.                       |
+| `restingWidth`  | `number`                     | `190`        | Pill width in px when not editing.               |
+| `editingWidth`  | `number`                     | `260`        | Pill width in px while editing.                  |
+| `className`     | `string`                     | —            | Merged onto the root.                            |
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Focus the edit button |
-| `Enter` / `Space` | Enter edit mode |
-| `Enter` | Commit the rename |
-| `Escape` | Cancel and restore the previous name |
-| `Tab` | Commit and move on |
+| Key               | Action                               |
+| ----------------- | ------------------------------------ |
+| `Tab`             | Focus the edit button                |
+| `Enter` / `Space` | Enter edit mode                      |
+| `Enter`           | Commit the rename                    |
+| `Escape`          | Cancel and restore the previous name |
+| `Tab`             | Commit and move on                   |
 
 ## Accessibility
 
@@ -99,10 +101,21 @@ to something undoable.
 
 ## Performance
 
-The container uses Motion's `layout` prop and sizes itself to its content, so
-there are no magic width numbers to keep in sync with the text and the resize
-compiles to a transform rather than reflowing every frame. The original
-animated `width` between two hardcoded pixel values.
+The container animates `width` between two values, `restingWidth` and
+`editingWidth`, which are props.
+
+This was briefly Motion's `layout` prop instead, sizing the pill to its
+content. That was tidier and wrong. A text field has no intrinsic width, so
+entering edit mode collapsed the pill to almost nothing and then grew it one
+character at a time as you typed — and the resize, which is the whole gesture,
+had no fixed distance to travel. Two numbers you have to maintain are the
+right trade here: the pill is a control with a resting size, not a box that
+hugs whatever is in it.
+
+The fill and the ring transition together over 200ms. Only the shadow was
+transitioned before, so the background snapped to white while the ring eased
+in, and the two arriving at different times read as a hard edge at the end of
+an otherwise smooth move.
 
 Icons animate `transform`, `opacity` and `filter` only. Blur is capped at 6px
 on 40px buttons, so paint stays negligible.
@@ -115,17 +128,18 @@ the source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 
 Original interaction by
 [@nitishkmrk](https://x.com/nitishkmrk/status/2049797627580207241). Rebuilt
 with a props API, controlled and uncontrolled modes, focus restoration,
-Escape to cancel, content-driven sizing, and reduced-motion handling.
+Escape to cancel, and reduced-motion handling. The 190/260 width pair and the
+spring's character are the original's.

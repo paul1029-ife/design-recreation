@@ -11,8 +11,10 @@ import { blurTransition, duration, ease, spring } from "@/lib/motion";
 /* Types                                                                       */
 /* -------------------------------------------------------------------------- */
 
-export interface EditableLabelProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+export interface EditableLabelProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onChange" | "defaultValue"
+> {
   /** Uncontrolled initial text. */
   defaultValue?: string;
   /** Controlled text. Pass with `onValueChange`. */
@@ -26,6 +28,10 @@ export interface EditableLabelProps
   /** Rejects a draft before it commits. Return false to keep editing. */
   validate?: (draft: string) => boolean;
   disabled?: boolean;
+  /** Resting width in px. @default 190 */
+  restingWidth?: number;
+  /** Width while editing, in px. @default 260 */
+  editingWidth?: number;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -64,6 +70,8 @@ export function EditableLabel({
   fieldLabel = "Name",
   validate,
   disabled = false,
+  restingWidth = 190,
+  editingWidth = 260,
   className,
   ...rest
 }: EditableLabelProps) {
@@ -134,24 +142,31 @@ export function EditableLabel({
     : { duration: duration.micro, ease: ease.out };
 
   return (
-    <div className={cn("flex items-center justify-center", className)} {...rest}>
+    <div
+      className={cn("flex items-center justify-center", className)}
+      {...rest}
+    >
       {/*
-        `layout` rather than an animated width: the pill sizes itself to its
-        content, so there is no pair of magic numbers to keep in sync with the
-        text, and the resize compiles to a transform instead of reflowing on
-        every frame.
+        An explicit width pair, not `layout`. Sizing the pill to its content
+        looked tidier and was wrong: the field has no intrinsic width, so
+        entering edit mode collapsed the pill and then grew it a character at a
+        time as you typed. The two widths are what give the resize a fixed
+        distance to travel, which is the whole gesture.
       */}
       <motion.div
-        layout
+        initial={false}
+        animate={{ width: editing ? editingWidth : restingWidth }}
         transition={transition}
         className={cn(
           "flex items-center gap-2 overflow-hidden rounded-full p-2",
-          "transition-shadow duration-200",
+          // Background *and* shadow. Only the shadow was transitioned before,
+          // so the fill snapped while the ring eased — the two arriving apart
+          // is what read as a hard edge at the end of the move.
+          "transition-[background-color,box-shadow] duration-200 ease-out",
           editing
             ? "bg-surface shadow-[0_0_0_2.5px_var(--ring)]"
             : "bg-surface-subtle shadow-resting",
         )}
-        style={{ willChange: "transform" }}
       >
         <AnimatePresence mode="wait" initial={false}>
           {editing ? (

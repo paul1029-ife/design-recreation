@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useCallback, useRef, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Monitor, Moon, Sun } from "lucide-react";
 
@@ -44,6 +44,51 @@ const OPTIONS = [
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
   const hydrated = useHydrated();
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const select = useCallback(
+    (value: string, origin: HTMLElement) => {
+      // Origin is the control that actually changed the value, so the reveal
+      // radiates from it whether it was clicked or arrowed onto.
+      revealWithCircularClip(centreOf(origin), () => setTheme(value));
+    },
+    [setTheme],
+  );
+
+  /**
+   * APG radiogroup: arrows move selection *and* focus, wrapping at both ends.
+   * The group is one tab stop — Tab enters and leaves, it does not walk the
+   * three options.
+   */
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+      const keys = [
+        "ArrowRight",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowUp",
+        "Home",
+        "End",
+      ];
+      if (!keys.includes(event.key)) return;
+      event.preventDefault();
+
+      const last = OPTIONS.length - 1;
+      const next =
+        event.key === "ArrowRight" || event.key === "ArrowDown"
+          ? (index + 1) % OPTIONS.length
+          : event.key === "ArrowLeft" || event.key === "ArrowUp"
+            ? (index - 1 + OPTIONS.length) % OPTIONS.length
+            : event.key === "Home"
+              ? 0
+              : last;
+
+      const node = buttonRefs.current[next];
+      node?.focus();
+      if (node) select(OPTIONS[next].value, node);
+    },
+    [select],
+  );
 
   if (!hydrated) {
     return (
@@ -66,23 +111,31 @@ export function ThemeToggle({ className }: { className?: string }) {
         className,
       )}
     >
-      {OPTIONS.map(({ value, label, Icon }) => {
+      {OPTIONS.map(({ value, label, Icon }, index) => {
         const selected = theme === value;
         return (
           <button
             key={value}
+            ref={(node) => {
+              buttonRefs.current[index] = node;
+            }}
             type="button"
             role="radio"
             aria-checked={selected}
             aria-label={label}
-            onClick={(event) =>
-              // Origin is the button the user actually pressed, so the reveal
-              // reads as radiating from their click rather than from an
-              // arbitrary point.
-              revealWithCircularClip(centreOf(event.currentTarget), () =>
-                setTheme(value),
-              )
+            /*
+             * Roving tabindex: the group is a single tab stop. Falls back to
+             * the first option when `theme` is a value not in this list, so the
+             * group can never end up with no tab stop at all.
+             */
+            tabIndex={
+              selected ||
+              (index === 0 && !OPTIONS.some((o) => o.value === theme))
+                ? 0
+                : -1
             }
+            onClick={(event) => select(value, event.currentTarget)}
+            onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
               "focus-ring grid size-7 cursor-pointer place-items-center rounded-full",
               "transition-colors duration-100",

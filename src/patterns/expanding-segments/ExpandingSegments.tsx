@@ -17,8 +17,10 @@ export interface Segment {
   accentClassName?: string;
 }
 
-export interface ExpandingSegmentsProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+export interface ExpandingSegmentsProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onChange" | "defaultValue"
+> {
   segments: readonly Segment[];
   /** Names the group for assistive technology, e.g. "Mailbox view". */
   label: string;
@@ -88,7 +90,14 @@ export function ExpandingSegments({
    */
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
-      const keys = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"];
+      const keys = [
+        "ArrowRight",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowUp",
+        "Home",
+        "End",
+      ];
       if (!keys.includes(event.key)) return;
       event.preventDefault();
 
@@ -147,8 +156,12 @@ export function ExpandingSegments({
           >
             <span
               aria-hidden="true"
+              // The box matches the glyph. It used to be `size-6` around a
+              // `size-8` icon, and `place-items-center` does not centre an item
+              // that overflows its own grid area — it pins it to the start, so
+              // the icon rendered 4px low and 4px right of where it belonged.
               className={cn(
-                "absolute left-3 grid size-6 place-items-center [&>svg]:size-8",
+                "absolute left-3 grid size-8 place-items-center [&>svg]:size-8",
                 accent,
               )}
             >
@@ -162,9 +175,7 @@ export function ExpandingSegments({
                 x: isSelected ? 0 : -20,
               }}
               transition={reduce ? { duration: 0.01 } : { duration: 0.2 }}
-              // ml-11, not ml-10: the icon is 32px inside a 24px box, so it
-              // overhangs its container by 4px each side and at 40px the
-              // glyph sat on top of the first letter.
+              // 44px clears the icon exactly: 12px of `left-3` plus its 32px box.
               className="relative ml-11 font-semibold whitespace-nowrap"
             >
               <span className={accent}>{segment.label}</span>
