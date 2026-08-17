@@ -3,7 +3,6 @@ import type { ComponentType } from "react";
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
-import SwitcherInteraction from "@/components/recreations/SwitcherInteraction";
 import VoiceNoteTranscription from "@/components/recreations/VoiceNoteTranscription";
 
 export interface GalleryEntry {
@@ -28,13 +27,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "ydwndr",
     url: "https://x.com/ydwndr/status/1971241276243956025?s=46",
     component: CommandPalette,
-  },
-  {
-    id: 4,
-    name: "Switcher Interaction",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/1980523444807635342?s=46",
-    component: SwitcherInteraction,
   },
   {
     id: 6,

@@ -9,6 +9,7 @@ import { meta as expandingSegments } from "./expanding-segments/meta";
 import { meta as inlineConfirm } from "./inline-confirm/meta";
 import { meta as inlineOverflow } from "./inline-overflow/meta";
 import { meta as inlineSearch } from "./inline-search/meta";
+import { meta as modeSwitcher } from "./mode-switcher/meta";
 import { meta as orderStatus } from "./order-status/meta";
 import { meta as inviteCard } from "./invite-card/meta";
 import { meta as speedDial } from "./speed-dial/meta";
@@ -42,6 +43,7 @@ const ALL: readonly PatternMeta[] = [
   inviteCard,
   contextualToolbar,
   orderStatus,
+  modeSwitcher,
 ];
 
 /** Public patterns, newest first. Drafts are excluded. */
