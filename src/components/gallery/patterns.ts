@@ -1,7 +1,6 @@
 import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
-import OrderCard from "@/components/recreations/OrderCard";
 import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
 import SwitcherInteraction from "@/components/recreations/SwitcherInteraction";
@@ -23,13 +22,6 @@ export interface GalleryEntry {
  * migration, alongside slug redirects.
  */
 export const legacyEntries: readonly GalleryEntry[] = [
-  {
-    id: 1,
-    name: "Food Order Card",
-    source: "tanjim38",
-    url: "https://x.com/tanjim38/status/1979876452851183892?s=46",
-    component: OrderCard,
-  },
   {
     id: 2,
     name: "Command Keyboard",

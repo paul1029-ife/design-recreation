@@ -37,6 +37,7 @@ export const demos: Record<string, ComponentType> = {
   "contextual-toolbar": dynamic(
     () => import("./contextual-toolbar/ContextualToolbar.demo"),
   ),
+  "order-status": dynamic(() => import("./order-status/OrderStatus.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {
