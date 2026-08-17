@@ -57,8 +57,8 @@ text field.
 | `fieldLabel`    | `string`                     | `"Name"`     | Names what is being renamed, for assistive tech. |
 | `validate`      | `(draft: string) => boolean` | —            | Return false to reject and keep editing.         |
 | `disabled`      | `boolean`                    | `false`      | Disables the edit trigger.                       |
-| `restingWidth`  | `number`                     | `190`        | Pill width in px when not editing.               |
-| `editingWidth`  | `number`                     | `260`        | Pill width in px while editing.                  |
+| `restingWidth`  | `number`                     | `220`        | Pill width in px when not editing.               |
+| `editingWidth`  | `number`                     | `290`        | Pill width in px while editing.                  |
 | `className`     | `string`                     | —            | Merged onto the root.                            |
 
 ## Keyboard
@@ -116,6 +116,13 @@ The fill and the ring transition together over 200ms. Only the shadow was
 transitioned before, so the background snapped to white while the ring eased
 in, and the two arriving at different times read as a hard edge at the end of
 an otherwise smooth move.
+
+The label is `min-w-0 truncate`. Without it a flex child defaults to
+`min-width: auto` and refuses to shrink below its own text, so a name too long
+for the pill does not clip itself — it pushes the button out through the side.
+That is a structural guarantee rather than a matter of picking generous widths:
+the two defaults suit a ~15-character name, and anything longer ellipsizes with
+the button still inside.
 
 Icons animate `transform`, `opacity` and `filter` only. Blur is capped at 6px
 on 40px buttons, so paint stays negligible.

@@ -26,7 +26,7 @@ for actions that need submenus, descriptions or icons-plus-detail — use
 `create-menu`. Not for a single destructive action needing confirmation — use
 `inline-confirm`.
 
-This is the third of the library's *inline* family, with `inline-confirm` and
+This is the third of the library's _inline_ family, with `inline-confirm` and
 `inline-search`. They share one idea: resolve the interaction in the surface
 that started it rather than opening another one.
 
@@ -52,35 +52,40 @@ import { Copy, Save, Share, Trash2 } from "lucide-react";
   ]}
   overflow={[
     { id: "share", label: "Share", icon: <Share />, onSelect: () => share() },
-    { id: "delete", label: "Delete", icon: <Trash2 />, onSelect: () => remove() },
+    {
+      id: "delete",
+      label: "Delete",
+      icon: <Trash2 />,
+      onSelect: () => remove(),
+    },
   ]}
 />;
 ```
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `primary` | `readonly OverflowAction[]` | — | Always visible. Two or three; this is the resting width. |
-| `overflow` | `readonly OverflowAction[]` | — | Revealed in place by the toggle. |
-| `label` | `string` | `"Actions"` | Accessible name for the toolbar. |
-| `moreLabel` | `string` | `"More actions"` | Accessible name for the toggle. |
-| `defaultOpen` | `boolean` | `false` | Uncontrolled initial state. |
-| `open` | `boolean` | uncontrolled | Controlled state. Pass with `onOpenChange`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Fires on every toggle. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop           | Type                        | Default          | Description                                              |
+| -------------- | --------------------------- | ---------------- | -------------------------------------------------------- |
+| `primary`      | `readonly OverflowAction[]` | —                | Always visible. Two or three; this is the resting width. |
+| `overflow`     | `readonly OverflowAction[]` | —                | Revealed in place by the toggle.                         |
+| `label`        | `string`                    | `"Actions"`      | Accessible name for the toolbar.                         |
+| `moreLabel`    | `string`                    | `"More actions"` | Accessible name for the toggle.                          |
+| `defaultOpen`  | `boolean`                   | `false`          | Uncontrolled initial state.                              |
+| `open`         | `boolean`                   | uncontrolled     | Controlled state. Pass with `onOpenChange`.              |
+| `onOpenChange` | `(open: boolean) => void`   | —                | Fires on every toggle.                                   |
+| `className`    | `string`                    | —                | Merged onto the root.                                    |
 
 `OverflowAction`: `{ id: string; label: string; icon: ReactNode; onSelect: () => void }`.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Enter and leave the bar — it is one tab stop, not five |
-| `←` / `→` | Move between actions and the toggle, wrapping |
-| `Home` / `End` | First action, or the toggle |
-| `Enter` / `Space` | Run the focused action, or toggle the overflow |
-| `Escape` | Collapse, returning focus to the toggle |
+| Key               | Action                                                 |
+| ----------------- | ------------------------------------------------------ |
+| `Tab`             | Enter and leave the bar — it is one tab stop, not five |
+| `←` / `→`         | Move between actions and the toggle, wrapping          |
+| `Home` / `End`    | First action, or the toggle                            |
+| `Enter` / `Space` | Run the focused action, or toggle the overflow         |
+| `Escape`          | Collapse, returning focus to the toggle                |
 
 The APG toolbar contract. A five-control bar that costs five tab presses to
 walk past is the more common implementation and the wrong one.
@@ -108,11 +113,17 @@ Under `prefers-reduced-motion` the width snaps, the blur is dropped, and the
 chips lose the hover lift and tilt. The reveal still cross-fades, so the change
 is not silent.
 
-**Narrow screens.** Four labelled chips want about 390px, which is more than a
-320px phone has. Rather than clip — which would push the toggle off the edge and
-leave the bar stuck open — the expanded row scrolls horizontally inside the
-pill. Focus drags the scroll with it, so keyboard users reach every chip and the
+**Narrow containers.** The chips tighten from `px-3` to `px-2` below 420px of
+container, which brings four labelled chips plus the toggle from ~390px down to
+~360px and keeps the whole bar inside a typical preview column. Below that the
+expanded row scrolls horizontally inside the pill rather than clipping, and
+focus drags the scroll with it, so keyboard users reach every chip and the
 toggle without touching the scroll at all.
+
+The tightening matters more than it looks. When the row overflows, the thing
+that ends up half-cut at the edge is the toggle — the one control that closes
+the bar — and a control sliced down the middle reads as broken rather than as
+scrollable.
 
 ## Performance
 
@@ -132,7 +143,7 @@ determines the container's size — which settles on a plausible-looking wrong
 answer instead of failing loudly.
 
 Width is a layout-animated property and there is no way around that here — the
-bar's width *is* the animation. It is one element on its own line, so the reflow
+bar's width _is_ the animation. It is one element on its own line, so the reflow
 is cheap and contained; the chips ride it with `layout="position"`, which
 translates them rather than re-laying them out.
 
@@ -152,14 +163,14 @@ so the source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Measurement | `react-use-measure` |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|             |                            |
+| ----------- | -------------------------- |
+| Framework   | React 19                   |
+| Motion      | Motion 12 (`motion/react`) |
+| Measurement | `react-use-measure`        |
+| Styling     | Tailwind CSS v4            |
+| Icons       | `lucide-react`             |
+| Types       | TypeScript 5.9, strict     |
 
 ## Credits
 

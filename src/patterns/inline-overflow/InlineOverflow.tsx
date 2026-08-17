@@ -94,7 +94,12 @@ function ActionChip({
       // the way in and rubber-banding on the way out.
       className={cn(
         "focus-ring flex cursor-pointer items-center justify-center gap-1.5",
-        "rounded-4xl bg-surface px-3 py-2 text-content shadow-sm",
+        "rounded-4xl bg-surface py-2 text-content shadow-sm",
+        // Tighter until the bar has room for the roomier padding. Four
+        // labelled chips plus the toggle at `px-3` want ~390px; below that the
+        // row scrolls and the toggle ends up cut in half at the edge, which
+        // reads as broken rather than as scrollable.
+        "px-2 @min-[420px]:px-3",
       )}
     >
       <span aria-hidden="true" className="[&>svg]:size-3.5">
@@ -223,7 +228,9 @@ export function InlineOverflow({
       */}
       <div
         className={cn(
-          "flex w-full min-w-0 justify-center px-4 py-2",
+          // Container query, not viewport: this bar is as likely to sit in a
+          // narrow column on a wide screen as on a phone.
+          "@container flex w-full min-w-0 justify-center px-4 py-2",
           className,
         )}
         {...rest}

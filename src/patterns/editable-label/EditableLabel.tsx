@@ -28,9 +28,12 @@ export interface EditableLabelProps extends Omit<
   /** Rejects a draft before it commits. Return false to keep editing. */
   validate?: (draft: string) => boolean;
   disabled?: boolean;
-  /** Resting width in px. @default 190 */
+  /**
+   * Resting width in px. Sized for a ~15-character name; widen it for longer
+   * ones rather than letting them truncate. @default 220
+   */
   restingWidth?: number;
-  /** Width while editing, in px. @default 260 */
+  /** Width while editing, in px. @default 290 */
   editingWidth?: number;
 }
 
@@ -70,8 +73,8 @@ export function EditableLabel({
   fieldLabel = "Name",
   validate,
   disabled = false,
-  restingWidth = 190,
-  editingWidth = 260,
+  restingWidth = 220,
+  editingWidth = 290,
   className,
   ...rest
 }: EditableLabelProps) {
@@ -192,8 +195,13 @@ export function EditableLabel({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={swap}
+              // `min-w-0 truncate`, not just `whitespace-nowrap`. A flex item
+              // defaults to `min-width: auto` and will not shrink below its own
+              // text, so a long name does not clip itself — it shoves the
+              // button out through the side of the pill. Truncating keeps the
+              // button inside at any width.
               className={cn(
-                "ml-3 flex-1 text-lg font-semibold whitespace-nowrap select-none",
+                "ml-3 min-w-0 flex-1 truncate text-lg font-semibold select-none",
                 value ? "text-content" : "text-content-subtle",
               )}
             >
