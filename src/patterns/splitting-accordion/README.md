@@ -39,7 +39,7 @@ Then copy `Accordion.tsx`. It depends only on `@/lib/cn` and `@/lib/motion`.
 ## Usage
 
 ```tsx
-import Accordion, { type AccordionItem } from "@/components/recreations/accordion/Accordion";
+import Accordion, { type AccordionItem } from "@/patterns/splitting-accordion/SplittingAccordion";
 import { Layers } from "lucide-react";
 
 const items: AccordionItem[] = [

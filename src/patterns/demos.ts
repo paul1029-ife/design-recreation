@@ -44,6 +44,9 @@ export const demos: Record<string, ComponentType> = {
     () => import("./voice-transcript/VoiceTranscript.demo"),
   ),
   "mega-nav": dynamic(() => import("./mega-nav/MegaNav.demo")),
+  "command-palette": dynamic(
+    () => import("./command-palette/CommandPalette.demo"),
+  ),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

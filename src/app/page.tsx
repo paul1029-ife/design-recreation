@@ -4,10 +4,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import CategoryNav from "@/components/home/CategoryNav";
 import Hero from "@/components/home/Hero";
-import LegacyGallery from "@/components/gallery/LegacyGallery";
 import PatternCard from "@/components/patterns/PatternCard";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { legacyEntries } from "@/components/gallery/patterns";
 import { getFeatured, registry } from "@/patterns/registry";
 
 /**
@@ -24,11 +22,13 @@ export default function HomePage() {
     <div className="flex min-h-dvh flex-col items-center">
       <main className="flex w-full max-w-3xl flex-col gap-16 px-4 py-10">
         <div className="flex items-center justify-between gap-4">
-          <span className="font-semibold text-content">Interaction Patterns</span>
+          <span className="font-semibold text-content">
+            Interaction Patterns
+          </span>
           <ThemeToggle />
         </div>
 
-        <Hero patterns={registry} inMigration={legacyEntries.length} />
+        <Hero patterns={registry} inMigration={0} />
 
         {featured.length > 0 ? (
           <section className="flex flex-col gap-4">
@@ -90,19 +90,6 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-          </section>
-        ) : null}
-
-        {legacyEntries.length > 0 ? (
-          <section className="flex flex-col gap-4">
-            <SectionHeading title="Still migrating" />
-            <p className="text-sm text-content-muted">
-              {legacyEntries.length} interactions from before this became a
-              library. They work, but they have no props API, docs, or
-              accessibility contract yet — so they are previewable here rather
-              than documented.
-            </p>
-            <LegacyGallery />
           </section>
         ) : null}
 
