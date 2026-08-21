@@ -39,6 +39,7 @@ export const demos: Record<string, ComponentType> = {
   ),
   "order-status": dynamic(() => import("./order-status/OrderStatus.demo")),
   "mode-switcher": dynamic(() => import("./mode-switcher/ModeSwitcher.demo")),
+  "quick-select": dynamic(() => import("./quick-select/QuickSelect.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

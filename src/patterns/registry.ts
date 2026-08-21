@@ -11,6 +11,7 @@ import { meta as inlineOverflow } from "./inline-overflow/meta";
 import { meta as inlineSearch } from "./inline-search/meta";
 import { meta as modeSwitcher } from "./mode-switcher/meta";
 import { meta as orderStatus } from "./order-status/meta";
+import { meta as quickSelect } from "./quick-select/meta";
 import { meta as inviteCard } from "./invite-card/meta";
 import { meta as speedDial } from "./speed-dial/meta";
 import { meta as splitActions } from "./split-actions/meta";
@@ -44,6 +45,7 @@ const ALL: readonly PatternMeta[] = [
   contextualToolbar,
   orderStatus,
   modeSwitcher,
+  quickSelect,
 ];
 
 /** Public patterns, newest first. Drafts are excluded. */

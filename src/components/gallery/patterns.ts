@@ -1,7 +1,6 @@
 import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
-import PickerInteraction from "@/components/recreations/PickerInteraction";
 import StripeNav from "@/components/recreations/StripeNav";
 import VoiceNoteTranscription from "@/components/recreations/VoiceNoteTranscription";
 
@@ -34,13 +33,6 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "stripe",
     url: "https://stripe.com",
     component: StripeNav,
-  },
-  {
-    id: 12,
-    name: "Picker Interaction",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/2008234567890123456?s=20",
-    component: PickerInteraction,
   },
   {
     id: 18,
