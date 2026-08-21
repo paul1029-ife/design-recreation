@@ -12,6 +12,7 @@ import { meta as inlineSearch } from "./inline-search/meta";
 import { meta as modeSwitcher } from "./mode-switcher/meta";
 import { meta as orderStatus } from "./order-status/meta";
 import { meta as quickSelect } from "./quick-select/meta";
+import { meta as megaNav } from "./mega-nav/meta";
 import { meta as voiceTranscript } from "./voice-transcript/meta";
 import { meta as inviteCard } from "./invite-card/meta";
 import { meta as speedDial } from "./speed-dial/meta";
@@ -48,6 +49,7 @@ const ALL: readonly PatternMeta[] = [
   modeSwitcher,
   quickSelect,
   voiceTranscript,
+  megaNav,
 ];
 
 /** Public patterns, newest first. Drafts are excluded. */

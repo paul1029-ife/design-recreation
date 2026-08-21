@@ -43,6 +43,7 @@ export const demos: Record<string, ComponentType> = {
   "voice-transcript": dynamic(
     () => import("./voice-transcript/VoiceTranscript.demo"),
   ),
+  "mega-nav": dynamic(() => import("./mega-nav/MegaNav.demo")),
 };
 
 export function getDemo(slug: string): ComponentType | undefined {

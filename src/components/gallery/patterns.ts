@@ -1,7 +1,6 @@
 import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
-import StripeNav from "@/components/recreations/StripeNav";
 
 export interface GalleryEntry {
   id: number;
@@ -25,12 +24,5 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "ydwndr",
     url: "https://x.com/ydwndr/status/1971241276243956025?s=46",
     component: CommandPalette,
-  },
-  {
-    id: 6,
-    name: "Stripe Navigation",
-    source: "stripe",
-    url: "https://stripe.com",
-    component: StripeNav,
   },
 ];
