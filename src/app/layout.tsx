@@ -22,13 +22,45 @@ const someSans = localFont({
   display: "swap",
 });
 
+/*
+ * `metadataBase` is what makes every relative OG and canonical URL in the app
+ * resolve to an absolute one. Without it Next emits relative image paths, which
+ * no social card renderer can fetch — the tags look correct in the HTML and the
+ * preview comes back blank.
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
   title: {
     default: "Interaction patterns for production interfaces",
     template: "%s — Interaction Patterns",
   },
   description:
     "A curated collection of production-ready interaction patterns for React. Accessible, performant, documented, and free to copy.",
+  keywords: [
+    "react",
+    "interaction design",
+    "animation",
+    "motion",
+    "components",
+    "accessibility",
+    "tailwind",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "Interaction Patterns",
+    title: "Interaction patterns for production interfaces",
+    description:
+      "Accessible, performant, documented React interaction patterns. Free to copy.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Interaction patterns for production interfaces",
+    description:
+      "Accessible, performant, documented React interaction patterns. Free to copy.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

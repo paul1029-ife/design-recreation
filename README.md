@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# Interaction Patterns
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A library of production-ready interaction patterns for React. Every pattern is
+accessible, respects `prefers-reduced-motion`, ships with a props API and
+documentation, and is free to copy.
 
-Currently, two official plugins are available:
+**[Browse the patterns →](https://design-recreation.vercel.app)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## What this is
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Most animation collections show you a effect and leave you to work out what it
+was for. This one starts from the problem.
 
-## Expanding the ESLint configuration
+Every pattern here answers a question a PM would recognise — *"how do we let
+someone rename this without leaving the page?"* — and the animation is the
+answer to that question rather than the point of the exercise. Each one is
+documented with the problem it solves, the cases it is **not** for, its
+keyboard contract, its accessibility guarantees, and what it costs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+They are recreations. The visual ideas come from designers credited on every
+pattern page; what is added is the part that makes an idea shippable — a props
+API, a keyboard path, focus management, reduced-motion handling, and a written
+account of the trade-offs.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Using a pattern
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+This is a copy-paste library. There is no package to install and no version to
+keep up with — you take the file and it is yours.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Copy it.** Every pattern page renders its full source with a copy button.
+Paste it into your project, adjust the tokens, done.
+
+**Or install it.** Patterns are published as
+[shadcn](https://ui.shadcn.com)-compatible registry items:
+
+```bash
+npx shadcn@latest add https://design-recreation.vercel.app/r/inline-confirm.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Each pattern depends only on `motion` (or `gsap`), `lucide-react`, and a local
+`cn` helper. None of them import from each other.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Running it locally
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
+
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Dev server on :3000 |
+| `npm run build` | Production build |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint |
+| `npm run audit:library` | Structural audit of the pattern library |
+| `npm run check` | All three of the above |
+
+## How it is built
+
+| | |
+| --- | --- |
+| Framework | Next.js 16, App Router |
+| Language | TypeScript 5.9, strict |
+| Styling | Tailwind CSS v4, tokens in `@theme inline` |
+| Motion | Motion 12 (`motion/react`), GSAP where a timeline earns it |
+| Docs | The pattern's own README, rendered at build time |
+
+### Layout
+
+```
+src/
+  patterns/<slug>/       one folder per pattern
+    <Name>.tsx           the component — props only, no demo chrome
+    <Name>.demo.tsx      the gallery demo — owns sample data and spacing
+    meta.ts              typed metadata: problem, category, support flags
+    README.md            the documentation you see on the site
+    index.ts             barrel
+  patterns/registry.ts   metadata only, server-importable
+  patterns/demos.ts      slug → dynamically imported demo
+  app/                   routes, including /r/[slug].json
+```
+
+`registry.ts` is deliberately free of component imports so server components can
+read metadata without pulling every pattern's JavaScript into the bundle. Demos
+resolve separately through `next/dynamic`, so a pattern page ships one pattern.
+
+### The standard
+
+Every pattern has to clear the same bar before it is `stable`:
+
+- **It works.** Every affordance that looks interactive is interactive. This
+  sounds obvious; it was the single most common defect in the originals.
+- **Keyboard.** The task is completable without a pointer, against the
+  relevant [APG](https://www.w3.org/WAI/ARIA/apg/) contract. Focus goes
+  somewhere deliberate when a surface opens, and comes back when it closes.
+- **Reduced motion.** Travel is removed, information is kept. A reduced
+  variant that silently drops a state change is worse than no variant.
+- **Honest metadata.** `keyboard`, `touch`, `reducedMotion` and `responsive`
+  are claims that get audited. Setting one `true` without the support behind it
+  is worse than setting it `false`, because it is a promise the library breaks.
+- **Documented trade-offs.** Every pattern's README has a "Not for" section and
+  states its known limitations.
+
+`npm run audit:library` enforces the structural half of this: folder shape,
+registry and demo wiring, metadata completeness, naming, and a set of
+smells worth failing a build over.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Credits
+
+Every pattern page credits the designer whose work it recreates. The library
+exists because they published the idea first.
+
+## Licence
+
+MIT — see [LICENSE](./LICENSE).

@@ -1,7 +1,7 @@
 {
   "name": "design-recreation",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -9,7 +9,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "audit:library": "node .claude/skills/library-maintainer/scripts/audit.mjs",
+    "audit:library": "node scripts/audit-library.mjs",
     "check": "npm run typecheck && npm run lint && npm run audit:library"
   },
   "dependencies": {
@@ -40,5 +40,15 @@
     "globals": "^16.4.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0"
+  },
+  "description": "Production-ready React interaction patterns: accessible, documented, free to copy.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paul1029-ife/design-recreation.git"
+  },
+  "homepage": "https://design-recreation.vercel.app",
+  "bugs": {
+    "url": "https://github.com/paul1029-ife/design-recreation/issues"
   }
 }
