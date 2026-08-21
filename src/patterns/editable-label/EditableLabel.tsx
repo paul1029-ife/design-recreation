@@ -226,7 +226,7 @@ export function EditableLabel({
               animate="animate"
               exit="exit"
               transition={{ ...transition, filter: blurTransition }}
-              className="focus-ring grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-accent text-accent-content"
+              className="focus-ring relative grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-accent text-accent-content before:absolute before:-inset-0.5 before:content-['']"
             >
               <Check className="size-4" strokeWidth={2.5} aria-hidden="true" />
             </motion.button>
@@ -243,7 +243,7 @@ export function EditableLabel({
               animate="animate"
               exit="exit"
               transition={{ ...transition, filter: blurTransition }}
-              className="focus-ring grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-surface text-content-subtle hover:text-content disabled:cursor-not-allowed disabled:opacity-50"
+              className="focus-ring relative grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-surface text-content-subtle before:absolute before:-inset-0.5 before:content-[''] hover:text-content disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Pencil className="size-4" strokeWidth={2} aria-hidden="true" />
             </motion.button>

@@ -125,6 +125,15 @@ that ends up half-cut at the edge is the toggle — the one control that closes
 the bar — and a control sliced down the middle reads as broken rather than as
 scrollable.
 
+**Touch is declared `false`, and that is not an oversight.** The chips are 36px
+tall and the toggle is a 28px circle six pixels from its neighbour. The chips
+could be grown to the 44px this library asks for, but the toggle could not —
+not without either changing the bar's proportions or letting its hit area
+overlap the chip beside it, and overlapping targets cause the mis-taps that the
+44px rule exists to prevent. A dense action bar is a pointer-and-keyboard
+control. Saying so is more useful than claiming a guarantee the layout cannot
+keep; `speed-dial` is the thumb-reachable pattern.
+
 ## Performance
 
 The bar's width is measured from its own content with `react-use-measure`

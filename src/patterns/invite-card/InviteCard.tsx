@@ -372,8 +372,14 @@ export function InviteCard({
               onClick={() => setLinkEnabled(!linkEnabled)}
               className={cn(
                 "focus-ring relative inline-flex h-5 w-8 shrink-0 items-center",
+                // 32x20 visually. The row has no room for a bigger track,
+                // so the target grows through a pseudo-element instead.
+                "before:absolute before:-inset-3.5 before:content-['']",
                 "rounded-full transition-colors",
-                linkEnabled ? "bg-accent" : "bg-border-strong",
+                // The off track carries the switch's shape against the card, so
+                // it is a UI boundary and owes 3:1. `border-strong` gave 1.86:1
+                // on a subtle-filled row — visible, but only just.
+                linkEnabled ? "bg-accent" : "bg-content-subtle",
               )}
             >
               <span
@@ -392,7 +398,7 @@ export function InviteCard({
               onClick={handleCopy}
               whileTap={reduce ? undefined : { scale: 0.85 }}
               aria-label={copied ? "Link copied" : "Copy link"}
-              className="focus-ring relative flex shrink-0 items-center justify-center rounded-sm"
+              className="focus-ring relative flex shrink-0 items-center justify-center rounded-sm before:absolute before:-inset-3.5 before:content-['']"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -503,7 +509,7 @@ export function InviteCard({
                             inputRef.current?.focus();
                           }}
                           aria-label={`Remove ${staged.name}`}
-                          className="focus-ring rounded-full text-content-subtle hover:text-content-muted"
+                          className="focus-ring relative rounded-full text-content-subtle before:absolute before:-inset-3.5 before:content-[''] hover:text-content-muted"
                         >
                           <X className="size-4" aria-hidden="true" />
                         </button>
@@ -531,6 +537,10 @@ export function InviteCard({
                         className={cn(
                           "min-w-0 flex-1 bg-transparent text-base text-content-muted",
                           "placeholder-content-subtle outline-none",
+                          // The field is the target here, not the row around
+                          // it: clicking the row's padding does not focus an
+                          // input that is only as tall as its own text.
+                          "self-stretch py-2.5",
                         )}
                       />
                     )}
@@ -542,7 +552,8 @@ export function InviteCard({
                   onClick={handleInvite}
                   className={cn(
                     "focus-ring relative left-1 flex shrink-0 items-center gap-0.5",
-                    "rounded-md bg-accent px-2 py-[3px] text-sm text-accent-content",
+                    "relative rounded-md bg-accent px-2 py-[3px] text-sm text-accent-content",
+                    "before:absolute before:-inset-y-2.5 before:-inset-x-0 before:content-['']",
                   )}
                 >
                   <Send className="size-4" aria-hidden="true" />
@@ -608,7 +619,7 @@ export function InviteCard({
                         type="button"
                         onClick={() => removeInvitee(invitee.id)}
                         aria-label={`Remove ${invitee.name}`}
-                        className="focus-ring shrink-0 rounded-sm text-sm text-danger/70 hover:text-danger"
+                        className="focus-ring relative shrink-0 rounded-sm text-sm text-danger/70 before:absolute before:-inset-3 before:content-[''] hover:text-danger"
                       >
                         Remove
                       </button>

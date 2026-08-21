@@ -280,7 +280,13 @@ export function VoiceTranscript({
             aria-label={playing ? "Pause" : "Play"}
             whileHover={reduce ? undefined : { scale: 1.1 }}
             whileTap={reduce ? undefined : { scale: 0.88 }}
-            className="focus-ring grid size-7 shrink-0 cursor-pointer place-items-center rounded-full"
+            className={cn(
+              "focus-ring relative grid size-7 shrink-0 cursor-pointer",
+              "place-items-center rounded-full",
+              // 28px visually, 44px to a thumb. Growing the button itself
+              // would push the waveform out of the pill.
+              "before:absolute before:-inset-2 before:content-['']",
+            )}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.span

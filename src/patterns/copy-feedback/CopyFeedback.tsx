@@ -11,8 +11,10 @@ import { duration, ease, spring } from "@/lib/motion";
 /* Types                                                                       */
 /* -------------------------------------------------------------------------- */
 
-export interface CopyFeedbackProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onCopy" | "onError"> {
+export interface CopyFeedbackProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onCopy" | "onError"
+> {
   /** The text placed on the clipboard, and shown when idle. */
   value: string;
   /** Trigger text. @default "Copy" */
@@ -75,13 +77,19 @@ export function CopyFeedback({
 
   const swapIn = reduce
     ? { duration: 0.01 }
-    : { ...spring.snappy, filter: { duration: duration.standard, ease: ease.out } };
+    : {
+        ...spring.snappy,
+        filter: { duration: duration.standard, ease: ease.out },
+      };
   const swapOut = reduce
     ? { duration: 0.01 }
     : { duration: duration.micro, ease: ease.in };
 
   return (
-    <div className={cn("flex items-center justify-center", className)} {...rest}>
+    <div
+      className={cn("flex items-center justify-center", className)}
+      {...rest}
+    >
       <div className="relative flex h-11 w-[220px] items-center overflow-hidden rounded-full bg-surface-subtle shadow-resting">
         {/*
           The confirmation fill. scaleX from a left origin rather than an
@@ -132,7 +140,9 @@ export function CopyFeedback({
                   onClick={copy}
                   className={cn(
                     "focus-ring shrink-0 cursor-pointer rounded-full bg-surface",
-                    "px-3.5 py-1.5 text-sm font-semibold text-content shadow-resting",
+                    "relative px-3.5 py-1.5 text-sm font-semibold text-content shadow-resting",
+                    // 32px visually; the pill it sits in has no room to grow.
+                    "before:absolute before:-inset-x-0 before:-inset-y-1.5 before:content-['']",
                     "transition-colors hover:bg-surface-hover",
                   )}
                 >

@@ -182,7 +182,11 @@ export function ContextualToolbar({
                 role="tab"
                 id={`${uid}-tab-${entry.id}`}
                 aria-selected={isSelected}
-                aria-controls={`${uid}-panel-${entry.id}`}
+                aria-controls={
+                  // Only the selected panel is mounted, so pointing every tab at
+                  // its own panel leaves the unselected ones dangling.
+                  isSelected ? `${uid}-panel-${entry.id}` : undefined
+                }
                 aria-label={entry.label}
                 // Roving tabindex: the switcher is a single tab stop.
                 tabIndex={isSelected ? 0 : -1}

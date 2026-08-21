@@ -21,8 +21,10 @@ export interface SplittingAccordionItem {
   disabled?: boolean;
 }
 
-export interface SplittingAccordionProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
+export interface SplittingAccordionProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onChange" | "defaultValue"
+> {
   items: readonly SplittingAccordionItem[];
   /** Uncontrolled initial open item. `null` starts fully collapsed. */
   defaultOpenId?: string | null;
@@ -198,7 +200,8 @@ export function SplittingAccordion({
                   type="button"
                   id={triggerId}
                   aria-expanded={isOpen}
-                  aria-controls={panelId}
+                  // The panel unmounts when collapsed, so the reference would dangle.
+                  aria-controls={isOpen ? panelId : undefined}
                   disabled={item.disabled}
                   onClick={() => toggle(item.id)}
                   onKeyDown={(event) => handleKeyDown(event, index)}
@@ -233,9 +236,7 @@ export function SplittingAccordion({
                     className={cn(
                       "pointer-events-none absolute inset-x-1 inset-y-0.5 rounded-xl",
                       "bg-surface-hover opacity-0 transition-opacity duration-150",
-                      !isOpen &&
-                        !item.disabled &&
-                        "group-hover:opacity-100",
+                      !isOpen && !item.disabled && "group-hover:opacity-100",
                     )}
                   />
 

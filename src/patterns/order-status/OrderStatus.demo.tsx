@@ -24,7 +24,7 @@ export default function OrderStatusDemo() {
           setDone(false);
           setRun((n) => n + 1);
         }}
-        className="focus-ring flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-content-subtle transition-colors hover:text-content"
+        className="focus-ring flex items-center gap-1.5 rounded-full px-3 py-3 text-sm text-content-subtle transition-colors hover:text-content"
       >
         <RotateCcw className="size-3.5" aria-hidden="true" />
         {done ? "Play again" : "Restart"}

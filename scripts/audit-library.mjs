@@ -2,8 +2,8 @@
 /**
  * Repository consistency audit for the interaction-pattern library.
  *
- *   node .claude/skills/library-maintainer/scripts/audit.mjs
- *   node .claude/skills/library-maintainer/scripts/audit.mjs --json
+ *   node scripts/audit-library.mjs
+ *   node scripts/audit-library.mjs --json
  *
  * Zero dependencies. Exits 1 if any ERROR-level finding exists, 0 otherwise
  * (WARN findings do not fail the build), so it can be wired straight into CI.
@@ -24,15 +24,30 @@ const LEGACY_DIR = join(SRC, "components", "recreations");
 
 /** Functional axis. Exactly one per pattern. Always populated. */
 const CATEGORIES = [
-  "navigation", "input", "feedback", "disclosure",
-  "selection", "action", "layout",
+  "navigation",
+  "input",
+  "feedback",
+  "disclosure",
+  "selection",
+  "action",
+  "layout",
 ];
 
 /** Product axis. 1–3 per pattern. What users browse by. */
 const DOMAINS = [
-  "ai", "commerce", "authentication", "messaging", "forms",
-  "dashboard", "editor", "productivity", "search", "files",
-  "accessibility", "media", "onboarding",
+  "ai",
+  "commerce",
+  "authentication",
+  "messaging",
+  "forms",
+  "dashboard",
+  "editor",
+  "productivity",
+  "search",
+  "files",
+  "accessibility",
+  "media",
+  "onboarding",
 ];
 
 const DIFFICULTIES = ["beginner", "intermediate", "advanced"];
@@ -102,17 +117,32 @@ for (const file of sourceFiles) {
 
   // React.FC adds implicit children and does not compose with generics.
   if (/React\.FC[<\s]/.test(src)) {
-    warn("react-fc", file, "uses React.FC", "use a plain function with an explicit props type");
+    warn(
+      "react-fc",
+      file,
+      "uses React.FC",
+      "use a plain function with an explicit props type",
+    );
   }
 
   // strict is on; `any` defeats it.
   if (/:\s*any\b/.test(src) || /<any>/.test(src)) {
-    error("no-any", file, "uses `any`", "use `unknown` plus a narrow, or a real type");
+    error(
+      "no-any",
+      file,
+      "uses `any`",
+      "use `unknown` plus a narrow, or a real type",
+    );
   }
 
   // erasableSyntaxOnly is on — enums emit runtime code and will not compile.
   if (/^\s*(export\s+)?enum\s/m.test(src)) {
-    error("no-enum", file, "declares an enum", "use a union type or `as const` object");
+    error(
+      "no-enum",
+      file,
+      "declares an enum",
+      "use a union type or `as const` object",
+    );
   }
 
   // Timers without a matching clearTimeout leak under React 19 Strict Mode.
@@ -156,8 +186,10 @@ for (const file of sourceFiles) {
       }
     }
 
-    if (!/useReducedMotion|matchMedia|prefers-reduced-motion/.test(src) &&
-        /motion\.|gsap\./.test(src)) {
+    if (
+      !/useReducedMotion|matchMedia|prefers-reduced-motion/.test(src) &&
+      /motion\.|gsap\./.test(src)
+    ) {
       warn(
         "reduced-motion",
         file,
@@ -191,10 +223,18 @@ for (const dir of patternDirs) {
   const full = join(PATTERNS_DIR, dir);
 
   if (!isKebab(dir)) {
-    error("dir-case", full, `directory "${dir}" is not kebab-case`, "rename to kebab-case");
+    error(
+      "dir-case",
+      full,
+      `directory "${dir}" is not kebab-case`,
+      "rename to kebab-case",
+    );
   }
 
-  const pascal = dir.split("-").map((p) => p[0].toUpperCase() + p.slice(1)).join("");
+  const pascal = dir
+    .split("-")
+    .map((p) => p[0].toUpperCase() + p.slice(1))
+    .join("");
   const required = [
     "index.ts",
     `${pascal}.tsx`,
@@ -205,7 +245,12 @@ for (const dir of patternDirs) {
 
   for (const f of required) {
     if (!existsSync(join(full, f))) {
-      error("missing-file", join(full, f), `${f} is missing`, `create it from the pattern-author templates`);
+      error(
+        "missing-file",
+        join(full, f),
+        `${f} is missing`,
+        `create it from the pattern-author templates`,
+      );
     }
   }
 
@@ -216,20 +261,40 @@ for (const dir of patternDirs) {
 
     const slug = meta.match(/slug:\s*["']([^"']+)["']/)?.[1];
     if (!slug) {
-      error("meta-slug", metaPath, "no slug", "add slug matching the directory name");
+      error(
+        "meta-slug",
+        metaPath,
+        "no slug",
+        "add slug matching the directory name",
+      );
     } else {
       if (slug !== dir) {
-        error("meta-slug", metaPath, `slug "${slug}" ≠ directory "${dir}"`, "make them match");
+        error(
+          "meta-slug",
+          metaPath,
+          `slug "${slug}" ≠ directory "${dir}"`,
+          "make them match",
+        );
       }
       if (slugs.has(slug)) {
-        error("meta-slug", metaPath, `duplicate slug "${slug}"`, "slugs are URLs — they must be unique");
+        error(
+          "meta-slug",
+          metaPath,
+          `duplicate slug "${slug}"`,
+          "slugs are URLs — they must be unique",
+        );
       }
       slugs.add(slug);
     }
 
     const category = meta.match(/category:\s*["']([^"']+)["']/)?.[1];
     if (!category) {
-      error("meta-category", metaPath, "no category", `add one of: ${CATEGORIES.join(", ")}`);
+      error(
+        "meta-category",
+        metaPath,
+        "no category",
+        `add one of: ${CATEGORIES.join(", ")}`,
+      );
     } else if (!CATEGORIES.includes(category)) {
       error(
         "meta-category",
@@ -254,48 +319,82 @@ for (const dir of patternDirs) {
     const tags = meta.match(/tags:\s*\[([^\]]*)\]/)?.[1];
     const tagCount = tags ? tags.split(",").filter((t) => t.trim()).length : 0;
     if (tagCount < 2 || tagCount > 5) {
-      warn("meta-tags", metaPath, `${tagCount} tags`, "use 2–5 tags from the shared vocabulary");
+      warn(
+        "meta-tags",
+        metaPath,
+        `${tagCount} tags`,
+        "use 2–5 tags from the shared vocabulary",
+      );
     }
 
     // Domain axis — what the browse pages are built from.
     const domainsRaw = meta.match(/domains:\s*\[([^\]]*)\]/)?.[1];
     if (domainsRaw === undefined) {
-      error("meta-domains", metaPath, "no domains", `add 1–3 of: ${DOMAINS.join(", ")}`);
+      error(
+        "meta-domains",
+        metaPath,
+        "no domains",
+        `add 1–3 of: ${DOMAINS.join(", ")}`,
+      );
     } else {
-      const domains = [...domainsRaw.matchAll(/["']([^"']+)["']/g)].map((m) => m[1]);
+      const domains = [...domainsRaw.matchAll(/["']([^"']+)["']/g)].map(
+        (m) => m[1],
+      );
       if (domains.length < 1 || domains.length > 3) {
         error("meta-domains", metaPath, `${domains.length} domains`, "use 1–3");
       }
       for (const d of domains) {
         if (!DOMAINS.includes(d)) {
-          error("meta-domains", metaPath, `domain "${d}" is not in the closed set`,
-            `use one of: ${DOMAINS.join(", ")}`);
+          error(
+            "meta-domains",
+            metaPath,
+            `domain "${d}" is not in the closed set`,
+            `use one of: ${DOMAINS.join(", ")}`,
+          );
         }
       }
     }
 
     const difficulty = meta.match(/difficulty:\s*["']([^"']+)["']/)?.[1];
     if (!difficulty || !DIFFICULTIES.includes(difficulty)) {
-      error("meta-difficulty", metaPath, `difficulty "${difficulty ?? "missing"}" invalid`,
-        `use one of: ${DIFFICULTIES.join(", ")}`);
+      error(
+        "meta-difficulty",
+        metaPath,
+        `difficulty "${difficulty ?? "missing"}" invalid`,
+        `use one of: ${DIFFICULTIES.join(", ")}`,
+      );
     }
 
     // ISO date, powers "Recently added".
     const added = meta.match(/added:\s*["']([^"']+)["']/)?.[1];
     if (!added || !/^\d{4}-\d{2}-\d{2}$/.test(added)) {
-      error("meta-added", metaPath, "added date missing or not ISO (YYYY-MM-DD)",
-        "add an ISO date");
+      error(
+        "meta-added",
+        metaPath,
+        "added date missing or not ISO (YYYY-MM-DD)",
+        "add an ISO date",
+      );
     }
 
     for (const flag of ["responsive", "featured"]) {
       if (!new RegExp(`${flag}:\\s*(true|false)`).test(meta)) {
-        error("meta-flag", metaPath, `${flag} not declared`, `add ${flag}: true | false`);
+        error(
+          "meta-flag",
+          metaPath,
+          `${flag} not declared`,
+          `add ${flag}: true | false`,
+        );
       }
     }
 
     for (const flag of ["keyboard", "touch", "reducedMotion"]) {
       if (!new RegExp(`${flag}:\\s*(true|false)`).test(meta)) {
-        error("meta-flag", metaPath, `${flag} not declared`, `add ${flag}: true | false`);
+        error(
+          "meta-flag",
+          metaPath,
+          `${flag} not declared`,
+          `add ${flag}: true | false`,
+        );
       }
     }
 
@@ -350,7 +449,9 @@ for (const dir of patternDirs) {
       ["technologies", "## technologies"],
       ["credits", "## credits"],
     ];
-    const missing = sections.filter(([, h]) => !doc.includes(h)).map(([n]) => n);
+    const missing = sections
+      .filter(([, h]) => !doc.includes(h))
+      .map(([n]) => n);
     if (missing.length) {
       error(
         "docs-sections",
@@ -367,17 +468,32 @@ for (const dir of patternDirs) {
 const registryPath = join(PATTERNS_DIR, "registry.ts");
 if (patternDirs.length > 0) {
   if (!existsSync(registryPath)) {
-    error("registry", registryPath, "registry.ts is missing", "create it and export every pattern's meta");
+    error(
+      "registry",
+      registryPath,
+      "registry.ts is missing",
+      "create it and export every pattern's meta",
+    );
   } else {
     const registry = read(registryPath);
     for (const dir of patternDirs) {
       if (!registry.includes(`./${dir}/`)) {
-        error("registry", registryPath, `"${dir}" is not registered`, `import its meta and add it to the registry array`);
+        error(
+          "registry",
+          registryPath,
+          `"${dir}" is not registered`,
+          `import its meta and add it to the registry array`,
+        );
       }
     }
     for (const m of registry.matchAll(/\.\/([a-z0-9-]+)\/meta/g)) {
       if (!patternDirs.includes(m[1])) {
-        error("registry", registryPath, `registers "${m[1]}" which has no directory`, "remove the entry or create the directory");
+        error(
+          "registry",
+          registryPath,
+          `registers "${m[1]}" which has no directory`,
+          "remove the entry or create the directory",
+        );
       }
     }
 
@@ -386,10 +502,18 @@ if (patternDirs.length > 0) {
      * `import { meta as x }` with no `x,` in the array type-errors, but only
      * because `noUnusedLocals` happens to catch it — which is luck, not a check.
      */
-    const allArray = registry.match(/const ALL[^=]*=\s*\[([\s\S]*?)\]/)?.[1] ?? "";
-    for (const m of registry.matchAll(/meta as (\w+) \} from "\.\/([a-z0-9-]+)\/meta/g)) {
+    const allArray =
+      registry.match(/const ALL[^=]*=\s*\[([\s\S]*?)\]/)?.[1] ?? "";
+    for (const m of registry.matchAll(
+      /meta as (\w+) \} from "\.\/([a-z0-9-]+)\/meta/g,
+    )) {
       if (!new RegExp(`\\b${m[1]}\\b`).test(allArray)) {
-        error("registry", registryPath, `"${m[2]}" is imported but not in the registry array`, `add \`${m[1]},\` to ALL`);
+        error(
+          "registry",
+          registryPath,
+          `"${m[2]}" is imported but not in the registry array`,
+          `add \`${m[1]},\` to ALL`,
+        );
       }
     }
   }
@@ -424,6 +548,34 @@ for (const file of walk(SRC).filter((f) => f.endsWith(".tsx"))) {
     });
 }
 
+/* ------------------------------------------- 3a2. registry stays server-safe */
+
+/*
+ * The registry must import metadata and nothing else. One component import
+ * turns it into a client module, and every page that reads metadata — the
+ * index, the category and domain pages, generateMetadata, the sitemap — starts
+ * pulling every pattern's JavaScript. Nothing fails; the pages just get heavy,
+ * which is the kind of regression that only shows up in a Lighthouse run
+ * months later.
+ */
+if (existsSync(registryPath)) {
+  const registry = read(registryPath);
+  // `import type` is erased at build, so it carries no weight.
+  const valueImports = registry.matchAll(
+    /^import\s+(?!type\s)[^;]*?from\s+"\.\/([^"]+)"/gm,
+  );
+  for (const m of valueImports) {
+    if (!m[1].endsWith("/meta")) {
+      error(
+        "registry-weight",
+        registryPath,
+        `imports "./${m[1]}" — only "<slug>/meta" belongs here`,
+        "move component and demo imports to demos.ts, which is dynamically loaded",
+      );
+    }
+  }
+}
+
 /* ------------------------------------------------ 3b. demo wiring */
 
 /*
@@ -436,7 +588,12 @@ if (patternDirs.length > 0 && existsSync(demosPath)) {
   const demos = read(demosPath);
   for (const dir of patternDirs) {
     if (!demos.includes(`"${dir}"`)) {
-      error("demos", demosPath, `"${dir}" has no demo entry`, `add "${dir}": dynamic(() => import("./${dir}/<Name>.demo"))`);
+      error(
+        "demos",
+        demosPath,
+        `"${dir}" has no demo entry`,
+        `add "${dir}": dynamic(() => import("./${dir}/<Name>.demo"))`,
+      );
     }
   }
 }
@@ -489,7 +646,9 @@ const print = (label, list) => {
 };
 
 console.log("Interaction-pattern library audit");
-console.log(`  ${sourceFiles.length} source files · ${patternDirs.length} migrated patterns · ${legacyFiles.length} legacy`);
+console.log(
+  `  ${sourceFiles.length} source files · ${patternDirs.length} migrated patterns · ${legacyFiles.length} legacy`,
+);
 
 print("ERRORS", errors);
 print("WARNINGS", warnings);

@@ -29,7 +29,13 @@
   /* Content */
   --content: #111111;
   --content-muted: #343a40;
-  --content-subtle: #6c757d; /* 4.69:1 on --surface — AA floor, do not use below 14px */
+  /*
+   * 5.33:1 on --surface, and 4.64:1 on --surface-subtle, which is the darkest
+   * background it actually sits on (the badge chips). The old #6c757d cleared
+   * AA on white only — on a subtle-filled chip it was 4.08:1, and those chips
+   * are on every pattern page.
+   */
+  --content-subtle: #646c74;
   --content-inverse: #ffffff;
 
   /* Line */
@@ -41,7 +47,8 @@
   --accent-content: #ffffff;
   --danger: #e03131;
   --danger-content: #ffffff;
-  --success: #2f9e44;
+  /* Darkened from #2f9e44, which was 3.45:1 under white text. */
+  --success: #28863a;
   --success-content: #ffffff;
 
   /* Focus */
@@ -53,8 +60,10 @@
   /* Elevation */
   --shadow-resting: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-floating: 0 4px 24px rgba(0, 0, 0, 0.07);
-  --shadow-overlay: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-overlay:
+    0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-modal:
+    0 16px 48px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .dark {
@@ -66,7 +75,7 @@
 
   --content: #f4f5f6;
   --content-muted: #b6bbc0;
-  --content-subtle: #878d94; /* 5.68:1 on --surface */
+  --content-subtle: #8c9298; /* 6.01:1 on --surface, 4.65:1 on --surface-hover */
   --content-inverse: #101113;
 
   --border: #26292d;

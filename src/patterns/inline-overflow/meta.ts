@@ -10,7 +10,7 @@ export const meta = {
   tags: ["toolbar", "overflow", "actions", "elastic"],
   difficulty: "intermediate",
   keyboard: true,
-  touch: true,
+  touch: false,
   reducedMotion: true,
   responsive: true,
   featured: false,

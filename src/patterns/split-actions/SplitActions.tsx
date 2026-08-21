@@ -18,8 +18,10 @@ export interface SplitAction {
   onSelect: () => void;
 }
 
-export interface SplitActionsProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onSelect"> {
+export interface SplitActionsProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onSelect"
+> {
   /** Two or three. Past that the row stops fitting and wants a menu. */
   actions: readonly SplitAction[];
   /** Accessible name for the collapsed trigger. @default "Show actions" */
@@ -144,7 +146,7 @@ export function SplitActions({
             type="button"
             aria-label={triggerLabel}
             aria-expanded={false}
-            aria-controls={groupId}
+            aria-controls={open ? groupId : undefined}
             onClick={() => setOpen(true)}
             initial={
               reduce

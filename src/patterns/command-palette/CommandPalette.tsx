@@ -222,7 +222,7 @@ export function CommandPalette({
               aria-label={collapsedLabel}
               aria-keyshortcuts="Meta+K Control+K"
               className={cn(
-                "focus-ring flex w-full cursor-text items-center gap-2 px-4 py-2.5",
+                "focus-ring flex w-full cursor-text items-center gap-2 px-4 py-3",
                 "rounded-[30px] border border-border bg-surface shadow-resting",
                 "transition-shadow duration-200 hover:shadow-floating",
               )}

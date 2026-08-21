@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "audit:library": "node scripts/audit-library.mjs",
-    "check": "npm run typecheck && npm run lint && npm run audit:library"
+    "check": "npm run typecheck && npm run lint && npm run audit:library && npm run audit:contrast",
+    "audit:contrast": "node scripts/audit-contrast.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -17,8 +17,10 @@ export interface CreateMenuOption {
   onSelect: () => void;
 }
 
-export interface CreateMenuProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onSelect"> {
+export interface CreateMenuProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onSelect"
+> {
   options: readonly CreateMenuOption[];
   /** Text on the trigger, reused as the menu's heading. @default "Create New" */
   triggerLabel?: string;
@@ -171,7 +173,10 @@ export function CreateMenu({
   if (options.length === 0) return null;
 
   return (
-    <div className={cn("flex items-center justify-center", className)} {...rest}>
+    <div
+      className={cn("flex items-center justify-center", className)}
+      {...rest}
+    >
       <AnimatePresence mode="popLayout">
         {!open ? (
           <motion.button
@@ -192,7 +197,7 @@ export function CreateMenu({
             }}
             className={cn(
               "focus-ring flex cursor-pointer items-center gap-1",
-              "border-[3px] border-border bg-surface-subtle px-3 py-2 shadow-resting",
+              "border-[3px] border-border bg-surface-subtle px-3 py-2.5 shadow-resting",
             )}
           >
             <motion.span
@@ -245,7 +250,10 @@ export function CreateMenu({
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label={`Close ${triggerLabel.toLowerCase()}`}
-                className="focus-ring grid size-5 cursor-pointer place-items-center rounded-full bg-border-strong text-accent-content"
+                // Not `bg-border-strong` with inverse text: that put white on
+                // #adb5bd at 2.07:1. `border-strong` is a line token — as a
+                // fill behind a glyph it has nowhere near the contrast.
+                className="focus-ring grid size-5 cursor-pointer place-items-center rounded-full bg-surface-active text-content"
               >
                 <X className="size-3.5" aria-hidden="true" />
               </button>
@@ -256,7 +264,9 @@ export function CreateMenu({
               id={menuId}
               aria-labelledby={headingId}
               className="mt-2 grid gap-4 rounded-xl bg-surface p-2"
-              style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+              style={{
+                gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+              }}
               initial="hidden"
               animate="show"
               variants={gridVariants}

@@ -35,5 +35,11 @@ jobs:
       - name: Audit library
         run: npm run audit:library
 
+      # Every colour resolves to a token, so contrast is decidable from
+      # globals.css alone. A token edit that drops a pairing below WCAG AA
+      # fails here rather than shipping.
+      - name: Audit contrast
+        run: npm run audit:contrast
+
       - name: Build
         run: npm run build

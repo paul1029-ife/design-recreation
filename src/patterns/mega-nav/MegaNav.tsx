@@ -221,7 +221,7 @@ export function MegaNav({
                 onClick={() => setActive(active === index ? null : index)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
                 className={cn(
-                  "focus-ring relative cursor-pointer rounded-full px-4 py-2",
+                  "focus-ring relative cursor-pointer rounded-full px-4 py-2.5",
                   "font-medium whitespace-nowrap transition-colors",
                   active === index ? "text-content" : "text-content-muted",
                 )}

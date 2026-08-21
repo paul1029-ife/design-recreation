@@ -338,7 +338,7 @@ export function InlineOverflow({
                 layout="position"
                 aria-label={moreLabel}
                 aria-expanded={open}
-                aria-controls={overflowId}
+                aria-controls={open ? overflowId : undefined}
                 tabIndex={active === toggleStop ? 0 : -1}
                 onClick={() => setOpen(!open)}
                 onFocus={() => setActiveStop(toggleStop)}

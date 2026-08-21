@@ -17,8 +17,10 @@ export interface SpeedDialAction {
   onSelect: () => void;
 }
 
-export interface SpeedDialProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onSelect"> {
+export interface SpeedDialProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onSelect"
+> {
   /** Three to six. Beyond that the stack is taller than a thumb can reach. */
   actions: readonly SpeedDialAction[];
   /** Accessible name for the trigger. @default "Actions" */
@@ -185,9 +187,7 @@ export function SpeedDial({
                       : { opacity: 0, y: 20, x: 0, rotate: 0 }
                   }
                   animate={
-                    reduce
-                      ? { opacity: 1 }
-                      : { opacity: 1, y: 0, x, rotate }
+                    reduce ? { opacity: 1 } : { opacity: 1, y: 0, x, rotate }
                   }
                   exit={
                     reduce
@@ -222,7 +222,7 @@ export function SpeedDial({
         aria-label={triggerLabel}
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-controls={menuId}
+        aria-controls={open ? menuId : undefined}
         onClick={() => setOpen(!open)}
         // Grows rather than shrinks on press. Unusual, and kept: it reads as
         // the button swelling to release the stack.
