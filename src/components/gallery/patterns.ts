@@ -2,7 +2,6 @@ import type { ComponentType } from "react";
 
 import CommandPalette from "@/components/recreations/command-keyboard/CommandPalette";
 import StripeNav from "@/components/recreations/StripeNav";
-import VoiceNoteTranscription from "@/components/recreations/VoiceNoteTranscription";
 
 export interface GalleryEntry {
   id: number;
@@ -33,12 +32,5 @@ export const legacyEntries: readonly GalleryEntry[] = [
     source: "stripe",
     url: "https://stripe.com",
     component: StripeNav,
-  },
-  {
-    id: 18,
-    name: "Voice Note Transcription",
-    source: "nitishkmrk",
-    url: "https://x.com/nitishkmrk/status/2057363853986701646",
-    component: VoiceNoteTranscription,
   },
 ];
