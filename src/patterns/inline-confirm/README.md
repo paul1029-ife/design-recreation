@@ -52,26 +52,26 @@ nothing and it resolves immediately.
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `label` | `string` | — | Names the thing being acted on. |
-| `onConfirm` | `() => void \| Promise<void>` | — | Called on commit. A rejection returns the control to idle. |
-| `actionLabel` | `string` | `"Confirm"` | Trigger text. |
-| `icon` | `ReactNode` | — | Leading icon, rendered in a 30px slot. |
-| `status` | `"idle" \| "pending" \| "confirmed"` | uncontrolled | Controlled stage. Pass with `onStatusChange`. |
-| `onStatusChange` | `(s: InlineConfirmStatus) => void` | — | Fires on every stage transition. |
-| `confirmedHoldMs` | `number` | `2000` | How long the confirmed stage is held. |
-| `disabled` | `boolean` | `false` | Disables the trigger. |
-| `pendingAnnouncement` | `string` | `` `${actionLabel}…` `` | Screen-reader text while in flight. |
-| `confirmedAnnouncement` | `string` | `"Done"` | Screen-reader text on completion. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop                    | Type                                 | Default                 | Description                                                |
+| ----------------------- | ------------------------------------ | ----------------------- | ---------------------------------------------------------- |
+| `label`                 | `string`                             | —                       | Names the thing being acted on.                            |
+| `onConfirm`             | `() => void \| Promise<void>`        | —                       | Called on commit. A rejection returns the control to idle. |
+| `actionLabel`           | `string`                             | `"Confirm"`             | Trigger text.                                              |
+| `icon`                  | `ReactNode`                          | —                       | Leading icon, rendered in a 30px slot.                     |
+| `status`                | `"idle" \| "pending" \| "confirmed"` | uncontrolled            | Controlled stage. Pass with `onStatusChange`.              |
+| `onStatusChange`        | `(s: InlineConfirmStatus) => void`   | —                       | Fires on every stage transition.                           |
+| `confirmedHoldMs`       | `number`                             | `2000`                  | How long the confirmed stage is held.                      |
+| `disabled`              | `boolean`                            | `false`                 | Disables the trigger.                                      |
+| `pendingAnnouncement`   | `string`                             | `` `${actionLabel}…` `` | Screen-reader text while in flight.                        |
+| `confirmedAnnouncement` | `string`                             | `"Done"`                | Screen-reader text on completion.                          |
+| `className`             | `string`                             | —                       | Merged onto the root.                                      |
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Focus the trigger |
-| `Enter` / `Space` | Commit |
+| Key               | Action            |
+| ----------------- | ----------------- |
+| `Tab`             | Focus the trigger |
+| `Enter` / `Space` | Commit            |
 
 The control has one tab stop. While pending and confirmed there is nothing to
 focus, so focus stays where the user left it rather than being moved or lost.
@@ -116,13 +116,13 @@ the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

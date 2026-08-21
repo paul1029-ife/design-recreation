@@ -114,7 +114,9 @@ export default async function PatternPage({ params }: PageProps) {
 
           {source ? (
             <section className="mt-12">
-              <h2 className="mb-3 text-xl font-semibold text-content">Source</h2>
+              <h2 className="mb-3 text-xl font-semibold text-content">
+                Source
+              </h2>
               <p className="my-4 leading-relaxed text-content-muted">
                 The whole component. In a copy-paste library the source is the
                 delivery mechanism, not an appendix — so it is read straight off

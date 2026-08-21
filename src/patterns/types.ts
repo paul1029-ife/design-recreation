@@ -56,10 +56,7 @@ export type PatternStatus = "draft" | "stable" | "deprecated";
 
 /** Runtime dependencies beyond react and tailwind. */
 export type PatternDependency =
-  | "motion"
-  | "gsap"
-  | "lucide-react"
-  | "react-use-measure";
+  "motion" | "gsap" | "lucide-react" | "react-use-measure";
 
 export interface PatternMeta {
   /** kebab-case, matches the directory name. Stable — it is the URL. */

@@ -52,27 +52,27 @@ point — do not delete anything before it.
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `label` | `string` | — | Text of the destructive trigger. |
-| `onDelete` | `() => void` | — | Fires when the window elapses. The real commit. |
-| `undoLabel` | `string` | `"Undo"` | Text of the undo control. |
-| `deletedLabel` | `string` | `"Deleted"` | Shown once the window elapses. |
-| `undoWindowMs` | `number` | `10000` | Drives both the countdown and the commit. |
-| `onUndo` | `() => void` | — | Fires if the user takes it back. |
-| `onStatusChange` | `(s: DeleteWithUndoStatus) => void` | — | Fires on every transition. |
-| `disabled` | `boolean` | `false` | Disables the trigger. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop             | Type                                | Default     | Description                                     |
+| ---------------- | ----------------------------------- | ----------- | ----------------------------------------------- |
+| `label`          | `string`                            | —           | Text of the destructive trigger.                |
+| `onDelete`       | `() => void`                        | —           | Fires when the window elapses. The real commit. |
+| `undoLabel`      | `string`                            | `"Undo"`    | Text of the undo control.                       |
+| `deletedLabel`   | `string`                            | `"Deleted"` | Shown once the window elapses.                  |
+| `undoWindowMs`   | `number`                            | `10000`     | Drives both the countdown and the commit.       |
+| `onUndo`         | `() => void`                        | —           | Fires if the user takes it back.                |
+| `onStatusChange` | `(s: DeleteWithUndoStatus) => void` | —           | Fires on every transition.                      |
+| `disabled`       | `boolean`                           | `false`     | Disables the trigger.                           |
+| `className`      | `string`                            | —           | Merged onto the root.                           |
 
 `deleted` is terminal. The item is gone, and the component does not pretend
 otherwise — remount it if you need a fresh instance.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Focus the trigger, then the undo control once the window opens |
-| `Enter` / `Space` | Start the deletion, or undo it |
+| Key               | Action                                                         |
+| ----------------- | -------------------------------------------------------------- |
+| `Tab`             | Focus the trigger, then the undo control once the window opens |
+| `Enter` / `Space` | Start the deletion, or undo it                                 |
 
 ## Accessibility
 
@@ -124,13 +124,13 @@ the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

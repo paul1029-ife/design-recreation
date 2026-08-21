@@ -41,35 +41,45 @@ import { Folder, CheckSquare } from "lucide-react";
 
 <CreateMenu
   options={[
-    { id: "project", label: "Project", icon: <Folder />, onSelect: () => newProject() },
-    { id: "task", label: "Task", icon: <CheckSquare />, onSelect: () => newTask() },
+    {
+      id: "project",
+      label: "Project",
+      icon: <Folder />,
+      onSelect: () => newProject(),
+    },
+    {
+      id: "task",
+      label: "Task",
+      icon: <CheckSquare />,
+      onSelect: () => newTask(),
+    },
   ]}
 />;
 ```
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `options` | `readonly CreateMenuOption[]` | — | The items. Empty renders nothing. |
-| `triggerLabel` | `string` | `"Create New"` | Trigger text, reused as the menu heading. |
-| `columns` | `number` | `3` | Grid width. Drives vertical arrow navigation. |
-| `defaultOpen` | `boolean` | `false` | Uncontrolled initial state. |
-| `open` | `boolean` | uncontrolled | Controlled state. Pass with `onOpenChange`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Fires on every toggle. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop           | Type                          | Default        | Description                                   |
+| -------------- | ----------------------------- | -------------- | --------------------------------------------- |
+| `options`      | `readonly CreateMenuOption[]` | —              | The items. Empty renders nothing.             |
+| `triggerLabel` | `string`                      | `"Create New"` | Trigger text, reused as the menu heading.     |
+| `columns`      | `number`                      | `3`            | Grid width. Drives vertical arrow navigation. |
+| `defaultOpen`  | `boolean`                     | `false`        | Uncontrolled initial state.                   |
+| `open`         | `boolean`                     | uncontrolled   | Controlled state. Pass with `onOpenChange`.   |
+| `onOpenChange` | `(open: boolean) => void`     | —              | Fires on every toggle.                        |
+| `className`    | `string`                      | —              | Merged onto the root.                         |
 
 `CreateMenuOption`: `{ id: string; label: string; icon: ReactNode; onSelect: () => void }`.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Enter` / `Space` | Open the menu, or choose the focused item |
-| `←` `→` | Previous or next item, wrapping through the whole grid |
-| `↑` `↓` | Move by one row, wrapping within the column |
-| `Home` / `End` | First or last item |
-| `Escape` | Close and return focus to the trigger |
+| Key               | Action                                                 |
+| ----------------- | ------------------------------------------------------ |
+| `Enter` / `Space` | Open the menu, or choose the focused item              |
+| `←` `→`           | Previous or next item, wrapping through the whole grid |
+| `↑` `↓`           | Move by one row, wrapping within the column            |
+| `Home` / `End`    | First or last item                                     |
+| `Escape`          | Close and return focus to the trigger                  |
 
 ## Accessibility
 
@@ -123,13 +133,13 @@ the source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

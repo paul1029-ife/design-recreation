@@ -46,25 +46,25 @@ import SplitActions from "@/patterns/split-actions/SplitActions";
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `actions` | `readonly SplitAction[]` | — | Two or three. Empty renders nothing. |
-| `triggerLabel` | `string` | `"Show actions"` | Accessible name for the collapsed trigger. |
-| `triggerIcon` | `ReactNode` | a plus | Icon inside the trigger. |
-| `defaultOpen` | `boolean` | `false` | Uncontrolled initial state. |
-| `open` | `boolean` | uncontrolled | Controlled state. Pass with `onOpenChange`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Fires on every toggle. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop           | Type                      | Default          | Description                                 |
+| -------------- | ------------------------- | ---------------- | ------------------------------------------- |
+| `actions`      | `readonly SplitAction[]`  | —                | Two or three. Empty renders nothing.        |
+| `triggerLabel` | `string`                  | `"Show actions"` | Accessible name for the collapsed trigger.  |
+| `triggerIcon`  | `ReactNode`               | a plus           | Icon inside the trigger.                    |
+| `defaultOpen`  | `boolean`                 | `false`          | Uncontrolled initial state.                 |
+| `open`         | `boolean`                 | uncontrolled     | Controlled state. Pass with `onOpenChange`. |
+| `onOpenChange` | `(open: boolean) => void` | —                | Fires on every toggle.                      |
+| `className`    | `string`                  | —                | Merged onto the root.                       |
 
 `SplitAction`: `{ id: string; label: string; icon?: ReactNode; onSelect: () => void }`.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Focus the trigger, then move through the actions once open |
-| `Enter` / `Space` | Expand, or run the focused action |
-| `Escape` | Collapse back to the trigger |
+| Key               | Action                                                     |
+| ----------------- | ---------------------------------------------------------- |
+| `Tab`             | Focus the trigger, then move through the actions once open |
+| `Enter` / `Space` | Expand, or run the focused action                          |
+| `Escape`          | Collapse back to the trigger                               |
 
 ## Accessibility
 
@@ -104,13 +104,13 @@ the source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

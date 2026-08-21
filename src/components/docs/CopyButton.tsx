@@ -59,7 +59,11 @@ export function CopyButton({
         )}
       >
         {copied ? (
-          <Check className="size-4 text-success" strokeWidth={2.2} aria-hidden="true" />
+          <Check
+            className="size-4 text-success"
+            strokeWidth={2.2}
+            aria-hidden="true"
+          />
         ) : (
           <Copy className="size-4" strokeWidth={2} aria-hidden="true" />
         )}

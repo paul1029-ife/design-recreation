@@ -1,6 +1,13 @@
 "use client";
 
-import { Bell, CheckSquare, FileText, Flag, Folder, Trophy } from "lucide-react";
+import {
+  Bell,
+  CheckSquare,
+  FileText,
+  Flag,
+  Folder,
+  Trophy,
+} from "lucide-react";
 
 import CreateMenu from "./CreateMenu";
 
@@ -13,12 +20,32 @@ export default function CreateMenuDemo() {
     <CreateMenu
       triggerLabel="Create New"
       options={[
-        { id: "project", label: "Project", icon: <Folder />, onSelect: () => {} },
-        { id: "task", label: "Task", icon: <CheckSquare />, onSelect: () => {} },
+        {
+          id: "project",
+          label: "Project",
+          icon: <Folder />,
+          onSelect: () => {},
+        },
+        {
+          id: "task",
+          label: "Task",
+          icon: <CheckSquare />,
+          onSelect: () => {},
+        },
         { id: "note", label: "Note", icon: <FileText />, onSelect: () => {} },
         { id: "goal", label: "Goal", icon: <Trophy />, onSelect: () => {} },
-        { id: "milestone", label: "Milestone", icon: <Flag />, onSelect: () => {} },
-        { id: "reminder", label: "Reminder", icon: <Bell />, onSelect: () => {} },
+        {
+          id: "milestone",
+          label: "Milestone",
+          icon: <Flag />,
+          onSelect: () => {},
+        },
+        {
+          id: "reminder",
+          label: "Reminder",
+          icon: <Bell />,
+          onSelect: () => {},
+        },
       ]}
     />
   );

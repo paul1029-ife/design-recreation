@@ -16,43 +16,41 @@ export const contentType = "image/png";
 
 export default function OpengraphImage() {
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#08090a",
-          padding: 80,
-          color: "#f4f5f6",
-        }}
-      >
-        <div style={{ display: "flex", fontSize: 28, color: "#878d94" }}>
-          Interaction Patterns
-        </div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        background: "#08090a",
+        padding: 80,
+        color: "#f4f5f6",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: 28, color: "#878d94" }}>
+        Interaction Patterns
+      </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-          {/*
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        {/*
             Two elements, not one string with a <br />. Satori does not
             implement <br />, so the line runs on and overflows the card —
             which looks like a text-wrapping bug rather than a missing tag.
           */}
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 68 }}>
-            <div style={{ display: "flex" }}>Interaction patterns for</div>
-            <div style={{ display: "flex" }}>production interfaces</div>
-          </div>
-          <div style={{ display: "flex", fontSize: 30, color: "#b6bbc0" }}>
-            Accessible, performant, documented. Free to copy.
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 68 }}>
+          <div style={{ display: "flex" }}>Interaction patterns for</div>
+          <div style={{ display: "flex" }}>production interfaces</div>
         </div>
-
-        <div style={{ display: "flex", fontSize: 24, color: "#878d94" }}>
-          {`${registry.length} patterns   ·   React 19   ·   Tailwind v4`}
+        <div style={{ display: "flex", fontSize: 30, color: "#b6bbc0" }}>
+          Accessible, performant, documented. Free to copy.
         </div>
       </div>
-    ),
+
+      <div style={{ display: "flex", fontSize: 24, color: "#878d94" }}>
+        {`${registry.length} patterns   ·   React 19   ·   Tailwind v4`}
+      </div>
+    </div>,
     size,
   );
 }

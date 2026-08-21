@@ -39,7 +39,9 @@ Then copy `Accordion.tsx`. It depends only on `@/lib/cn` and `@/lib/motion`.
 ## Usage
 
 ```tsx
-import Accordion, { type AccordionItem } from "@/patterns/splitting-accordion/SplittingAccordion";
+import Accordion, {
+  type AccordionItem,
+} from "@/patterns/splitting-accordion/SplittingAccordion";
 import { Layers } from "lucide-react";
 
 const items: AccordionItem[] = [
@@ -56,27 +58,27 @@ const items: AccordionItem[] = [
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `items` | `readonly AccordionItem[]` | — | Rows to render. Empty renders nothing. |
-| `defaultOpenId` | `string \| null` | `null` | Uncontrolled initial open item. |
-| `openId` | `string \| null` | uncontrolled | Controlled open item. Pass with `onOpenChange`. |
-| `onOpenChange` | `(id: string \| null) => void` | — | Fires on every open/close. |
-| `collapsible` | `boolean` | `true` | Whether clicking the open item closes it. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop            | Type                           | Default      | Description                                     |
+| --------------- | ------------------------------ | ------------ | ----------------------------------------------- |
+| `items`         | `readonly AccordionItem[]`     | —            | Rows to render. Empty renders nothing.          |
+| `defaultOpenId` | `string \| null`               | `null`       | Uncontrolled initial open item.                 |
+| `openId`        | `string \| null`               | uncontrolled | Controlled open item. Pass with `onOpenChange`. |
+| `onOpenChange`  | `(id: string \| null) => void` | —            | Fires on every open/close.                      |
+| `collapsible`   | `boolean`                      | `true`       | Whether clicking the open item closes it.       |
+| `className`     | `string`                       | —            | Merged onto the root.                           |
 
 `AccordionItem`: `{ id: string; title: string; content: ReactNode; icon?: ReactNode; disabled?: boolean }`.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Move into and out of the accordion |
-| `↓` | Focus the next header, wrapping at the end |
-| `↑` | Focus the previous header, wrapping at the start |
-| `Home` | Focus the first header |
-| `End` | Focus the last header |
-| `Enter` / `Space` | Toggle the focused item |
+| Key               | Action                                           |
+| ----------------- | ------------------------------------------------ |
+| `Tab`             | Move into and out of the accordion               |
+| `↓`               | Focus the next header, wrapping at the end       |
+| `↑`               | Focus the previous header, wrapping at the start |
+| `Home`            | Focus the first header                           |
+| `End`             | Focus the last header                            |
+| `Enter` / `Space` | Toggle the focused item                          |
 
 ## Accessibility
 
@@ -122,13 +124,13 @@ the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

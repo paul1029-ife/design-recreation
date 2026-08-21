@@ -22,13 +22,19 @@ const CATEGORY_BLURBS: Record<string, string> = {
  * category is worse than a missing one — it reads as an unfinished library
  * and it wastes a click.
  */
-export function CategoryNav({ patterns }: { patterns: readonly PatternMeta[] }) {
+export function CategoryNav({
+  patterns,
+}: {
+  patterns: readonly PatternMeta[];
+}) {
   const counts = new Map<string, number>();
   for (const pattern of patterns) {
     counts.set(pattern.category, (counts.get(pattern.category) ?? 0) + 1);
   }
 
-  const populated = [...counts.entries()].sort(([a], [b]) => a.localeCompare(b));
+  const populated = [...counts.entries()].sort(([a], [b]) =>
+    a.localeCompare(b),
+  );
   if (populated.length === 0) return null;
 
   return (

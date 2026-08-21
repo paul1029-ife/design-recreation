@@ -16,7 +16,11 @@ import "./globals.css";
 const someSans = localFont({
   src: [
     { path: "./fonts/Some-Sans-Regular.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/Some-Sans-SemiBold.woff2", weight: "600", style: "normal" },
+    {
+      path: "./fonts/Some-Sans-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
   ],
   variable: "--font-some-sans",
   display: "swap",

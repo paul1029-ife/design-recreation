@@ -87,7 +87,8 @@ export function PatternBrowser({
     });
   }, [patterns, query, category, domain]);
 
-  const filtered = query.trim() !== "" || category !== "all" || domain !== "all";
+  const filtered =
+    query.trim() !== "" || category !== "all" || domain !== "all";
 
   return (
     <div className="flex flex-col gap-5">
@@ -152,7 +153,11 @@ export function PatternBrowser({
 
       {/* Result count is announced: filtering is a state change a sighted user
           reads from the grid and everyone else needs told. */}
-      <p role="status" aria-live="polite" className="text-sm text-content-subtle">
+      <p
+        role="status"
+        aria-live="polite"
+        className="text-sm text-content-subtle"
+      >
         {results.length === 1
           ? `1 pattern${filtered ? " matches your filters" : ""}`
           : `${results.length} patterns${filtered ? " match your filters" : ""}`}
@@ -204,7 +209,11 @@ function FilterRow({ label, value, options, onChange }: FilterRowProps) {
   return (
     <div className="flex flex-wrap items-center gap-1.5">
       <span className="mr-1 text-xs text-content-subtle">{label}</span>
-      <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-1.5">
+      <div
+        role="radiogroup"
+        aria-label={label}
+        className="flex flex-wrap gap-1.5"
+      >
         {[{ value: "all", label: "All" }, ...options].map((option) => {
           const selected = value === option.value;
           return (

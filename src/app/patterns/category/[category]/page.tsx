@@ -60,8 +60,8 @@ export default async function CategoryPage({ params }: PageProps) {
             {label} patterns
           </h1>
           <p className="text-content-muted">
-            {patterns.length}{" "}
-            {patterns.length === 1 ? "pattern" : "patterns"} in this category.
+            {patterns.length} {patterns.length === 1 ? "pattern" : "patterns"}{" "}
+            in this category.
           </p>
         </header>
 

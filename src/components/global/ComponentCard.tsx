@@ -36,7 +36,9 @@ export function ComponentCard({
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={
-        reduce ? { duration: 0.01 } : { duration: duration.slow, ease: ease.out }
+        reduce
+          ? { duration: 0.01 }
+          : { duration: duration.slow, ease: ease.out }
       }
       whileHover={reduce ? undefined : { y: -2 }}
       whileTap={reduce ? undefined : { scale: 0.99 }}

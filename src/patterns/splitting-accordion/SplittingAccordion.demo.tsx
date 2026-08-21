@@ -2,7 +2,9 @@
 
 import { Gauge, Layers, MousePointerClick, Pointer, Send } from "lucide-react";
 
-import SplittingAccordion, { type SplittingAccordionItem } from "./SplittingAccordion";
+import SplittingAccordion, {
+  type SplittingAccordionItem,
+} from "./SplittingAccordion";
 
 /**
  * Gallery entry. Owns the sample content and the sizing frame; the pattern

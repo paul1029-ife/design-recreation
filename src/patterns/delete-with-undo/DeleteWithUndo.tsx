@@ -13,8 +13,10 @@ import { spring, staggerStep } from "@/lib/motion";
 
 export type DeleteWithUndoStatus = "idle" | "undoable" | "deleted";
 
-export interface DeleteWithUndoProps
-  extends Omit<React.ComponentPropsWithoutRef<"div">, "onError"> {
+export interface DeleteWithUndoProps extends Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "onError"
+> {
   /** Text of the destructive trigger. */
   label: string;
   /** Text of the undo control while the window is open. @default "Undo" */
@@ -168,7 +170,10 @@ export function DeleteWithUndo({
   const transition = reduce ? { duration: 0.01 } : spring.gentle;
 
   return (
-    <div className={cn("flex items-center justify-center", className)} {...rest}>
+    <div
+      className={cn("flex items-center justify-center", className)}
+      {...rest}
+    >
       <AnimatePresence mode="popLayout" initial={false}>
         {status === "idle" && (
           <motion.button
@@ -223,7 +228,11 @@ export function DeleteWithUndo({
               )}
             >
               <span className="grid size-8 shrink-0 place-items-center rounded-full bg-danger text-danger-content">
-                <Undo2 className="size-4" strokeWidth={2.4} aria-hidden="true" />
+                <Undo2
+                  className="size-4"
+                  strokeWidth={2.4}
+                  aria-hidden="true"
+                />
               </span>
               <span className="font-semibold">
                 <StaggeredText text={undoLabel} reduce={reduce} />

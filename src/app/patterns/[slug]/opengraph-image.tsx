@@ -24,62 +24,60 @@ export default async function PatternOpengraphImage({
   const meta = getPattern(slug);
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#08090a",
-          padding: 80,
-          color: "#f4f5f6",
-        }}
-      >
-        <div style={{ display: "flex", fontSize: 28, color: "#878d94" }}>
-          {meta ? CATEGORY_LABELS[meta.category] : "Interaction Patterns"}
-        </div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        background: "#08090a",
+        padding: 80,
+        color: "#f4f5f6",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: 28, color: "#878d94" }}>
+        {meta ? CATEGORY_LABELS[meta.category] : "Interaction Patterns"}
+      </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-          <div style={{ display: "flex", fontSize: 72, lineHeight: 1.1 }}>
-            {meta?.name ?? "Interaction Patterns"}
-          </div>
-          {/*
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        <div style={{ display: "flex", fontSize: 72, lineHeight: 1.1 }}>
+          {meta?.name ?? "Interaction Patterns"}
+        </div>
+        {/*
             The problem statement, not a feature list. It is the sentence
             someone searching for this behaviour would recognise, and it is
             already capped at one sentence by the metadata contract.
           */}
-          <div
-            style={{
-              display: "flex",
-              fontSize: 30,
-              lineHeight: 1.4,
-              color: "#b6bbc0",
-            }}
-          >
-            {meta?.problem ?? "Production-ready React interaction patterns."}
-          </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 30,
+            lineHeight: 1.4,
+            color: "#b6bbc0",
+          }}
+        >
+          {meta?.problem ?? "Production-ready React interaction patterns."}
         </div>
+      </div>
 
-        {/*
+      {/*
           One joined string rather than a row of spans. Satori treats a
           fragment as a single flex child, so `gap` applies around the whole
           group and not between the items inside it — the separators end up
           jammed against the words.
         */}
-        <div style={{ display: "flex", fontSize: 24, color: "#878d94" }}>
-          {[
-            "Interaction Patterns",
-            meta?.difficulty,
-            meta?.keyboard ? "Keyboard" : null,
-            meta?.reducedMotion ? "Reduced motion" : null,
-          ]
-            .filter(Boolean)
-            .join("   ·   ")}
-        </div>
+      <div style={{ display: "flex", fontSize: 24, color: "#878d94" }}>
+        {[
+          "Interaction Patterns",
+          meta?.difficulty,
+          meta?.keyboard ? "Keyboard" : null,
+          meta?.reducedMotion ? "Reduced motion" : null,
+        ]
+          .filter(Boolean)
+          .join("   ·   ")}
       </div>
-    ),
+    </div>,
     size,
   );
 }

@@ -28,13 +28,14 @@ export function Hero({ patterns, inMigration }: HeroProps) {
   const categories = new Set(patterns.map((p) => p.category)).size;
   const keyboard = patterns.filter((p) => p.keyboard).length;
   const keyboardPct =
-    patterns.length === 0
-      ? 0
-      : Math.round((keyboard / patterns.length) * 100);
+    patterns.length === 0 ? 0 : Math.round((keyboard / patterns.length) * 100);
 
   const stats = [
     { value: String(patterns.length), label: "documented" },
-    { value: String(categories), label: categories === 1 ? "category" : "categories" },
+    {
+      value: String(categories),
+      label: categories === 1 ? "category" : "categories",
+    },
     { value: `${keyboardPct}%`, label: "keyboard accessible" },
     { value: String(inMigration), label: "in migration" },
   ];
@@ -47,8 +48,8 @@ export function Hero({ patterns, inMigration }: HeroProps) {
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed text-content-muted">
           A curated collection of React interactions that solve real UX
-          problems. Every one is accessible, performant, documented, and free
-          to copy.
+          problems. Every one is accessible, performant, documented, and free to
+          copy.
         </p>
       </div>
 
@@ -75,10 +76,7 @@ export function Hero({ patterns, inMigration }: HeroProps) {
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col">
             <dt className="sr-only">{stat.label}</dt>
-            <dd
-              data-tabular
-              className="text-2xl font-semibold text-content"
-            >
+            <dd data-tabular className="text-2xl font-semibold text-content">
               {stat.value}
             </dd>
             <span aria-hidden="true" className="text-sm text-content-subtle">

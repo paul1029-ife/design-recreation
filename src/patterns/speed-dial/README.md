@@ -42,8 +42,18 @@ import { Music, Video } from "lucide-react";
 <SpeedDial
   triggerLabel="Add media"
   actions={[
-    { id: "music", label: "Music", icon: <Music />, onSelect: () => addMusic() },
-    { id: "video", label: "Video", icon: <Video />, onSelect: () => addVideo() },
+    {
+      id: "music",
+      label: "Music",
+      icon: <Music />,
+      onSelect: () => addMusic(),
+    },
+    {
+      id: "video",
+      label: "Video",
+      icon: <Video />,
+      onSelect: () => addVideo(),
+    },
   ]}
 />;
 ```
@@ -54,26 +64,26 @@ where you anchor it.
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `actions` | `readonly SpeedDialAction[]` | — | Three to six. Empty renders nothing. |
-| `triggerLabel` | `string` | `"Actions"` | Accessible name for the trigger and the menu. |
-| `defaultOpen` | `boolean` | `false` | Uncontrolled initial state. |
-| `open` | `boolean` | uncontrolled | Controlled state. Pass with `onOpenChange`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Fires on every toggle. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop           | Type                         | Default      | Description                                   |
+| -------------- | ---------------------------- | ------------ | --------------------------------------------- |
+| `actions`      | `readonly SpeedDialAction[]` | —            | Three to six. Empty renders nothing.          |
+| `triggerLabel` | `string`                     | `"Actions"`  | Accessible name for the trigger and the menu. |
+| `defaultOpen`  | `boolean`                    | `false`      | Uncontrolled initial state.                   |
+| `open`         | `boolean`                    | uncontrolled | Controlled state. Pass with `onOpenChange`.   |
+| `onOpenChange` | `(open: boolean) => void`    | —            | Fires on every toggle.                        |
+| `className`    | `string`                     | —            | Merged onto the root.                         |
 
 `SpeedDialAction`: `{ id: string; label: string; icon: ReactNode; onSelect: () => void }`.
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
+| Key               | Action                                    |
+| ----------------- | ----------------------------------------- |
 | `Enter` / `Space` | Open the stack, or run the focused action |
-| `↑` | Move toward the top of the stack |
-| `↓` | Move back toward the trigger |
-| `Home` / `End` | Furthest or nearest card |
-| `Escape` | Close and return focus to the trigger |
+| `↑`               | Move toward the top of the stack          |
+| `↓`               | Move back toward the trigger              |
+| `Home` / `End`    | Furthest or nearest card                  |
+| `Escape`          | Close and return focus to the trigger     |
 
 Arrows follow the visual column rather than DOM order, so `↑` always moves up
 the screen.
@@ -123,13 +133,13 @@ source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

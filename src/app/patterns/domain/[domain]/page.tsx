@@ -57,9 +57,8 @@ export default async function DomainPage({ params }: PageProps) {
             {label} patterns
           </h1>
           <p className="text-content-muted">
-            {patterns.length}{" "}
-            {patterns.length === 1 ? "pattern" : "patterns"} built for{" "}
-            {label.toLowerCase()} interfaces.
+            {patterns.length} {patterns.length === 1 ? "pattern" : "patterns"}{" "}
+            built for {label.toLowerCase()} interfaces.
           </p>
         </header>
 

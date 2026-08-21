@@ -31,8 +31,8 @@ export default function PatternsIndexPage() {
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold text-content">All patterns</h1>
           <p className="text-content-muted">
-            Search by the problem you have, not the name of the interaction
-            that fixes it. Press{" "}
+            Search by the problem you have, not the name of the interaction that
+            fixes it. Press{" "}
             <kbd className="rounded border border-border bg-surface-subtle px-1.5 py-0.5 font-mono text-xs">
               /
             </kbd>{" "}

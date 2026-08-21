@@ -13,7 +13,9 @@ interface ViewTransition {
 }
 
 type ViewTransitionDocument = Document & {
-  startViewTransition?: (callback: () => void | Promise<void>) => ViewTransition;
+  startViewTransition?: (
+    callback: () => void | Promise<void>,
+  ) => ViewTransition;
 };
 
 export interface RevealOrigin {

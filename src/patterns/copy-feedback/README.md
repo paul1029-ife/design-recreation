@@ -41,22 +41,22 @@ import CopyFeedback from "@/patterns/copy-feedback/CopyFeedback";
 
 ## API
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | — | Placed on the clipboard, and shown when idle. |
-| `actionLabel` | `string` | `"Copy"` | Trigger text. |
-| `confirmLabel` | `string` | `"Copied!"` | Confirmation text. |
-| `errorLabel` | `string` | `"Press ⌘C to copy"` | Shown if the clipboard write is refused. |
-| `holdMs` | `number` | `2000` | How long the confirmation is held. Drives the fill too. |
-| `onCopy` | `(value: string) => void` | — | Fires after a successful write. |
-| `className` | `string` | — | Merged onto the root. |
+| Prop           | Type                      | Default              | Description                                             |
+| -------------- | ------------------------- | -------------------- | ------------------------------------------------------- |
+| `value`        | `string`                  | —                    | Placed on the clipboard, and shown when idle.           |
+| `actionLabel`  | `string`                  | `"Copy"`             | Trigger text.                                           |
+| `confirmLabel` | `string`                  | `"Copied!"`          | Confirmation text.                                      |
+| `errorLabel`   | `string`                  | `"Press ⌘C to copy"` | Shown if the clipboard write is refused.                |
+| `holdMs`       | `number`                  | `2000`               | How long the confirmation is held. Drives the fill too. |
+| `onCopy`       | `(value: string) => void` | —                    | Fires after a successful write.                         |
+| `className`    | `string`                  | —                    | Merged onto the root.                                   |
 
 ## Keyboard
 
-| Key | Action |
-| --- | --- |
-| `Tab` | Focus the copy button |
-| `Enter` / `Space` | Copy |
+| Key               | Action                |
+| ----------------- | --------------------- |
+| `Tab`             | Focus the copy button |
+| `Enter` / `Space` | Copy                  |
 
 Focus stays on the trigger throughout. The confirmation replaces the pill's
 contents visually but never moves focus, so repeated copies need no
@@ -104,13 +104,13 @@ the source is the delivery mechanism, not an appendix.
 
 ## Technologies
 
-| | |
-| --- | --- |
-| Framework | React 19 |
-| Motion | Motion 12 (`motion/react`) |
-| Styling | Tailwind CSS v4 |
-| Icons | `lucide-react` |
-| Types | TypeScript 5.9, strict |
+|           |                            |
+| --------- | -------------------------- |
+| Framework | React 19                   |
+| Motion    | Motion 12 (`motion/react`) |
+| Styling   | Tailwind CSS v4            |
+| Icons     | `lucide-react`             |
+| Types     | TypeScript 5.9, strict     |
 
 ## Credits
 

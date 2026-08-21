@@ -77,10 +77,7 @@ export function getPatternDoc(slug: string): PatternDoc | null {
   const raw = read(slug, "README.md");
   if (raw === null) return null;
 
-  const body = raw
-    .replace(FRONTMATTER, "")
-    .replace(HTML_COMMENT, "")
-    .trim();
+  const body = raw.replace(FRONTMATTER, "").replace(HTML_COMMENT, "").trim();
   const match = SOURCE_HEADING.exec(body);
 
   if (!match) return { body, beforeSource: body, afterSource: "" };
