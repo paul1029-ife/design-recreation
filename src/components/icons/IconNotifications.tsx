@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 export function MaterialSymbolsNotificationsRounded(
-  props: SVGProps<SVGSVGElement>
+  props: SVGProps<SVGSVGElement>,
 ) {
   return (
     <svg

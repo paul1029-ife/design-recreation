@@ -14,8 +14,11 @@ export interface ComponentCardProps {
 }
 
 /**
- * Gallery tile. Interim — Phase 4 replaces this with the real pattern card
- * carrying category, tags, and support badges.
+ * Card for a not-yet-migrated pattern, opening a modal preview.
+ *
+ * Documented patterns use `PatternCard` instead — it navigates to a real page
+ * and carries category, domains and support claims. This one deliberately
+ * carries none of that, because none of it exists yet for these.
  */
 export function ComponentCard({
   name,
@@ -33,7 +36,9 @@ export function ComponentCard({
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={
-        reduce ? { duration: 0.01 } : { duration: duration.slow, ease: ease.out }
+        reduce
+          ? { duration: 0.01 }
+          : { duration: duration.slow, ease: ease.out }
       }
       whileHover={reduce ? undefined : { y: -2 }}
       whileTap={reduce ? undefined : { scale: 0.99 }}
@@ -50,8 +55,8 @@ export function ComponentCard({
           Inspired by{" "}
           {/*
             An anchor nested inside a button is invalid HTML and creates a
-            focus trap for keyboard users. Rendered as text here; the credit
-            link lives on the pattern page, which is where attribution belongs.
+            focus trap. Rendered as text; attribution links live on the
+            pattern page once one exists.
           */}
           <span className="underline decoration-border-strong underline-offset-2">
             {source}

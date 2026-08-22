@@ -27,7 +27,13 @@ export interface ModalProps {
  * restoration, and no scroll lock. Tab walked focus behind the overlay into
  * the page underneath, with no way back.
  */
-export function Modal({ open, onClose, title, children, className }: ModalProps) {
+export function Modal({
+  open,
+  onClose,
+  title,
+  children,
+  className,
+}: ModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const restoreRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
@@ -104,7 +110,10 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: reduce ? 0.01 : duration.fast, ease: ease.out }}
+          transition={{
+            duration: reduce ? 0.01 : duration.fast,
+            ease: ease.out,
+          }}
           onKeyDown={handleKeyDown}
         >
           <div
@@ -119,7 +128,9 @@ export function Modal({ open, onClose, title, children, className }: ModalProps)
             aria-modal="true"
             aria-labelledby={titleId}
             tabIndex={-1}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
+            initial={
+              reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }
+            }
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 12 }}
             transition={reduce ? { duration: 0.01 } : spring.smooth}
