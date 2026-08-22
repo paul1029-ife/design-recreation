@@ -26,11 +26,6 @@ export default function MegaNavDemo() {
                 description: "Track performance and reach",
                 href: "#",
               },
-              {
-                label: "Orders",
-                description: "Handle wholesale transactions",
-                href: "#",
-              },
             ],
           },
           {
